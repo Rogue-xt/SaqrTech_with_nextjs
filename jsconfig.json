@@ -1,7 +1,21 @@
+// {
+//   "compilerOptions": {
+//     "paths": {
+//       "@/*": ["./src/*"]
+//     }
+//   }
+// }
+
+
+
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
-  }
+    },
+    "jsx": "preserve",
+    "checkJs": false
+  },
+  "exclude": ["node_modules"]
 }
