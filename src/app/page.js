@@ -56,10 +56,9 @@ export default function HomePage() {
     },
     {
       id: "04",
-      title: "Digital marketing services",
-      desc: "We provide digital marketing services designed to improve your online presence, drive targeted traffic, and increase conversions. Our expert team specializes in SEO, PPC advertising, social media marketing, content creation, and email marketing strategies fit to your business goals.",
-      // image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-      image: "/images/digital-marketing.jpg",
+      title: "Tally Integrations",
+      desc: "Tally Prime brings you a powerful reports dashboard, presenting your business information in intuitive visual formats. You can add tiles, hide, configure, organize, and display the information the way it suits your preferences and business needs.",
+      image: "/images/tally-integration.jpg",
     },
     {
       id: "05",
@@ -108,7 +107,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/services"
-            className="bg-black border border-white rounded-none text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white-600 border border-white  transition"
+            className="bg-black border border-white rounded-none text-white px-8 py-4 rounded-full text-lg font-light hover:bg-white hover:text-black border border-white  transition"
           >
             Explore Our Services
           </Link>
@@ -117,35 +116,77 @@ export default function HomePage() {
 
       {/* --- VAN SALES APP INTRO SECTION --- */}
       <section className=" text-center">
-        <div className="p-20">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeRight}
-            className="text-4xl md:text-5xl font-bold text-black mb-4"
-          >
-            Mpos
-          </motion.h2>
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeRight}
-            className="text-[#525252] text-lg mb-4"
-          >
-            Tally Integrated Van Sales Management Software
-          </motion.p>
-          <p className="text-[#737373] font-light text-md mb-12">
-            Integrated Android based business solutions with Bluetooth Printer.
-          </p>
-          <Link
-            href="/van-sales-app"
-            className="bg-black border border-white rounded-none text-white px-8 py-4 rounded-full text-lg  hover:bg-red-600 transition"
-          >
-            Request 7 Days Trial
-          </Link>
-        </div>
+        <section className="min-h-screen flex items-center bg-white px-8 py-20">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* LEFT SIDE: Content */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeRight}
+              className="flex flex-col justify-center text-center"
+            >
+              <div className="mx-auto">
+                <Image
+                  src="/Mpos/Mpos Logo/mPos_logo.jpg"
+                  alt="MPOS"
+                  width={200}
+                  height={80}
+                  className="object-contain"
+                />
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-6 leading-tight">
+                Tally Integrated <br />
+                <span className="text-red-600">Van Sales</span> Management Software
+              </h2>
+
+              <p className="text-[#525252] text-xl mb-2 font-medium">
+                Android based business solutions.
+              </p>
+              <p className="text-[#737373] text-lg mb-10 max-w-full">
+                Streamline your distribution with real-time Tally integration
+                and Bluetooth printing.
+              </p>
+
+              <Link
+                href="/van-sales-app"
+                className="bg-black mx-auto border-2 border-black text-white px-10 py-4  text-lg font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-xl"
+              >
+                Request 7 Days Trial
+              </Link>
+            </motion.div>
+
+            {/* RIGHT SIDE: Visual (Video or Animation) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-100 aspect-square lg:aspect-video"
+            >
+              {/* PRO TIP: Use a video that has the van movement. 
+            If you want a person getting down, a high-quality stock video 
+            clipped into this rounded container looks amazing.
+          */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source
+                  src="/Mpos/MPOS-ROUTE-Video.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Optional Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+            </motion.div>
+          </div>
+        </section>
 
         {/* <div className="flex justify-center"> */}
         <section className="border-t border-b border-[#e5e5e5] bg-white py-20">
@@ -319,7 +360,8 @@ export default function HomePage() {
               driving tangible business outcomes has earned them numerous
               accolades and a loyal clientele.
             </span>
-            <br /><br />
+            <br />
+            <br />
             <span>
               "If you're looking for an IT partner that combines technological
               expertise with a deep understanding of the GCC market, Al Saqr
@@ -337,7 +379,7 @@ export default function HomePage() {
 
           <Link
             href="/contact-us"
-            className="bg-black text-white px-12 py-4 rounded-none text-xl font-bold hover:bg-red-700 transition shadow-lg"
+            className="bg-black border border-black text-white px-12 py-4 rounded-none text-xl font-bold hover:bg-white hover:text-black transition shadow-lg"
           >
             Contact us
           </Link>

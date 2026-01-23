@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
+import Map from "@/components/Map";
 
 export default function RootLayout({ children }) {
   return (
@@ -8,6 +9,7 @@ export default function RootLayout({ children }) {
       <body className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">{children}</main>
+        <Map/>
         <Footer />
       </body>
     </html>

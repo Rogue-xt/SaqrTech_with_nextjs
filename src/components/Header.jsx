@@ -47,7 +47,7 @@ export default function Header() {
         <span className="text-gray-500 text-sm">+971 58 951 6916</span>
         <Link
           href="/contact-us"
-          className="bg-black text-white px-6 py-2 hover:bg-red-600 transition"
+          className="bg-black border border-black text-white px-6 py-2 hover:bg-white hover:text-black transition"
         >
           Contact Us
         </Link>
