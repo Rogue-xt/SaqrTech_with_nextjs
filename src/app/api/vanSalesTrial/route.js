@@ -3,8 +3,9 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { EnquiryMail } from "emails/EnquiryMail";
 import { PrismaClient } from "@prisma/client";
+import { UserWelcomeMail } from "emails/UserWelcomeMail";
 
-
+const prisma = new PrismaClient();
 export async function POST(request) {
   // 1. Get the data from the request body
   const body = await request.json();
@@ -20,7 +21,9 @@ const newLead = await prisma.VanSalesTrial.create({
     info,
   },
 });
-  const emailHtml = await render(<EnquiryMail data={body} />);
+
+  const adminHtml = await render(<EnquiryMail data={body} />);
+  const userHtml = await render(<UserWelcomeMail name={name} />);
 
   try {
     const transporter = nodemailer.createTransport({
@@ -31,14 +34,27 @@ const newLead = await prisma.VanSalesTrial.create({
       },
     });
 
-    const mailOptions = {
+    // 2. Send Admin Notification (Existing)
+    await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: "teamaxon2024@gmail.com",
-      subject: `Mpos Trial Enquiry: ${name}`, // Fixed: changed 'subject' to 'name'
-      html: emailHtml,
-    };
+      subject: `🚀 New Lead: ${name}`,
+      html: adminHtml,
+    });
 
-    await transporter.sendMail(mailOptions);
+    // 3. Send User Confirmation + Attachment
+    await transporter.sendMail({
+      from: `"Al Saqr Technologies" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: "Your Mpos Van Sales App Trial & Feature Guide",
+      html: userHtml,
+      attachments: [
+        {
+          filename: "Mpos-Brochure.pdf",
+          path: "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/Route-Sales-Management%20Software.pdf", // USE A PUBLIC URL
+        },
+      ],
+    });
 
     return NextResponse.json(
       { message: "Email sent successfully" },

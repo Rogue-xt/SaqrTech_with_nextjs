@@ -77,7 +77,7 @@ export default function VanSales() {
           </div>
 
           {/* Right Side: Form */}
-          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center m-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
             <div className="mb-6">
               <span className="inline-flex items-center gap-1 text-sm text-white font-light bg-black px-4 py-2 rounded-full uppercase tracking-wider mb-4">
                 ♡ Free Trial
@@ -170,7 +170,7 @@ export default function VanSales() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className={`w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition duration-300 ${
+                className={`w-full py-4 rounded-none font-bold flex items-center justify-center gap-2 transition duration-300 ${
                   status === "sending"
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-black hover:bg-gray-800 text-white"

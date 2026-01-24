@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Modal from "@/components/Modal";
 import { motion } from "framer-motion";
+import ServiceSlider from "@/components/ServicesSlider";
 
 export default function HomePage() {
   const fadeLeft = {
@@ -267,6 +268,14 @@ export default function HomePage() {
           </motion.div>
         </section>
       </section>
+
+
+      {/* slider */}
+
+                <ServiceSlider/>
+
+
+
 
       {/* service section  */}
       <section className="bg-black text-white py-24">
