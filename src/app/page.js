@@ -20,7 +20,6 @@ export default function HomePage() {
     visible: { opacity: 1, x: 0 },
   };
 
-
   const container = {
     hidden: {},
     visible: {
@@ -35,45 +34,6 @@ export default function HomePage() {
     visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
   };
 
-  const services = [
-    {
-      id: "01",
-      title: "Custom Software Development",
-      desc: "We develop custom software solutions that are scalable, secure, and aligned with your business objectives. Our experts work closely with you to understand your challenges and create software that integrates into your processes.",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    },
-    {
-      id: "02",
-      title: "Mobile App Development",
-      desc: "Stay ahead in the mobile-first world with our intuitive and user-friendly mobile apps. Whether for iOS, Android, or cross-platform development, we deliver apps that improve customer experience and drive business efficiency.",
-      // image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
-      image: "/images/mobile-app.jpg",
-    },
-    {
-      id: "03",
-      title: "Enterprise Software Solutions",
-      desc: "Our enterprise software solutions help increase operations efficiency, improve collaboration, and drive new ideas across your organization. From CRM systems to ERP solutions, we offer robust software that grows with your business.",
-      image: "/images/software-installation.jpg",
-    },
-    {
-      id: "04",
-      title: "Tally Integrations",
-      desc: "Tally Prime brings you a powerful reports dashboard, presenting your business information in intuitive visual formats. You can add tiles, hide, configure, organize, and display the information the way it suits your preferences and business needs.",
-      image: "/images/tally-integration.jpg",
-    },
-    {
-      id: "05",
-      title: "Cloud Solutions & Integration",
-      desc: "Enfold the power of cloud computing with our inclusive cloud solutions. We help businesses migrate to the cloud, integrate cloud services, and optimize their operations for increased scalability and reduced costs.",
-      image: "/images/cloud.png",
-    },
-    {
-      id: "06",
-      title: "IT Consulting and Support",
-      desc: "Hold our IT consulting expertise to make informed technology decisions. We provide ongoing support and maintenance services to ensure that your systems remain secure, up-to-date, and fully optimized.",
-      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    },
-  ];
   return (
     <main className="relative">
       {/* 4-Second Appointment Modal */}
@@ -139,7 +99,8 @@ export default function HomePage() {
 
               <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-6 leading-tight">
                 Tally Integrated <br />
-                <span className="text-red-600">Van Sales</span> Management Software
+                <span className="text-red-600">Van Sales</span> Management
+                Software
               </h2>
 
               <p className="text-[#525252] text-xl mb-2 font-medium">
@@ -176,10 +137,7 @@ export default function HomePage() {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                <source
-                  src="/Mpos/MPOS-ROUTE-Video.mp4"
-                  type="video/mp4"
-                />
+                <source src="/Mpos/MPOS-ROUTE-Video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
@@ -269,69 +227,10 @@ export default function HomePage() {
         </section>
       </section>
 
-
       {/* slider */}
 
-                <ServiceSlider/>
-
-
-
-
-      {/* service section  */}
-      <section className="bg-black text-white py-24">
-        <motion.div variants={item} className="max-w-7xl mx-auto px-6">
-          {/* Header */}
-          <motion.div variants={item} className="text-center mb-16">
-            <span className="inline-block border border-white px-4 py-1 text-xs tracking-widest uppercase mb-6">
-              Our Services
-            </span>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light">
-              Comprehensive Technology Solutions
-            </h2>
-
-            <div className="w-12 h-px bg-white mx-auto mt-6"></div>
-          </motion.div>
-
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {services.map((service) => (
-              <motion.div
-                variants={item}
-                key={service.id}
-                className="group border border-gray-700 hover:border-white transition p-6"
-              >
-                {/* Image */}
-                <motion.div
-                  variants={item}
-                  className="relative w-full h-56 overflow-hidden mb-6"
-                >
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </motion.div>
-
-                {/* Content */}
-                <motion.div
-                  variants={item}
-                  className="flex items-start justify-between mb-3"
-                >
-                  <h3 className="text-lg font-medium">{service.title}</h3>
-                  <span className="text-sm text-gray-400">{service.id}</span>
-                </motion.div>
-
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {service.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
+      <ServiceSlider />
+<hr style={{backgroundColor:"#efefefe"}} />
       {/* --- TRUST & CTA SECTION --- */}
       <section className="py-20 bg-white">
         <motion.div

@@ -134,7 +134,7 @@ export default function ServiceSlider() {
                       {service.title}
                     </h3>
                     <p className="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">
-                      {service.descriptionription}
+                      {service.description}
                     </p>
                     <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider group hover:text-blue-600 transition">
                       Read more
