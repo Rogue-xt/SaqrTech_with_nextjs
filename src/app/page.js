@@ -116,7 +116,7 @@ export default function HomePage() {
 
       {/* --- VAN SALES APP INTRO SECTION --- */}
       <section className=" text-center">
-        <section className="min-h-screen flex items-center bg-white px-8 py-20">
+        <section className="min-h-screen flex items-center bg-white px-8 ">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* LEFT SIDE: Content */}
             <motion.div

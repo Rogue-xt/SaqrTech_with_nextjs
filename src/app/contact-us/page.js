@@ -111,7 +111,7 @@ export default function ContactUs() {
               <div className="flex md:justify-start justify-center md:pl-[25%]">
                 <button
                   type="submit"
-                  className="bg-[#ef4444] text-white px-10 py-3 rounded-full font-bold hover:bg-red-700 transition"
+                  className="bg-black text-white px-10 py-3 rounded-none font-bold hover:bg-red-700 transition"
                 >
                   {status === "sending" ? "Sending..." : "Submit"}
                 </button>
