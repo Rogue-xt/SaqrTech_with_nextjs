@@ -1,11 +1,38 @@
-"use client"; // Required for useState and clicking
-
-import { useState } from "react";
+"use client";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation"; // 1. Import usePathname
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
+  const pathname = usePathname(); // 2. Get the current route
+  const isHomePage = pathname === "/"; // Check if it's home
+
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    if (isHomePage) {
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
+  // Determine styles based on page and scroll position
+  const headerBg = isHomePage
+    ? scrolled
+      ? "bg-white shadow-sm"
+      : "bg-transparent"
+    : "bg-white shadow-sm relative"; // Default white for other pages
+
+  const textColor = isHomePage && !scrolled ? "text-white" : "text-gray-700";
+
+  const logoInvert = isHomePage && !scrolled ? "brightness-0 invert" : "";
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -16,7 +43,11 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex items-center justify-between px-6 md:px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
+    <header
+      className={`top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-300 flex items-center justify-between px-6 md:px-8 py-4 ${
+        isHomePage ? "fixed" : "sticky"
+      } ${headerBg}`}
+    >
       {/* Logo */}
       <div className="flex items-center">
         <Link href="/">
@@ -25,12 +56,13 @@ export default function Header() {
             alt="Al Saqr Logo"
             width={140}
             height={40}
+            className={logoInvert}
           />
         </Link>
       </div>
 
-      {/* Desktop Navigation (Hidden on Mobile) */}
-      <nav className="hidden md:flex space-x-6 font-medium text-gray-700">
+      {/* Desktop Navigation */}
+      <nav className={`hidden md:flex space-x-6 font-medium ${textColor}`}>
         {navLinks.map((link) => (
           <Link
             key={link.name}
@@ -42,24 +74,35 @@ export default function Header() {
         ))}
       </nav>
 
-      {/* Right Side - Desktop Actions (Hidden on Mobile) */}
+      {/* Right Side */}
       <div className="hidden md:flex items-center space-x-4">
-        <span className="text-gray-500 text-sm">+971 58 951 6916</span>
+        <span
+          className={
+            isHomePage && !scrolled
+              ? "text-gray-200 text-sm"
+              : "text-gray-500 text-sm"
+          }
+        >
+          +971 58 951 6916
+        </span>
         <Link
           href="/contact-us"
-          className="bg-black border border-black text-white px-6 py-2 hover:bg-white hover:text-black transition"
+          className={`px-6 py-2 border transition ${
+            isHomePage && !scrolled
+              ? "border-white text-white hover:bg-white hover:text-black"
+              : "bg-black border-black text-white hover:bg-white hover:text-black"
+          }`}
         >
           Contact Us
         </Link>
       </div>
 
-      {/* Mobile Hamburger Button (Visible only on Mobile) */}
+      {/* Mobile Toggle Button */}
       <button
-        className="md:hidden text-black p-2"
+        className={`md:hidden p-2 ${isHomePage && !scrolled ? "text-white" : "text-black"}`}
         onClick={() => setIsOpen(true)}
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}

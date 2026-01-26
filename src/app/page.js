@@ -4,6 +4,7 @@ import Link from "next/link";
 import Modal from "@/components/Modal";
 import { motion } from "framer-motion";
 import ServiceSlider from "@/components/ServicesSlider";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 export default function HomePage() {
   const fadeLeft = {
@@ -36,20 +37,24 @@ export default function HomePage() {
 
   return (
     <main className="relative">
-      {/* 4-Second Appointment Modal */}
       <Modal />
 
       {/* --- HERO SECTION --- */}
-      <section className="relative h-[80vh] flex items-center  text-white overflow-hidden">
-        {/* Background Image using Next/Image for optimization */}
+      {/* Changed to h-screen (100vh) */}
+      <section className="relative h-screen flex items-center text-white overflow-hidden">
+        {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Software Development Background"
-            fill
-            className="object-cover brightness-[0.4]"
-            priority
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/Mpos/MPOS-ROUTE-Video.mp4" type="video/mp4" />
+          </video>
+          {/* Added a dark overlay so white text is readable on light video parts */}
+          <div className="absolute inset-0 bg-black/30 z-[1]" />
         </div>
 
         <motion.div
@@ -57,20 +62,20 @@ export default function HomePage() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeLeft}
-          className="relative z-10  px-4 max-w-5xl"
+          className="relative z-10 px-6 md:px-12 max-w-5xl"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
             Creative Software Development Services & IT Solutions
           </h1>
-          <p className="text-lg md:text-xl mb-8 text-gray-200">
+          <p className="text-lg md:text-2xl mb-8 text-gray-100 max-w-2xl">
             Advanced IT and ITES solutions that are customized to address the
             distinct needs of clients throughout the UAE and the Middle East.
           </p>
           <Link
             href="/services"
-            className="bg-black border border-white rounded-none text-white px-8 py-4 rounded-full text-lg font-light hover:bg-white hover:text-black border border-white  transition"
+            className="inline-block border border-white text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-black transition duration-300"
           >
-            Explore Our Services
+            Explore Our Services →
           </Link>
         </motion.div>
       </section>
@@ -115,7 +120,7 @@ export default function HomePage() {
                 href="/van-sales-app"
                 className="bg-black mx-auto border-2 border-black text-white px-10 py-4  text-lg font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-xl"
               >
-                Request 7 Days Trial
+                Request 7 Days Trial →
               </Link>
             </motion.div>
 
@@ -137,12 +142,11 @@ export default function HomePage() {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                <source src="/Mpos/MPOS-ROUTE-Video.mp4" type="video/mp4" />
+                <source src="/Mpos/Mpos-Animated-Video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
-              {/* Optional Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+           
             </motion.div>
           </div>
         </section>
@@ -157,7 +161,12 @@ export default function HomePage() {
             className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
           >
             {/* LEFT – Image / Card Mock */}
-            <div className="relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+              className="relative"
+            >
               <div className="bg-white border border-gray-200 shadow-sm p-8 w-full max-w-md rotate-[-2deg]">
                 {/* Top row */}
                 <div className="flex items-center gap-4 mb-6">
@@ -182,14 +191,13 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="rotate-[-2deg] absolute"></div>
-            </div>
+            </motion.div>
 
             {/* RIGHT – Content */}
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeLeft}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
             >
               {/* Tag */}
               <span className="inline-block border border-black px-4 py-1 text-xs tracking-widest uppercase mb-6">
@@ -230,7 +238,9 @@ export default function HomePage() {
       {/* slider */}
 
       <ServiceSlider />
-<hr style={{backgroundColor:"#efefefe"}} />
+      <hr style={{ backgroundColor: "#efefefe" }} />
+
+      <WhyChooseUs />
       {/* --- TRUST & CTA SECTION --- */}
       <section className="py-20 bg-white">
         <motion.div
@@ -238,7 +248,7 @@ export default function HomePage() {
           className="container mx-auto px-4 text-center max-w-6xl"
         >
           <p className="text-gray-700 text-lg leading-relaxed mb-16 italic">
-            <span>
+            {/* <span>
               In the fast-paced digital era, the Gulf Cooperation Council (GCC)
               region has witnessed an exponential rise in technological
               advancements. As businesses and individuals strive to keep up with
@@ -267,7 +277,7 @@ export default function HomePage() {
               commitment to delivering exceptional customer experiences and
               driving tangible business outcomes has earned them numerous
               accolades and a loyal clientele.
-            </span>
+            </span> */}
             <br />
             <br />
             <span>

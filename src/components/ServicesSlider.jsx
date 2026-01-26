@@ -2,11 +2,12 @@
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import Link from "next/link";
 
 const services = [
   {
@@ -49,9 +50,14 @@ const services = [
 ];
 export default function ServiceSlider() {
   return (
-    <section className="py-20 bg-white">
-      <div className="text-center mb-16">
-        <span className="inline-block border border-white px-4 py-1 text-xs tracking-widest uppercase mb-6">
+    <section className="py-20 bg-white overflow-hidden ">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+        className="text-center mb-16"
+      >
+        <span className="inline-block border border-black px-4 py-1 text-xs tracking-widest uppercase mb-6">
           Our Services
         </span>
 
@@ -60,7 +66,7 @@ export default function ServiceSlider() {
         </h2>
 
         <div className="w-12 h-px bg-white mx-auto mt-6"></div>
-      </div>
+      </motion.div>
       <div className="max-w-7xl mx-auto px-4 relative">
         {/* Navigation Arrows Container - Positioned Absolutely over the Slider */}
         <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 z-20 flex justify-between pointer-events-none px-2 md:-px-4">
@@ -98,7 +104,7 @@ export default function ServiceSlider() {
         </div>
 
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           spaceBetween={40}
           slidesPerView={1}
           centeredSlides={true}
@@ -111,13 +117,18 @@ export default function ServiceSlider() {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
+          autoplay={{
+            delay: 2000, // Time between transitions in ms (3 seconds)
+            disableOnInteraction: false, // Keeps autoplay running even after user swipes
+            pauseOnMouseEnter: true, 
+          }}
           className="service-swiper !py-10" // Padding ensures shadow isn't clipped
         >
           {services.map((service, index) => (
             <SwiperSlide key={index}>
               {({ isActive }) => (
                 <div
-                  className={`transition-all duration-700 rounded-2xl overflow-hidden bg-white border border-gray-100 flex flex-col h-[500px]
+                  className={`transition-all duration-700 rounded-none overflow-hidden bg-white border border-gray-100 flex flex-col h-[500px]
                     ${isActive ? "shadow-[0_20px_50px_rgba(0,0,0,0.15)] scale-105 z-10 border-none" : "shadow-sm scale-90 opacity-40 grayscale-[0.5]"}`}
                 >
                   <div className="relative h-56 w-full">
@@ -136,12 +147,14 @@ export default function ServiceSlider() {
                     <p className="text-gray-500 text-sm mb-6 flex-grow leading-relaxed">
                       {service.description}
                     </p>
-                    <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider group hover:text-blue-600 transition">
-                      Read more
-                      <span className="group-hover:translate-x-2 transition-transform">
-                        →
-                      </span>
-                    </button>
+                    <Link href="/services">
+                      <button className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider group hover:text-purple-600 transition">
+                        Read more
+                        <span className="group-hover:translate-x-2 transition-transform">
+                          →
+                        </span>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               )}
@@ -151,22 +164,24 @@ export default function ServiceSlider() {
 
         {/* Center CTA Button */}
         <div className="flex justify-center mt-12">
-          <button className="bg-black text-white px-10 py-4 rounded-md text-sm font-bold flex items-center gap-3 hover:bg-gray-800 transition shadow-lg">
-            View more services
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
+          <Link href="/services">
+            <button className="bg-black text-white px-10 py-4 rounded-none text-sm font-bold flex items-center gap-3 hover:bg-gray-800 transition shadow-lg">
+              View more services
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </Link>
         </div>
 
         {/* Footer Text */}
