@@ -120,7 +120,7 @@ export default function ServiceSlider() {
           autoplay={{
             delay: 2000, // Time between transitions in ms (3 seconds)
             disableOnInteraction: false, // Keeps autoplay running even after user swipes
-            pauseOnMouseEnter: true, 
+            pauseOnMouseEnter: true,
           }}
           className="service-swiper !py-10" // Padding ensures shadow isn't clipped
         >
@@ -129,9 +129,9 @@ export default function ServiceSlider() {
               {({ isActive }) => (
                 <div
                   className={`transition-all duration-700 rounded-none overflow-hidden bg-white border border-gray-100 flex flex-col h-[500px]
-                    ${isActive ? "shadow-[0_20px_50px_rgba(0,0,0,0.15)] scale-105 z-10 border-none" : "shadow-sm scale-90 opacity-40 grayscale-[0.5]"}`}
+                    ${isActive ? "shadow-[0_20px_50px_rgba(0,0,0,0.15)] scale-105 z-10 border border-black" : "shadow-sm scale-90 opacity-40 grayscale-[0.5]"}`}
                 >
-                  <div className="relative h-56 w-full">
+                  <div className="relative  h-56 w-full">
                     <Image
                       src={service.image}
                       alt={service.title}

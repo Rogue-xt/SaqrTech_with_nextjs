@@ -51,7 +51,7 @@ export default function HomePage() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/Mpos/MPOS-ROUTE-Video.mp4" type="video/mp4" />
+            <source src="/Mpos/Mpos-Banner-Video.mp4" type="video/mp4" />
           </video>
           {/* Added a dark overlay so white text is readable on light video parts */}
           <div className="absolute inset-0 bg-black/30 z-[1]" />
@@ -129,12 +129,9 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl bg-gray-100 aspect-square lg:aspect-video"
+              className="relative rounded-none overflow-hidden shadow-2xl bg-gray-100 aspect-square lg:aspect-video"
             >
-              {/* PRO TIP: Use a video that has the van movement. 
-            If you want a person getting down, a high-quality stock video 
-            clipped into this rounded container looks amazing.
-          */}
+              
               <video
                 autoPlay
                 muted

@@ -11,8 +11,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
+      {/* Added overflow-x-hidden to prevent the horizontal scrollbar */}
+      <body className="flex flex-col min-h-screen overflow-x-hidden">
         <Header />
+        {/* The main content area */}
         <main className="flex-grow">{children}</main>
         <Map/>
         <Footer />

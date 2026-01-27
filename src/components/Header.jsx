@@ -44,9 +44,13 @@ export default function Header() {
 
   return (
     <header
-      className={`top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-300 flex items-center justify-between px-6 md:px-8 py-4 ${
-        isHomePage ? "fixed" : "sticky"
-      } ${headerBg}`}
+      className={`fixed top-0 inset-x-0 z-50 backdrop-blur-md transition-all duration-300 flex items-center justify-between px-6 md:px-8 py-4 ${
+        isHomePage
+          ? scrolled
+            ? "bg-white shadow-sm"
+            : "bg-transparent"
+          : "bg-white shadow-sm"
+      }`}
     >
       {/* Logo */}
       <div className="flex items-center">
