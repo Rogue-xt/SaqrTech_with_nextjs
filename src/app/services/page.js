@@ -8,7 +8,7 @@ const services = [
     title: "M-POS Van Sales Software",
     description:
       "Integrated Android based business solutions with Tally Prime. Our latest development, the mobile application with Bluetooth printer for Route sales, instant payment and receipt and many more.",
-    image: "/images/services/Mpos1.png",
+    image: "/images/services/Mpos-van-bg.png",
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ const services = [
     title: "Device Integrations",
     description:
       "A solution beyond Tally will be an integrated solution with web or mobile applications. We always prefer to do an accounts integration with Tally if our customers already have a third party application which meets their business requirements.",
-    image: "/images/services/DeviceIntegration.png",
+    image: "/images/services/Device-Integ.png",
   },
   {
     id: 7,
@@ -174,7 +174,7 @@ export default function ServicesCursorGlow() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
             />
             {/* Soft UI Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
