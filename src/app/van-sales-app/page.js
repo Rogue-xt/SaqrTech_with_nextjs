@@ -41,7 +41,7 @@ export default function VanSales() {
 
   return (
     <div>
-      <section className="max-w-6xl mx-auto p-4">
+      <section className="max-w-6xl mt-15 mx-auto p-4">
         <div className="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden ">
           {/* Left Side: Image */}
           <div className="relative w-full md:w-1/2 min-h-[300px]">

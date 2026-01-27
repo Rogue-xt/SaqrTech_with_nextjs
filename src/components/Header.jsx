@@ -1,38 +1,47 @@
 "use client";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; // 1. Import usePathname
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
-  const pathname = usePathname(); // 2. Get the current route
-  const isHomePage = pathname === "/"; // Check if it's home
+  const pathname = usePathname();
+
+  // 1. Identify which pages should start transparent
+  const isHomePage = pathname === "/";
+  const isServicesPage = pathname === "/services";
+  const isTransparentInitial = isHomePage || isServicesPage;
 
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // 2. Logic: If on Services page, maybe we want it to stay transparent longer
+      // or only turn white after 300px instead of 50px.
+      const threshold = isServicesPage ? 800 : 50;
+      setScrolled(window.scrollY > threshold);
     };
 
-    if (isHomePage) {
+    if (isTransparentInitial) {
       window.addEventListener("scroll", handleScroll);
+    } else {
+      setScrolled(false); // Reset for internal white pages
     }
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHomePage]);
+  }, [isTransparentInitial, isServicesPage]);
 
-  // Determine styles based on page and scroll position
-  const headerBg = isHomePage
-    ? scrolled
-      ? "bg-white shadow-sm"
-      : "bg-transparent"
-    : "bg-white shadow-sm relative"; // Default white for other pages
+  // 3. Determine styles
+  // We check if the current page is one of our "Transparent" starting pages
+  const isCurrentTransparent = isTransparentInitial && !scrolled;
 
-  const textColor = isHomePage && !scrolled ? "text-white" : "text-gray-700";
+  const headerBg = isCurrentTransparent
+    ? "bg-transparent backdrop-blur-none" // Clean transparency
+    : "bg-white shadow-sm backdrop-blur-md";
 
-  const logoInvert = isHomePage && !scrolled ? "brightness-0 invert" : "";
+  const textColor = isCurrentTransparent ? "text-white" : "text-gray-700";
+  const logoInvert = isCurrentTransparent ? "brightness-0 invert" : "";
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -44,13 +53,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 backdrop-blur-md transition-all duration-300 flex items-center justify-between px-6 md:px-8 py-4 ${
-        isHomePage
-          ? scrolled
-            ? "bg-white shadow-sm"
-            : "bg-transparent"
-          : "bg-white shadow-sm"
-      }`}
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 flex items-center justify-between px-6 md:px-8 py-4 ${headerBg}`}
     >
       {/* Logo */}
       <div className="flex items-center">
@@ -60,13 +63,15 @@ export default function Header() {
             alt="Al Saqr Logo"
             width={140}
             height={40}
-            className={logoInvert}
+            className={`transition-all duration-500 ${logoInvert}`}
           />
         </Link>
       </div>
 
       {/* Desktop Navigation */}
-      <nav className={`hidden md:flex space-x-6 font-medium ${textColor}`}>
+      <nav
+        className={`hidden md:flex space-x-6 font-medium transition-colors duration-500 ${textColor}`}
+      >
         {navLinks.map((link) => (
           <Link
             key={link.name}
@@ -81,18 +86,14 @@ export default function Header() {
       {/* Right Side */}
       <div className="hidden md:flex items-center space-x-4">
         <span
-          className={
-            isHomePage && !scrolled
-              ? "text-gray-200 text-sm"
-              : "text-gray-500 text-sm"
-          }
+          className={`transition-colors duration-500 text-sm ${isCurrentTransparent ? "text-gray-200" : "text-gray-500"}`}
         >
           +971 58 951 6916
         </span>
         <Link
           href="/contact-us"
-          className={`px-6 py-2 border transition ${
-            isHomePage && !scrolled
+          className={`px-6 py-2 border transition-all duration-500 ${
+            isCurrentTransparent
               ? "border-white text-white hover:bg-white hover:text-black"
               : "bg-black border-black text-white hover:bg-white hover:text-black"
           }`}
@@ -103,7 +104,7 @@ export default function Header() {
 
       {/* Mobile Toggle Button */}
       <button
-        className={`md:hidden p-2 ${isHomePage && !scrolled ? "text-white" : "text-black"}`}
+        className={`md:hidden p-2 transition-colors duration-500 ${isCurrentTransparent ? "text-white" : "text-black"}`}
         onClick={() => setIsOpen(true)}
       >
         <svg
