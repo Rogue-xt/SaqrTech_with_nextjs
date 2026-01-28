@@ -23,7 +23,7 @@ export default function ContactUs() {
 
   return (
     <div className="bg-white">
-      <div className="container mx-auto px-6 py-12">
+      <div className="container mt-15 mx-auto px-6 py-12">
         <div className="mb-10">
           <h1 className="text-gray-800 text-lg mb-2">
             Contact us about anything related to our company or services.

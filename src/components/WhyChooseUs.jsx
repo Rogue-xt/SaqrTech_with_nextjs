@@ -130,8 +130,8 @@ const particles = useMemo(() => {
         ))}
       </div>
       {/* --- ADDED DOTS END --- */}
-      {/* Background Depth: One single light purple glow behind the grid */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* Background Depth: One single light red glow behind the grid */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -140,7 +140,7 @@ const particles = useMemo(() => {
           transition={{ duration: 1 }}
           className="text-center mb-20"
         >
-          <div className="inline-block px-4 py-1.5 rounded-full border border-purple-500/20 text-[10px] uppercase tracking-[0.3em] font-medium text-purple-300/60 mb-6 backdrop-blur-md">
+          <div className="inline-block px-4 py-1.5 rounded-full border border-red-500/20 text-[10px] uppercase tracking-[0.3em] font-medium text-red-300/60 mb-6 backdrop-blur-md">
             Excellence in IT Solutions
           </div>
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
@@ -162,11 +162,11 @@ const particles = useMemo(() => {
               key={item.id}
               className="group relative p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 transition-all duration-500 
                          hover:bg-white/[0.07] hover:backdrop-blur-2xl 
-                         hover:border-purple-500/50 hover:-translate-y-3
+                         hover:border-red-500/50 hover:-translate-y-3
                          hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]"
             >
               {/* Internal Reflection / Shine */}
-              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-purple-500/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Icon Container with subtle glow */}
               <div className="w-12 h-12 bg-white text-black rounded-xl flex items-center justify-center mb-10 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] relative z-10">
@@ -174,12 +174,12 @@ const particles = useMemo(() => {
               </div>
 
               {/* Background Numbering */}
-              <span className="absolute top-8 right-10 text-5xl font-black text-white/[0.03] transition-colors duration-500 group-hover:text-purple-500/10 select-none">
+              <span className="absolute top-8 right-10 text-5xl font-black text-white/[0.03] transition-colors duration-500 group-hover:text-red-500/10 select-none">
                 {item.id}
               </span>
 
               <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-purple-50 transition-colors">
+                <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-red-50 transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-300">
@@ -188,7 +188,7 @@ const particles = useMemo(() => {
               </div>
 
               {/* Bottom Accent Line */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-purple-500 transition-all duration-500 group-hover:w-1/2 group-hover:shadow-[0_0_10px_#a855f7]" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-red-500 transition-all duration-500 group-hover:w-1/2 group-hover:shadow-[0_0_10px_#a855f7]" />
             </motion.div>
           ))}
         </div>

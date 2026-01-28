@@ -40,13 +40,13 @@ export default function VanSales() {
   };
 
   return (
-    <div>
-      <section className="max-w-6xl mt-15 mx-auto p-4">
-        <div className="flex flex-col md:flex-row bg-white rounded-3xl overflow-hidden ">
+    <div className="bg-black">
+      <section className="max-w-6xl  mx-auto p-4 bg-black">
+        <div className="flex flex-col md:flex-row mt-15 bg-black rounded-3xl overflow-hidden ">
           {/* Left Side: Image */}
           <div className="relative w-full md:w-1/2 min-h-[300px]">
             <Image
-              src="/Mpos/Van.png"
+              src="/images/Device-view/Mpos-Tab.png"
               alt="Consultation"
               fill
               className="object-contain"
@@ -77,17 +77,16 @@ export default function VanSales() {
           </div>
 
           {/* Right Side: Form */}
-          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center m-10 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+          <div className="form border border-white/10 transition-all duration-500  hover:bg-white/[0.07] hover:backdrop-blur-2xl  hover:border-red-500/50 hover:-translate-y-3 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] bg-[#111111] border border-white/10 rounded-[2.5rem] w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center m-0 md:m-10 border-2  shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
             <div className="mb-6">
-              <span className="inline-flex items-center gap-1 text-sm text-white font-light bg-black px-4 py-2 rounded-full uppercase tracking-wider mb-4">
+              <span className="invert inline-flex items-center gap-1 text-sm text-white font-light bg-black px-4 py-2 rounded-full uppercase tracking-wider mb-4">
                 ♡ Free Trial
               </span>
-              <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-4xl font-bold text-white leading-tight">
                 Book Your First <br />
                 <span className="font-light">Consultation</span>
               </h2>
             </div>
-
             {/* FIXED: Added onSubmit handler here */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -170,7 +169,7 @@ export default function VanSales() {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className={`w-full py-4 rounded-none font-bold flex items-center justify-center gap-2 transition duration-300 ${
+                className={`w-full py-4 border border-white invert rounded-none font-bold flex items-center justify-center gap-2 transition duration-300 ${
                   status === "sending"
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-black hover:bg-gray-800 text-white"
@@ -206,9 +205,9 @@ export default function VanSales() {
 // Small helper component to keep code clean
 function RadioOption({ label, value, onChange }) {
   return (
-    <label className="flex items-center justify-center gap-4 flex-1 py-3 border border-[#E5E7EB] rounded-xl hover:bg-gray-50 font-medium cursor-pointer group">
-      <span className="text-gray-700">{label}</span>
-      <div className="relative flex items-center">
+    <label className="flex items-center justify-center gap-4 flex-1 py-3 border border-[#E5E7EB] rounded-xl  font-medium cursor-pointer group">
+      <span className="text-white-700">{label}</span>
+      <div className="relative flex items-center border border-white rounded-full">
         <input
           type="radio"
           name="tallyUser"

@@ -8,7 +8,7 @@ const services = [
     title: "M-POS Van Sales Software",
     description:
       "Integrated Android based business solutions with Tally Prime. Our latest development, the mobile application with Bluetooth printer for Route sales, instant payment and receipt and many more.",
-    image: "/images/services/Mpos-van-bg.png",
+    image: "/images/services/Mpos-app-view.png",
   },
   {
     id: 4,
@@ -22,7 +22,7 @@ const services = [
     title: "Tally Integrations",
     description:
       "Tally Prime brings you a powerful reports dashboard, presenting your business information in intuitive visual formats. You can add tiles, hide, configure, organize, and display the information the way it suits your preferences and business needs.",
-    image: "/images/services/TallyIntegration.png",
+    image: "/images/services/Tally.png",
   },
   {
     id: 3,
@@ -128,7 +128,7 @@ export default function ServicesCursorGlow() {
       <div className="sticky top-0 min-h-screen flex items-center pb-24">
         <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
           {/* LEFT – Services: Reduced space-y from 4 to 2 for tighter alignment */}
-          <div className="space-y-2 relative z-20">
+          <div className="tv space-y-2 relative z-20">
             {services.map((service) => {
               const isActive = service.id === active.id;
 
@@ -174,7 +174,10 @@ export default function ServicesCursorGlow() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute inset-0 w-full h-full object-contain"
+              // className="real absolute inset-0 w-full h-full object-contain"
+              className={`absolute inset-0 w-full h-full ${
+                active.id === 4 ? "object-cover" : "object-contain"
+              }`}
             />
             {/* Soft UI Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />

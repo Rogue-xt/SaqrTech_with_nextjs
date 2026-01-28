@@ -1,3 +1,4 @@
+
 "use client";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -7,37 +8,43 @@ import Image from "next/image";
 export default function Header() {
   const pathname = usePathname();
 
-  // 1. Identify which pages should start transparent
-  const isHomePage = pathname === "/";
-  const isServicesPage = pathname === "/services";
-  const isTransparentInitial = isHomePage || isServicesPage;
+  const pageConfigs = {
+    "/": 50, 
+    "/services": 1000, 
+    "/about-us": 1400, 
+    "/van-sales-app": 800,
+   
+  };
+
+  // Check if current page is in our "Transparent" list
+  const isTransparentInitial = pathname in pageConfigs;
 
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // 2. Logic: If on Services page, maybe we want it to stay transparent longer
-      // or only turn white after 300px instead of 50px.
-      const threshold = isServicesPage ? 800 : 50;
+      // Get the threshold for the current page, or default to 50
+      const threshold = pageConfigs[pathname] || 50;
       setScrolled(window.scrollY > threshold);
     };
 
     if (isTransparentInitial) {
       window.addEventListener("scroll", handleScroll);
+      handleScroll(); // Check immediately on load
     } else {
-      setScrolled(false); // Reset for internal white pages
+      setScrolled(false);
     }
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isTransparentInitial, isServicesPage]);
+  }, [pathname, isTransparentInitial]);
 
-  // 3. Determine styles
-  // We check if the current page is one of our "Transparent" starting pages
+  // 2. Logic for styling
+  // We are transparent ONLY if the page is in our config AND we haven't hit the threshold
   const isCurrentTransparent = isTransparentInitial && !scrolled;
 
   const headerBg = isCurrentTransparent
-    ? "bg-transparent backdrop-blur-none" // Clean transparency
+    ? "bg-transparent backdrop-blur-none"
     : "bg-white shadow-sm backdrop-blur-md";
 
   const textColor = isCurrentTransparent ? "text-white" : "text-gray-700";
