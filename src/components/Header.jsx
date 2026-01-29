@@ -12,7 +12,7 @@ export default function Header() {
     "/": 50, 
     "/services": 1000, 
     "/about-us": 1400, 
-    "/van-sales-app": 800,
+    "/van-sales-app": 4000,
    
   };
 
@@ -55,7 +55,7 @@ export default function Header() {
     { name: "Services", href: "/services" },
     { name: "Van Sales App", href: "/van-sales-app" },
     { name: "About Us", href: "/about-us" },
-    { name: "Whats New!", href: "/whats-new" },
+    { name: "Blogs", href: "/blogs" },
   ];
 
   return (
