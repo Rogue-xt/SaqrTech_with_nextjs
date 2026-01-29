@@ -8,28 +8,32 @@ const services = [
     title: "M-POS Van Sales Software",
     description:
       "Integrated Android based business solutions with Tally Prime. Our latest development, the mobile application with Bluetooth printer for Route sales, instant payment and receipt and many more.",
-    image: "/images/services/Mpos-app-view.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png",
   },
   {
     id: 4,
     title: "Tally Web Reports",
     description:
       "A solution beyond Tally will be an integrated solution with web or mobile applications. We always prefer to do an accounts integration with Tally if our customers already have a third party application which meets their business requirements. Our years of experience in integrated solutions help us to bring to customers many ready-made apps and user portals for easy handling of many challenging areas like Order Processing, Executive Expenses/Collection Tracking, MIS reports through smart phone, Reporting/Approval Systems etc.",
-    image: "/images/services/TallyWebReports.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/TallyWebReports.png",
   },
   {
     id: 2,
     title: "Tally Integrations",
     description:
       "Tally Prime brings you a powerful reports dashboard, presenting your business information in intuitive visual formats. You can add tiles, hide, configure, organize, and display the information the way it suits your preferences and business needs.",
-    image: "/images/services/Tally.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Tally.png",
   },
   {
     id: 3,
     title: "Tally Customization",
     description:
       "We are always developing unique enhancements in default Tally to build suitable solutions to fit emerging business needs. Our years of experience in the Tally market equip us with excellent experience and exposure to advise customers to move forward confidently with IT solutions suitable to their financial budget. We have proved that the default Tally features can be extended to fit.",
-    image: "/images/services/TallyCustomization.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/TallyCustomization.png",
   },
 
   {
@@ -37,35 +41,40 @@ const services = [
     title: "Tally on Cloud",
     description:
       "Hybrid Infrastructure as a Service for Centralized Application & Data Management. All the necessary infrastructural aspects shall be planned based on the customer requirement. while retaining full control over your in-house and hosted infrastructure, They can manage all branch data in a single point coordination and easily generate MIS Reports. Highly Scalable Architecture enabling Client to start small and scale-up as needed when number of Users grows",
-    image: "/images/services/TallyOnCloud.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/TallyOnCloud.png",
   },
   {
     id: 6,
     title: "Device Integrations",
     description:
       "A solution beyond Tally will be an integrated solution with web or mobile applications. We always prefer to do an accounts integration with Tally if our customers already have a third party application which meets their business requirements.",
-    image: "/images/services/Device-Integ.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Device-Integ.png",
   },
   {
     id: 7,
     title: "Third Party Software Integrations",
     description:
       "We are Authorized to integrate third party Software like Odoo, Oracle, ERP Next, SAP, Microsoft Dynamics, MySQL, Php/.net core, Excel and Various CRM & HRMS software to Tally prime.",
-    image: "/images/services/ThirdParty-integration.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/ThirdParty-integration.png",
   },
   {
     id: 8,
     title: "MVP Solutions & API Developments",
     description:
       "Transform your ideas into Minimum Viable Products (MVPs) with our specialized MVP solutions and API development services. Whether you are launching a new product or refining an existing one, we create scalable, user-friendly MVPs and robust APIs that lay the foundation for your digital success.",
-    image: "/images/services/MVP&API.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/MVP&API.png",
   },
   {
     id: 9,
     title: "Web & Mobile App Developments",
     description:
       "Stay ahead in the digital landscape with our innovative web and mobile app development services. From concept to deployment, our team of skilled developers’ crafts user-centric applications that are responsive, feature-rich, and aligned with the latest industry standards. We cater to diverse platforms, ensuring a seamless user experience.",
-    image: "/images/services/Web&App.png",
+    image:
+      "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Web&App.png",
   },
 ];
 
