@@ -37,7 +37,7 @@ const newLead = await prisma.VanSalesTrial.create({
     // 2. Send Admin Notification (Existing)
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: "teamaxon2024@gmail.com",
+      to: "saqrtechinfo@gmail.com",
       subject: `🚀 New Lead: ${name}`,
       html: adminHtml,
     });
