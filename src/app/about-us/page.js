@@ -47,22 +47,28 @@ export default function AboutSection() {
   return (
     <section className="bg-black text-white pb-20 px-6">
       <motion.div
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0, scale: 0.8, x: 50 }}
+        whileInView={{ opacity: 1, scale: 1, x: 0 }}
+        transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
+        viewport={{ once: true }}
         className="text-center pt-32 pb-12 relative z-20"
       >
         <div className="inline-block px-4 py-1.5 rounded-full border border-purple-500/20 text-[10px] uppercase tracking-[0.3em] font-medium text-purple-300/60 mb-6 backdrop-blur-md">
           Excellence in IT Solutions
         </div>
         <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
-        About Us
+          About Us
         </h2>
         <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
           Experience the future of IT Solutions with cutting-edge technology and
           personalized care.
         </p>
       </motion.div>
-      <div className="max-w-7xl mt-15 mx-auto">
+      <motion.div
+                  initial={{ opacity: 0, scale: 0.8, x: 50 }}
+                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                  transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
+                  viewport={{ once: true }} className="max-w-7xl mt-15 mx-auto">
         {/* --- ABOUT US SPLIT CARD --- */}
         <div className="bg-[#111111] border border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col lg:flex-row items-stretch mb-24 min-h-[500px]">
           {/* LEFT CONTENT AREA */}
@@ -123,12 +129,15 @@ export default function AboutSection() {
         </div>
 
         {/* --- CORE VALUES SECTION --- */}
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }} className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-4">Core Values</h2>
           <p className="text-gray-500">
             Our values define our culture and guide our actions
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {coreValues.map((value, index) => (
@@ -139,7 +148,11 @@ export default function AboutSection() {
               {/* Decorative Circle pattern */}
               <div className="absolute -right-8 -top-8 w-32 h-32 bg-white/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition-all" />
 
-              <div className="flex items-start gap-6 relative z-10">
+              <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }} className="flex items-start gap-6 relative z-10">
                 <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                   {value.icon}
                 </div>
@@ -151,14 +164,14 @@ export default function AboutSection() {
                     {value.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Red line accent */}
               <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-red-600 transition-all duration-700 group-hover:w-full" />
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

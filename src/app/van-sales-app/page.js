@@ -58,20 +58,30 @@ export default function VanSales() {
     <div className="bg-black ">
       <section className="max-w-6xl  mx-auto p-4 bg-black">
         <motion.div
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
           className="text-center pt-32 pb-1 relative z-20"
         >
           <div className="inline-block px-4 py-1.5 rounded-full border border-purple-500/20 text-[10px] uppercase tracking-[0.3em] font-medium text-purple-300/60 mb-6 backdrop-blur-md">
             Mpos
           </div>
           <h1 className="text-5xl text-white md:text-6xl font-bold tracking-tight mb-6">
-            Best Van Sales Software UAE, Mpos Van Delivery Sales Application
+            Best Van Sales Software UAE,
+            <span className="text-red-600"> Mpos</span> Van Delivery Sales
+            Application
           </h1>
         </motion.div>
         <div className="flex flex-col md:flex-row mt-15 bg-black rounded-3xl overflow-hidden ">
           {/* Left Side: Image */}
-          <div className="relative w-full md:w-1/2 min-h-[300px]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
+            viewport={{ once: true }}
+            className="relative w-full md:w-1/2 min-h-[300px]"
+          >
             <Image
               src="/images/Device-view/Mpos-Tab.png"
               alt="Consultation"
@@ -98,13 +108,16 @@ export default function VanSales() {
               </div>
               <div>
                 <p className="font-bold text-lg leading-none">10k+</p>
-                <p className="text-xs text-gray-500">Consultations</p>
+                <p className="text-xs text-gray-500">Downloads</p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side: Form */}
-          <div className="form border border-white/10 transition-all duration-500  hover:bg-white/[0.07] hover:backdrop-blur-2xl  hover:border-red-500/50 hover:-translate-y-3 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] bg-[#111111] border border-white/10 rounded-[2.5rem] w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center m-0 md:m-10 border-2  shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
+          <motion.div initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            whileInView={{ opacity: 1, scale: 0.8, x: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
+            viewport={{ once: true }} className="form border border-white/10 transition-all duration-500  hover:bg-white/[0.07] hover:backdrop-blur-2xl  hover:border-red-500/50 hover:-translate-y-3 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] bg-[#111111] border border-white/10 rounded-[2.5rem] w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center m-0 md:m-10 border-2  shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]">
             <div className="mb-6">
               <span className="invert inline-flex items-center gap-1 text-sm text-white font-light bg-black px-4 py-2 rounded-full uppercase tracking-wider mb-4">
                 ♡ Free Trial
@@ -189,7 +202,7 @@ export default function VanSales() {
                   name="info"
                   placeholder="How can we help?"
                   rows="3"
-                  className="w-full p-3 border border-[#E5E7EB] rounded-xl focus:ring-2 focus:ring-black outline-none transition"
+                  className="w-full text-white p-3 border border-[#E5E7EB] rounded-xl focus:ring-2 focus:ring-black outline-none transition"
                 ></textarea>
               </div>
 
@@ -222,7 +235,7 @@ export default function VanSales() {
                 )}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
 
         <div

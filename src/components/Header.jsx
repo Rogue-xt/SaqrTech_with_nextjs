@@ -14,6 +14,7 @@ export default function Header() {
     "/": 50,
     "/services": 1000,
     "/about-us": 1400,
+    "/blogs/why-mpos-van-sales-software": 1400,
     "/van-sales-app": 4000,
   };
 
