@@ -162,7 +162,7 @@ const particles = useMemo(() => {
               key={item.id}
               className="group relative p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 transition-all duration-500 
                          hover:bg-white/[0.07] hover:backdrop-blur-2xl 
-                         hover:border-red-500/50 hover:-translate-y-3
+                         hover:border-red-500/50 hover:-translate-y-1
                          hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]"
             >
               {/* Internal Reflection / Shine */}

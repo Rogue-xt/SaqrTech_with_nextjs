@@ -16,6 +16,7 @@ export default function Header() {
     "/about-us": 1400,
     "/blogs/why-mpos-van-sales-software": 1400,
     "/van-sales-app": 4000,
+    "/blogs/tally-accounting-software": 1400
   };
 
   const isTransparentInitial = pathname in pageConfigs;
@@ -59,7 +60,7 @@ const headerBg =
       href: "/blogs",
       dropdown: [
         { name: "Why Mpos", href: "/blogs/why-mpos-van-sales-software" },
-        { name: "Tech Insights", href: "/blogs/tech" },
+        { name: "Tally Accounting Software", href: "/blogs/tally-accounting-software" },
       ],
     },
   ];

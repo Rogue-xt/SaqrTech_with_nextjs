@@ -103,9 +103,10 @@ export default function HomePage() {
               </div>
 
               <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-6 leading-tight">
-                Tally Integrated <br />
+                {/* Tally Integrated <br /> */}
                 <span className="text-red-600">Van Sales</span> Management
-                Software
+                Software <br />
+                with Tally Integration
               </h2>
 
               <p className="text-[#525252] text-xl mb-2 font-medium">

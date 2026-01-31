@@ -191,7 +191,7 @@ function WhyMpos() {
           <motion.div
             style={{
               x,
-              rotate,
+              // rotate,
               scale,
               perspective: 1000,
             }}
@@ -207,9 +207,9 @@ function WhyMpos() {
             />
           </motion.div>
         </section>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="features" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {coreValues.map((item) => (
-            <motion.div
+            <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}

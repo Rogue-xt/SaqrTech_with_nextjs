@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         <Header />
         {/* The main content area */}
         <main className="flex-grow">{children}</main>
-        <Map/>
+        {/* <Map/> */}
         <Footer />
       </body>
     </html>
