@@ -9,7 +9,7 @@ const features = [
       "With years of experience in software development and IT solutions, we bring latest ideas and a strategic approach to every project",
     icon: (
       <svg
-        className="w-6 h-6"
+        className="h-6 w-6"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -30,7 +30,7 @@ const features = [
       "We prioritize your business needs and provide a positive experience and build long-term relationships to align perfectly with your goals.",
     icon: (
       <svg
-        className="w-6 h-6"
+        className="h-6 w-6"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ const features = [
       "Security is our top priority. We follow industry standards and best practices to deliver software that is both secure and compliant with relevant regulations.",
     icon: (
       <svg
-        className="w-6 h-6"
+        className="h-6 w-6"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -72,7 +72,7 @@ const features = [
       "Our software solutions are developed to grow with your business, providing flexibility and scalability as your company evolves.",
     icon: (
       <svg
-        className="w-6 h-6"
+        className="h-6 w-6"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -97,28 +97,28 @@ const seededRandom = (seed) => {
   };
 };
 export default function WhyChooseUs() {
-const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-// 1. We wrap the dot creation in useMemo so it only calculates ONCE
-const particles = useMemo(() => {
-  const random = seededRandom(123);
-  return [...Array(105)].map((_, i) => ({
-    id: i,
-    left: random() * 100,
-    top: random() * 100,
-    size: random() * 4,
-    delay: random() * 4,
-  }));
-}, []);
+  // 1. We wrap the dot creation in useMemo so it only calculates ONCE
+  const particles = useMemo(() => {
+    const random = seededRandom(123);
+    return [...Array(105)].map((_, i) => ({
+      id: i,
+      left: random() * 100,
+      top: random() * 100,
+      size: random() * 4,
+      delay: random() * 4,
+    }));
+  }, []);
 
   return (
-    <section className="bg-black text-white py-24 px-6 relative overflow-hidden">
+    <section className="relative overflow-hidden bg-black px-6 py-24 text-white">
       {/* --- ADDED DOTS START --- */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-40">
         {particles.map((dot) => (
           <div
             key={dot.id}
-            className="absolute rounded-full bg-white animate-pulse"
+            className="absolute animate-pulse rounded-full bg-white"
             style={{
               width: `${dot.size}px`,
               height: `${dot.size}px`,
@@ -131,64 +131,61 @@ const particles = useMemo(() => {
       </div>
       {/* --- ADDED DOTS END --- */}
       {/* Background Depth: One single light red glow behind the grid */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-900/10 blur-[160px]" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="text-center mb-20"
+          className="mb-20 text-center"
         >
-          <div className="inline-block px-4 py-1.5 rounded-full border border-red-500/20 text-[10px] uppercase tracking-[0.3em] font-medium text-red-300/60 mb-6 backdrop-blur-md">
+          <div className="mb-6 inline-block rounded-full border border-red-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/60 uppercase backdrop-blur-md">
             Excellence in IT Solutions
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+          <h2 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl">
             Why Al Saqr Technologies for IT Solutions?
-            <span className="italic font-extralight text-gray-400"></span>
+            <span className="font-extralight text-gray-400 italic"></span>
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+          <p className="mx-auto max-w-xl text-sm leading-relaxed text-gray-500 md:text-base">
             Experience the future of IT Solutions with cutting-edge technology
             and personalized care.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {features.map((item) => (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
               key={item.id}
-              className="group relative p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 transition-all duration-500 
-                         hover:bg-white/[0.07] hover:backdrop-blur-2xl 
-                         hover:border-red-500/50 hover:-translate-y-1
-                         hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]"
+              className="group relative rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
             >
               {/* Internal Reflection / Shine */}
-              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               {/* Icon Container with subtle glow */}
-              <div className="w-12 h-12 bg-white text-black rounded-xl flex items-center justify-center mb-10 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] relative z-10">
+              <div className="relative z-10 mb-10 flex h-12 w-12 items-center justify-center rounded-xl bg-white text-black transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                 {item.icon}
               </div>
 
               {/* Background Numbering */}
-              <span className="absolute top-8 right-10 text-5xl font-black text-white/[0.03] transition-colors duration-500 group-hover:text-red-500/10 select-none">
+              <span className="absolute top-8 right-10 text-5xl font-black text-white/[0.03] transition-colors duration-500 select-none group-hover:text-red-500/10">
                 {item.id}
               </span>
 
               <div className="relative z-10">
-                <h3 className="text-xl font-bold mb-3 tracking-tight group-hover:text-red-50 transition-colors">
+                <h3 className="mb-3 text-xl font-bold tracking-tight transition-colors group-hover:text-red-50">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-300">
+                <p className="text-sm leading-relaxed text-gray-500 transition-colors duration-500 group-hover:text-gray-300">
                   {item.description}
                 </p>
               </div>
 
               {/* Bottom Accent Line */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-red-500 transition-all duration-500 group-hover:w-1/2 group-hover:shadow-[0_0_10px_#a855f7]" />
+              <div className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-red-500 transition-all duration-500 group-hover:w-1/2 group-hover:shadow-[0_0_10px_#a855f7]" />
             </motion.div>
           ))}
         </div>
