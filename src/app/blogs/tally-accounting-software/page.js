@@ -36,7 +36,6 @@ const whatsNew = [
   },
 ];
 
-
 const Services = [
   {
     id: 1,
@@ -82,7 +81,6 @@ const Services = [
   },
 ];
 
-
 const tallyFeatures = [
   {
     title: "Purchase and sales management",
@@ -116,7 +114,51 @@ const tallyFeatures = [
     title: "Flexible to configure the reports",
     desc: "The display of information in a report right from MIS reports to the Final reports can be configured by the user at the time of generating the report. Which provides you with additional information for better business decisions.",
   },
+];
 
+const crisscross = [
+  {
+    title: "TallyPrime Implementation",
+    description:
+      "Grow your business up and running with a smooth and problem-free with TallyPrime. Our experts will ensure that TallyPrime is configured to meet the specific needs of your business, allowing you to focus on growth rather than administration.",
+    image: "/tally/1.svg",
+    reverse: false,
+  },
+  {
+    title: "TallyPrime Customization",
+    description:
+      "Every business is unique, and so are its requirements. We offer modified customization services to ensure TallyPrime works exactly how you need it to. From custom invoices to specialized reports, our solutions are developed to improve your business operations.",
+    image: "/tally/2.svg",
+    reverse: true,
+  },
+  {
+    title: "TallyPrime Training",
+    description:
+      "Power up your team with excellent TallyPrime training. Our hands-on training sessions are developed to equip your staff with the knowledge and skills they need to use TallyPrime efficiently, ensuring you get the most out of your investment.",
+    image: "/tally/3.svg",
+    reverse: false,
+  },
+  {
+    title: "TallyPrime Support and Maintenance",
+    description:
+      "Keep your TallyPrime software running smoothly with our ongoing support and maintenance services. We offer round-the-clock support to resolve any issues promptly, ensuring minimal disruption to your business operations.",
+    image: "/tally/4.webp",
+    reverse: true,
+  },
+  {
+    title: "TallyPrime Integration",
+    description:
+      "Easily integrate TallyPrime with other business systems and applications. Whether it's CRM, ERP, or other third-party software, our integration services ensure that all your systems work together for optimal performance.",
+    image: "/tally/5.webp",
+    reverse: false,
+  },
+  {
+    title: "TallyPrime Data Migration",
+    description:
+      "Safely and efficiently migrate your existing data to TallyPrime. Our data migration services ensure that all your critical business information is transferred accurately and securely, without any loss or downtime.",
+    image: "/tally/6.svg",
+    reverse: true,
+  },
 ];
 export default function TallySoftware() {
   return (
@@ -182,34 +224,48 @@ export default function TallySoftware() {
             {whatsNew.map((item) => (
               <div
                 key={item.id}
-                className="cards flex flex-col gap-3 rounded-2xl border-transparent p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
+                className="group flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
               >
-                <div className="cards-hover:scale-310 cards-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] shadow-[0px_10px_15px_-3px_rgba(231,0,11,0.50)]">
-                  <Image alt="icon" src={item.icon} width={30} height={30} />
+                <div className="inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+                  <Image
+                    alt="icon"
+                    src={item.icon}
+                    width={30}
+                    height={30}
+                    className="transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
-                <h3 className="text-xl">{item.title}</h3>
+                <h3 className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-red-500">
+                  {item.title}
+                </h3>
                 <p className="text-gray-400">{item.description}</p>
               </div>
             ))}
           </div>
           {/* VAT Section  */}
           <div className="py20 mt-20">
-            <div className="cards flex flex-col gap-3 rounded-2xl border-transparent p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
+            <div className="group flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
               <div className="card-head flex items-center gap-4">
-                <div className="cards-hover:scale-310 cards-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] shadow-[0px_10px_15px_-3px_rgba(231,0,11,0.50)]">
+                <div className="inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] shadow-[0px_10px_15px_-3px_rgba(231,0,11,0.50)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                   <Image
+                    className="transition-transform duration-500 group-hover:scale-110"
                     alt="icon"
                     src="/icons/globe.svg"
                     width={30}
                     height={30}
                   />
                 </div>
-                <h3 className="text-xl">GCC VAT solution and reports</h3>
+                <h3 className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-red-500">
+                  GCC VAT solution and reports
+                </h3>
               </div>
               <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3">
                 <div className="rounded-2xl border-transparent p-5 px-6 pt-6 text-white shadow-2xl">
-                  <h3 className="text-red-600">VAT solution</h3>
-                  <ul className="list-inside list-disc list-image-[url(/icons/tick.svg)]">
+                  <h3 className="mb-3 text-xl font-bold text-red-600">
+                    VAT solution
+                  </h3>
+                  <hr />
+                  <ul className="mt-4 list-inside list-disc list-image-[url(/icons/tick.svg)]">
                     <li>UAE</li>
                     <li>Saudi Arabia</li>
                     <li>Oman</li>
@@ -217,15 +273,21 @@ export default function TallySoftware() {
                   </ul>
                 </div>
                 <div className="rounded-2xl border-transparent p-5 px-6 pt-6 text-white shadow-2xl">
-                  <h3 className="text-red-600">VAT Returns</h3>
-                  <ul className="list-inside list-disc list-image-[url(/icons/tick.svg)]">
+                  <h3 className="mb-3 text-xl font-bold text-red-600">
+                    VAT Returns
+                  </h3>
+                  <hr />
+                  <ul className="mt-4 list-inside list-disc list-image-[url(/icons/tick.svg)]">
                     <li>VAT 201 and Audit file for UAE</li>
                     <li>VAT return for KSA, Oman and Bahrain</li>
                   </ul>
                 </div>
                 <div className="rounded-2xl border-transparent p-5 px-6 pt-6 text-white shadow-2xl">
-                  <h3 className="text-red-600">VAT reports</h3>
-                  <ul className="list-inside list-disc list-image-[url(/icons/tick.svg)]">
+                  <h3 className="mb-3 text-xl font-bold text-red-600">
+                    VAT reports
+                  </h3>
+                  <hr />
+                  <ul className="list-inside mt-4 list-disc list-image-[url(/icons/tick.svg)]">
                     <li>Advance receipt report</li>
                     <li>Reverse charge report</li>
                     <li>VAT paid to customs report</li>
@@ -242,20 +304,58 @@ export default function TallySoftware() {
             {Services.map((s) => (
               <div
                 key={s.id}
-                className="cards flex flex-col gap-3 rounded-2xl border-transparent p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
+                className="group relative flex flex-col gap-4 rounded-2xl border border-white/5 bg-[#111111] p-6 text-white shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-gradient-to-b hover:from-[#1a1a1a] hover:to-[#111111] hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
               >
-                <div className="cards-hover:scale-310 cards-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] shadow-[0px_10px_15px_-3px_rgba(231,0,11,0.50)]">
-                  <Image alt="icon" src={s.icon} width={30} height={30} />
+                {/* The Icon Container */}
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-600 to-red-800 shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]">
+                  <Image
+                    alt="icon"
+                    src={s.icon}
+                    width={28}
+                    height={28}
+                    className="transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
-                <h3 className="text-xl">{s.title}</h3>
-                {s.items.map((l) => (
-                  <ul
-                    key={l}
-                    className="list-inside list-disc list-image-[url(/icons/tick.svg)]"
-                  >
-                    <li>{l}</li>
-                  </ul>
-                ))}
+
+                {/* Text Content */}
+                <h3 className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-red-500">
+                  {s.title}
+                </h3>
+
+                <div className="space-y-2">
+                  {s.items.map((l, index) => (
+                    <ul
+                      key={index}
+                      className="list-inside text-sm text-gray-400 transition-colors duration-300 group-hover:text-gray-200"
+                    >
+                      <li className="flex items-start gap-2">
+                        {/* Custom Checkmark (Replacing list-disc for better control) */}
+                        <span className="mt-1 text-red-500">
+                          <svg
+                            className="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="3"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </span>
+                        {l}
+                      </li>
+                    </ul>
+                  ))}
+                </div>
+
+                {/* Subtle "Learn More" or Arrow that appears on hover */}
+                <div className="mt-4 flex translate-y-2 transform items-center gap-2 text-xs font-bold tracking-widest text-red-600 uppercase opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  View Details
+                  <span>→</span>
+                </div>
               </div>
             ))}
           </div>
@@ -274,14 +374,18 @@ export default function TallySoftware() {
                   // 'sticky' makes it stay. 'top' value creates the stacking offset.
                   // Adjust the multiplier (index * 20) to change how much of the previous card stays visible.
                   style={{ top: `${150 + index * 20}px` }}
-                  className="sticky rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-10 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]"
+                  className="sticky flex gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-10 py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]"
                 >
-                  <h3 className="mb-4 text-2xl font-semibold text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="leading-relaxed text-gray-400">
-                    {feature.desc}
-                  </p>
+                  <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-600 md:block"></div>
+
+                  <div>
+                    <h3 className="mb-4 text-2xl font-semibold text-white">
+                      {feature.title}
+                    </h3>
+                    <p className="leading-relaxed text-gray-400">
+                      {feature.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -289,9 +393,7 @@ export default function TallySoftware() {
             {/* Spacer to allow the last card to actually scroll into a sticky position */}
             <div className="h-[10vh]"></div>
           </div>
-          <div
-            className="grid justify-items-center  max-w-6xl "
-          >
+          <div className="mx-auto grid max-w-6xl justify-items-center pb-20">
             <Image
               src="/images/Device-view/tally.png"
               alt="M-POS Mobile App"
@@ -301,6 +403,52 @@ export default function TallySoftware() {
               priority
             />
           </div>
+
+          {/* new section  */}
+
+          <section className="px-6 py-20">
+            <div className="mx-auto max-w-6xl space-y-24 md:space-y-12">
+              {crisscross.map((item, index) => (
+                <div
+                  key={index}
+                  className={`group flex flex-col items-center md:flex-row ${item.reverse ? "md:flex-row-reverse" : ""}`}
+                >
+                  {/* Image Container */}
+                  <div className="relative z-10 h-64 w-64 flex-shrink-0">
+                    <div className="absolute inset-0 rounded-full bg-black p-2 shadow-inner transition-transform duration-500 group-hover:scale-105">
+                      <div className="h-full w-full overflow-hidden rounded-full border-4 border-red-600/40 bg-black transition-all duration-500 group-hover:border-red-600 group-hover:shadow-[0_0_30px_rgba(220,38,38,0.4)]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={200}
+                          height={200}
+                          className="h-full w-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Card */}
+                  <div
+                    className={`mt-[-30px] flex-grow rounded-2xl border border-white/5 bg-[#111111] p-8 text-white shadow-[0_-20px_50px_rgba(0,0,0,0.9)] transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-white/10 group-hover:bg-[#161616] md:mt-0 ${item.reverse ? "md:rounded-[40px_10px_10px_40px]" : "md:rounded-[10px_40px_40px_10px]"} md:p-12 ${item.reverse ? "md:mr-[-80px] md:pr-32" : "md:ml-[-80px] md:pl-32"} `}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-900 transition-all duration-500 group-hover:h-24 group-hover:bg-red-600 md:block"></div>
+
+                      <div>
+                        <h3 className="mb-4 text-2xl font-bold transition-colors duration-500 group-hover:text-red-500">
+                          {item.title}
+                        </h3>
+                        <p className="max-w-xl leading-relaxed text-gray-400 transition-colors duration-500 group-hover:text-gray-300">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </section>
     </div>
