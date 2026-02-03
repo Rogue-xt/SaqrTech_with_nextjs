@@ -16,7 +16,8 @@ export default function Header() {
     "/about-us": 1400,
     "/blogs/why-mpos-van-sales-software": 1400,
     "/van-sales-app": 4000,
-    "/blogs/tally-accounting-software": 8400
+    "/blogs/tally-accounting-software": 8400,
+    "/blogs/best-it-company-in-sharjah": 8400,
   };
 
   const isTransparentInitial = pathname in pageConfigs;
@@ -57,10 +58,17 @@ const headerBg =
     { name: "About Us", href: "/about-us" },
     {
       name: "Blogs",
-      href: "/blogs",
+      href: "#",
       dropdown: [
         { name: "Why Mpos", href: "/blogs/why-mpos-van-sales-software" },
-        { name: "Tally Accounting Software", href: "/blogs/tally-accounting-software" },
+        {
+          name: "Tally Accounting Software",
+          href: "/blogs/tally-accounting-software",
+        },
+        {
+          name: "Best IT Company in Sharjah",
+          href: "/blogs/best-it-company-in-sharjah",
+        },
       ],
     },
   ];

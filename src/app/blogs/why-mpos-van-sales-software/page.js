@@ -46,8 +46,8 @@ function WhyMpos() {
 
   return (
     <main>
-      <section className="relative w-full min-h-[80vh] flex items-center bg-[#0a0a0a] overflow-hidden pt-20 px-6 md:px-16">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative flex min-h-[80vh] w-full items-center overflow-hidden bg-[#0a0a0a] px-6 pt-20 md:px-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* LEFT SIDE: Text Description */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -56,11 +56,11 @@ function WhyMpos() {
             viewport={{ once: true }}
             className="z-10"
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="mb-6 text-4xl leading-tight font-bold text-white md:text-6xl">
               Revolutionize Your <br />
               <span className="text-red-600">Van Sales Operations</span>
             </h1>
-            <p className="text-gray-400 text-lg md:text-xl mb-8 max-w-lg">
+            <p className="mb-8 max-w-lg text-lg text-gray-400 md:text-xl">
               Empower your sales team with our M-POS solution. Real-time
               tracking, instant invoicing, and seamless Tally integration all in
               one hand-held device.
@@ -68,13 +68,13 @@ function WhyMpos() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/van-sales-app"
-                className="bg-red-600 text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition"
+                className="rounded-md bg-red-600 px-8 py-3 font-bold text-white transition hover:bg-red-700"
               >
                 Get Started
               </Link>
               <Link
                 href="#features"
-                className="border border-white/20 text-white px-8 py-3 rounded-md hover:bg-white/10 transition"
+                className="rounded-md border border-white/20 px-8 py-3 text-white transition hover:bg-white/10"
               >
                 View Features
               </Link>
@@ -87,15 +87,15 @@ function WhyMpos() {
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
             viewport={{ once: true }}
-            className="relative flex justify-center items-center"
+            className="relative flex items-center justify-center"
           >
             {/* Subtle Glow Background behind the phone */}
-            <div className="absolute w-[300px] h-[300px] bg-red-600/20 blur-[120px] rounded-full" />
+            <div className="absolute h-[300px] w-[300px] rounded-full bg-red-600/20 blur-[120px]" />
 
             <motion.div
               animate={{ y: [0, -20, 0] }} // Floating effect
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-[280px] h-[550px] md:w-[320px] md:h-[650px]"
+              className="relative h-[550px] w-[280px] md:h-[650px] md:w-[320px]"
             >
               <Image
                 src="https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png"
@@ -110,13 +110,13 @@ function WhyMpos() {
       </section>
 
       {/* content section  */}
-      <section className="bg-[#0a0a0a] py-20 px-6 md:px-16 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      <section className="border-t border-white/5 bg-[#0a0a0a] px-6 py-20 md:px-16">
+        <div className="mx-auto max-w-4xl">
           {/* Subtle Section Label */}
           <motion.span
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-red-600 font-bold tracking-widest uppercase text-sm mb-4 block"
+            className="mb-4 block text-sm font-bold tracking-widest text-red-600 uppercase"
           >
             Industry-Leading Solutions
           </motion.span>
@@ -126,7 +126,7 @@ function WhyMpos() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold text-white mb-10 leading-tight"
+            className="mb-10 text-3xl leading-tight font-bold text-white md:text-5xl"
           >
             Are you looking to accelerate your sales and improve your van sales
             operations?
@@ -137,7 +137,7 @@ function WhyMpos() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6 text-gray-400 text-lg leading-relaxed text-justify"
+            className="space-y-6 text-justify text-lg leading-relaxed text-gray-400"
           >
             <p>
               Look no further! Introducing the best van sales software solution
@@ -186,7 +186,7 @@ function WhyMpos() {
         </div>
         <section
           ref={containerRef}
-          className="w-full py-32 bg-[#0a0a0a] overflow-hidden flex justify-center items-center"
+          className="flex w-full items-center justify-center overflow-hidden bg-[#0a0a0a] py-32"
         >
           <motion.div
             style={{
@@ -195,7 +195,7 @@ function WhyMpos() {
               scale,
               perspective: 1000,
             }}
-            className="relative flex justify-center w-full"
+            className="relative flex w-full justify-center"
           >
             <Image
               alt="mpos van driving left"
@@ -207,42 +207,42 @@ function WhyMpos() {
             />
           </motion.div>
         </section>
-        <div id="features" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          id="features"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+        >
           {coreValues.map((item) => (
-            <motion.div 
+            <motion.div
+              key={item.id}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
-              key={item.id}
-              className="group relative p-8 rounded-[2rem] bg-white/[0.03] border border-white/10 transition-all duration-500 
-                                 hover:bg-white/[0.07] hover:backdrop-blur-2xl 
-                                 hover:border-red-500/50 hover:-translate-y-3
-                                 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]"
+              className="group relative rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
             >
               {/* Internal Reflection / Shine */}
-              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               {/* Icon Container with subtle glow */}
-              <div className="w-12 h-12 bg-red-600 text-black rounded-xl flex items-center justify-center mb-10 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] relative z-10">
+              <div className="relative z-10 mb-10 flex h-12 w-12 items-center justify-center rounded-xl bg-red-600 text-black transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                 {item.icon}
               </div>
 
               {/* Background Numbering */}
-              <span className="absolute top-8 right-10 text-5xl font-black text-white transition-colors duration-500 group-hover:text-red-500/10 select-none">
+              <span className="absolute top-8 right-10 text-5xl font-black text-white transition-colors duration-500 select-none group-hover:text-red-500/10">
                 {item.id}
               </span>
 
               <div className="relative z-10">
-                <h3 className="text-xl text-white font-bold mb-3 tracking-tight group-hover:text-red-50 transition-colors">
+                <h3 className="mb-3 text-xl font-bold tracking-tight text-white transition-colors group-hover:text-red-50">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed transition-colors duration-500 group-hover:text-gray-300">
+                <p className="text-sm leading-relaxed text-gray-500 transition-colors duration-500 group-hover:text-gray-300">
                   {item.desc}
                 </p>
               </div>
 
               {/* Bottom Accent Line */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-red-500 transition-all duration-500 group-hover:w-1/2 group-hover:shadow-[0_0_10px_#a855f7]" />
+              <div className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-red-500 transition-all duration-500 group-hover:w-1/2 group-hover:shadow-[0_0_10px_#a855f7]" />
             </motion.div>
           ))}
         </div>

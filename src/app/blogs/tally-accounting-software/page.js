@@ -1,8 +1,8 @@
 "use client";
 import Margin from "@/components/Margin";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 const whatsNew = [
@@ -116,6 +116,8 @@ const tallyFeatures = [
   },
 ];
 
+
+
 const crisscross = [
   {
     title: "TallyPrime Implementation",
@@ -160,7 +162,63 @@ const crisscross = [
     reverse: true,
   },
 ];
+
+const WhytallyFeatures = [
+  {
+    title: "User-Friendly Interface",
+    description:
+      "Tally Prime offers an intuitive and easy-to-navigate interface, which reduces the learning curve and allows users to quickly get accustomed to the software.",
+    image: "/tally/7.png",
+  },
+  {
+    title: "Inclusive Accounting Software",
+    description:
+      "It provides complete accounting solutions including general ledger, accounts receivable, accounts payable, and payroll management.",
+    image: "/tally/8.png",
+  },
+  {
+    title: "Realtime Reporting",
+    description:
+      "The software offers real-time reporting and analysis, providing valuable insights into business performance and financial health.",
+    image: "/tally/9.png",
+  },
+];
+
+
+
+const tabData = [
+  {
+    id: "expertise",
+    label: "Expertise",
+    title: "Expertise and Experience",
+    content:
+      "Our team of financial experts brings years of experience to help you manage your finances efficiently with deep industry knowledge.",
+  },
+  {
+    id: "support",
+    label: "Support",
+    title: "Comprehensive Support",
+    content:
+      "We offer dedicated, 24/7 customer support to assist you with any queries, ensuring your operations never skip a beat.",
+  },
+  {
+    id: "scalable",
+    label: "Scalable",
+    title: "Scalable Solutions",
+    content:
+      "Whether you're an individual, a small business, or a large corporation, our solutions scale dynamically to meet your growth requirements.",
+  },
+  {
+    id: "innovation",
+    label: "Innovation",
+    title: "Innovation and Technology",
+    content:
+      "We leverage the latest cloud-native technology and AI-driven insights to provide innovative financial management solutions.",
+  },
+];
 export default function TallySoftware() {
+
+  const [activeTab, setActiveTab] = useState(tabData[0]);
   return (
     <div className="w-full bg-black">
       <Margin />
@@ -172,7 +230,7 @@ export default function TallySoftware() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="z-10"
+            className="z-10 p-5"
           >
             <h1 className="mb-6 text-4xl leading-tight font-bold text-white md:text-6xl">
               {/* Revolutionize Your <br /> */}
@@ -239,6 +297,8 @@ export default function TallySoftware() {
                   {item.title}
                 </h3>
                 <p className="text-gray-400">{item.description}</p>
+                {/* Decorative Bottom Line */}
+                <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
               </div>
             ))}
           </div>
@@ -287,7 +347,7 @@ export default function TallySoftware() {
                     VAT reports
                   </h3>
                   <hr />
-                  <ul className="list-inside mt-4 list-disc list-image-[url(/icons/tick.svg)]">
+                  <ul className="mt-4 list-inside list-disc list-image-[url(/icons/tick.svg)]">
                     <li>Advance receipt report</li>
                     <li>Reverse charge report</li>
                     <li>VAT paid to customs report</li>
@@ -351,11 +411,8 @@ export default function TallySoftware() {
                   ))}
                 </div>
 
-                {/* Subtle "Learn More" or Arrow that appears on hover */}
-                <div className="mt-4 flex translate-y-2 transform items-center gap-2 text-xs font-bold tracking-widest text-red-600 uppercase opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  View Details
-                  <span>→</span>
-                </div>
+                {/* Decorative Bottom Line */}
+                <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
               </div>
             ))}
           </div>
@@ -373,7 +430,7 @@ export default function TallySoftware() {
                   key={index}
                   // 'sticky' makes it stay. 'top' value creates the stacking offset.
                   // Adjust the multiplier (index * 20) to change how much of the previous card stays visible.
-                  style={{ top: `${150 + index * 20}px` }}
+                  style={{ top: `${100 + index * 20}px` }}
                   className="sticky flex gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-10 py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]"
                 >
                   <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-600 md:block"></div>
@@ -447,6 +504,135 @@ export default function TallySoftware() {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* why tally section  */}
+
+          <section className="overflow-hidden px-6 py-24 md:px-16">
+            <div className="mx-auto max-w-7xl">
+              {/* Header Section */}
+              <div className="mb-20 text-center">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="text-sm font-bold tracking-widest text-red-600 uppercase"
+                >
+                  Efficiency at Scale
+                </motion.span>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="mt-4 mb-6 text-4xl font-bold text-white md:text-5xl"
+                >
+                  Why Choose Tally Accounting Software?
+                </motion.h2>
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "80px" }}
+                  className="mx-auto h-1.5 rounded-full bg-red-600"
+                />
+              </div>
+
+              {/* why choose tab section  */}
+              <section className="flex flex-col items-center px-6 py-20">
+                  {/* 1. THE RESPONSIVE TAB BAR */}
+                  <div className="mx-auto w-full max-w-2xl">
+                    <div
+                      className={`/* Mobile: 2-column with corners */ /* Desktop: Single row with full pill */ relative grid grid-cols-2 gap-2 rounded rounded-2xl border border-red-600/30 bg-black p-2 shadow-[0_0_30px_rgba(220,38,38,0.2)] md:flex md:items-center md:gap-1 md:rounded-full`}
+                    >
+                      {/* "Style:" label - only visible on desktop */}
+                      <span className="mr-4 ml-6 hidden font-medium text-white opacity-70 md:block">
+                        Why Tally ?
+                      </span>
+
+                      {tabData.map((tab) => (
+                        <button
+                          key={tab.id}
+                          style={{cursor:"pointer"}}
+                          onClick={() => setActiveTab(tab)}
+                          className={`relative z-10 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300 md:rounded-full md:text-base ${activeTab.id === tab.id ? "text-white" : "text-gray-400 hover:text-gray-200"} `}
+                        >
+                          {tab.label}
+
+                          {activeTab.id === tab.id && (
+                            <motion.div
+                              layoutId="activeTab"
+                              className="absolute inset-0 -z-10 rounded-xl bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.6)] md:rounded-full"
+                              transition={{
+                                type: "spring",
+                                bounce: 0.2,
+                                duration: 0.6,
+                              }}
+                            />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+            
+
+                {/* 2. TAB CONTENT DISPLAY */}
+                <div className="mt-12 w-full ">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTab.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                      className="rounded-3xl border border-white/5 p-8 text-center shadow-2xl md:p-12"
+                    >
+                      <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">
+                        {activeTab.title}
+                      </h3>
+                      <p className="text-lg leading-relaxed text-gray-400">
+                        {activeTab.content}
+                      </p>
+
+                      {/* Optional Red Accent under text */}
+                      <div className="mx-auto mt-8 h-1 w-12 rounded-full bg-red-600" />
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </section>
+
+              {/* Features Grid */}
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                {WhytallyFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.2 }}
+                    className="group relative flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
+                  >
+                    {/* Image Container with Glow */}
+                    <div className="relative mb-8 aspect-square w-full transition-transform duration-500 group-hover:scale-105">
+                      <div className="absolute inset-0 rounded-full bg-red-600/5 blur-[60px] transition-colors group-hover:bg-red-600/10" />
+                      <Image
+                        src={feature.image}
+                        alt={feature.title}
+                        fill
+                        className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+                      />
+                    </div>
+
+                    {/* Text Content */}
+                    <h3 className="mb-4 text-2xl font-bold text-white transition-colors group-hover:text-red-500">
+                      {feature.title}
+                    </h3>
+                    <p className="leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
+                      {feature.description}
+                    </p>
+
+                    {/* Decorative Bottom Line */}
+                    <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
         </div>
