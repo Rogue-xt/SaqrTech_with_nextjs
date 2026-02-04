@@ -121,7 +121,7 @@ export default function ITCompanySharjah() {
                 image: "/icons/information-technology.png",
                 desc: "Our team ensures your IT environment is built on a strong foundation. From initial setup to continuous monitoring and optimization, we manage your IT infrastructure to guarantee maximum reliability, scalability, and performance.",
               },
-           
+
               {
                 title: "Software Support",
                 image: "/icons/support.png",
@@ -157,17 +157,20 @@ export default function ITCompanySharjah() {
       </section>
 
       {/* 4. WHY CHOOSE US (Tabbed Section) */}
-      <section className="bg-[#080808] py-24">
+      {/* <section className="bg-[#080808] py-24">
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold md:text-5xl">
             Why Choose Al Saqr?
           </h2>
         </div>
-      </section>
+      </section> */}
 
       {/* 5. CALL TO ACTION */}
-      <section className="px-6 py-24 md:px-16">
-        <div className="mx-auto max-w-5xl rounded-[3rem] bg-gradient-to-r from-red-600 to-red-800 p-12 text-center shadow-[0_20px_50px_rgba(220,38,38,0.3)]">
+      <section className="relative px-6 py-24 md:px-16">
+        <div
+          style={{ top: "100px" }}
+          className="sticky mx-auto max-w-5xl rounded-[3rem] bg-gradient-to-r from-red-600 to-red-800 p-12 text-center shadow-[0_20px_50px_rgba(220,38,38,0.3)]"
+        >
           <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">
             Partner with the best IT company in Sharjah
           </h2>
@@ -175,11 +178,14 @@ export default function ITCompanySharjah() {
             Experience exceptional IT services and support tailored to your
             unique business needs.
           </p>
-          <button className="rounded-full bg-white px-10 py-4 font-black tracking-widest text-red-600 uppercase transition-all hover:bg-black hover:text-white">
-            Get Started Now
-          </button>
+          <Link href="/contact-us">
+            <button className="rounded-full bg-white px-10 py-4 font-black tracking-widest text-red-600 uppercase transition-all hover:bg-black hover:text-white">
+              Get Started Now
+            </button>
+          </Link>
         </div>
       </section>
+      <div className="h-[50vh]"></div>
     </div>
   );
 }
