@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
 import Map from "@/components/Map";
+import GlobalCursorGlow from "@/components/GlobalCursorGlow";
 
 export const metadata = {
   title: "Al Saqr Technologies",
@@ -11,12 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* Added overflow-x-hidden to prevent the horizontal scrollbar */}
       <body className="flex flex-col min-h-screen ">
+        <GlobalCursorGlow/>
         <Header />
-        {/* The main content area */}
         <main className="flex-grow">{children}</main>
-        {/* <Map/> */}
         <Footer />
       </body>
     </html>

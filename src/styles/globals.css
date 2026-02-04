@@ -37,3 +37,9 @@ html, body {
 .form label, .form input,.form label span {
     color: white !important;
 }
+
+@media (max-width:769px){
+  p{
+    text-align: left !important;
+  }
+}

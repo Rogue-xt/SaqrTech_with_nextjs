@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center mt-10 text-sm opacity-80">
-          Copyright © 2024 Al Saqr Technologies LLC. All Rights Reserved
+          Copyright © 2026 Al Saqr Technologies LLC. All Rights Reserved
         </div>
       </div>
     </footer>
