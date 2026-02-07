@@ -46,7 +46,7 @@ function WhyMpos() {
 
   return (
     <main>
-      <section className="relative flex min-h-[80vh] w-full items-center overflow-hidden bg-[#0a0a0a] px-6 pt-20 md:px-16">
+      <section className="relative flex min-h-[80vh] w-full items-center overflow-hidden bg-black px-6 pt-20 md:px-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* LEFT SIDE: Text Description */}
           <motion.div
@@ -110,7 +110,7 @@ function WhyMpos() {
       </section>
 
       {/* content section  */}
-      <section className="border-t border-white/5 bg-[#0a0a0a] px-6 py-20 md:px-16">
+      <section className="border-t border-white/5 bg-black px-6 py-20 md:px-16">
         <div className="mx-auto max-w-4xl">
           {/* Subtle Section Label */}
           <motion.span
@@ -186,7 +186,7 @@ function WhyMpos() {
         </div>
         <section
           ref={containerRef}
-          className="flex w-full items-center justify-center overflow-hidden bg-[#0a0a0a] py-32"
+          className="flex w-full items-center justify-center overflow-hidden bg-black py-32"
         >
           <motion.div
             style={{

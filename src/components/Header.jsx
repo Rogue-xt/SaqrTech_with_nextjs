@@ -18,6 +18,7 @@ export default function Header() {
     "/van-sales-app": 4000,
     "/blogs/tally-accounting-software": 8400,
     "/blogs/best-it-company-in-sharjah": 8400,
+    "/blogs/e-invoicing-e-vat-filing-uae": 8400,
   };
 
   const isTransparentInitial = pathname in pageConfigs;
@@ -40,10 +41,10 @@ export default function Header() {
   const isCurrentTransparent = isTransparentInitial && !scrolled;
 
   // --- Header style ---
-const headerBg =
-  !isTransparentInitial || scrolled
-    ? "bg-white shadow-sm backdrop-blur-md"
-    : "bg-white md:bg-transparent md:backdrop-blur-none";
+  const headerBg =
+    !isTransparentInitial || scrolled
+      ? "bg-white shadow-sm backdrop-blur-md"
+      : "bg-white md:bg-transparent md:backdrop-blur-none ";
 
   // Ensure the text and icons are always dark on mobile
   const textColor = isCurrentTransparent
@@ -69,6 +70,10 @@ const headerBg =
           name: "Best IT Company in Sharjah",
           href: "/blogs/best-it-company-in-sharjah",
         },
+        {
+          name: "E-Invoicing & E-VAT Filing",
+          href: "/blogs/e-invoicing-e-vat-filing-uae",
+        },
       ],
     },
   ];
@@ -79,7 +84,7 @@ const headerBg =
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 flex items-center justify-between px-6 md:px-8 py-4 ${headerBg}`}
+      className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 md:px-8 ${headerBg}`}
     >
       {/* Logo */}
       <div className="flex items-center">
@@ -96,31 +101,31 @@ const headerBg =
 
       {/* Desktop Navigation */}
       <nav
-        className={`hidden md:flex items-center space-x-8 font-medium transition-colors duration-500 ${textColor}`}
+        className={`hidden items-center space-x-8 font-medium transition-colors duration-500 md:flex ${textColor}`}
       >
         {navLinks.map((link) => (
           <div
             key={link.name}
-            className="relative group py-2"
+            className="group relative py-2"
             onMouseEnter={() => link.dropdown && setActiveDropdown(link.name)}
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <Link
               href={link.href}
-              className={`transition-all flex items-center gap-1 relative ${
+              className={`relative flex items-center gap-1 transition-all ${
                 isActive(link.href)
-                  ? "text-red-600 font-bold"
+                  ? "font-bold text-red-600"
                   : "hover:text-red-600"
               }`}
             >
               {link.name}
               {/* Active Underline Effect */}
               {isActive(link.href) && (
-                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-red-600 rounded-full" />
+                <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-red-600" />
               )}
               {link.dropdown && (
                 <svg
-                  className={`w-4 h-4 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -137,12 +142,12 @@ const headerBg =
 
             {/* Dropdown Menu */}
             {link.dropdown && activeDropdown === link.name && (
-              <div className="absolute left-0 top-full pt-2 w-48 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="animate-in fade-in slide-in-from-top-2 absolute top-full left-0 w-48 pt-2 duration-200">
                 <div
-                  className={`rounded-xl shadow-xl border overflow-hidden ${
+                  className={`overflow-hidden rounded-xl border shadow-xl ${
                     isCurrentTransparent
-                      ? "bg-zinc-900 border-white/10 text-white"
-                      : "bg-white border-gray-100 text-gray-800"
+                      ? "border-white/10 bg-zinc-900 text-white"
+                      : "border-gray-100 bg-white text-gray-800"
                   }`}
                 >
                   {link.dropdown.map((sub) => (
@@ -151,7 +156,7 @@ const headerBg =
                       href={sub.href}
                       className={`block px-5 py-3 text-sm transition ${
                         isActive(sub.href)
-                          ? "text-red-500 bg-red-500/5"
+                          ? "bg-red-500/5 text-red-500"
                           : "hover:bg-red-500/10 hover:text-red-600"
                       }`}
                     >
@@ -166,13 +171,13 @@ const headerBg =
       </nav>
 
       {/* Right Side */}
-      <div className="hidden md:flex items-center space-x-4">
+      <div className="hidden items-center space-x-4 md:flex">
         <Link
           href="/contact-us"
-          className={`px-6 py-2 border transition-all duration-500 ${
+          className={`border px-6 py-2 transition-all duration-500 ${
             isCurrentTransparent
               ? "border-white text-white hover:bg-white hover:text-black"
-              : "bg-black border-black text-white hover:bg-white hover:text-black"
+              : "border-black bg-black text-white hover:bg-white hover:text-black"
           }`}
         >
           Contact Us
@@ -181,7 +186,7 @@ const headerBg =
 
       {/* Mobile Toggle Button */}
       <button
-        className={`md:hidden p-2 transition-colors duration-500 ${isCurrentTransparent ? "text-black" : "text-black"}`}
+        className={`p-2 transition-colors duration-500 md:hidden ${isCurrentTransparent ? "text-black" : "text-black"}`}
         onClick={() => setIsOpen(true)}
       >
         <svg
@@ -189,7 +194,7 @@ const headerBg =
           viewBox="0 0 24 24"
           strokeWidth={2}
           stroke="currentColor"
-          className="w-8 h-8"
+          className="h-8 w-8"
         >
           <path
             strokeLinecap="round"
@@ -203,15 +208,15 @@ const headerBg =
       <div
         className={`fixed inset-0 bg-black/60 transition-opacity duration-300 ${
           isOpen
-            ? "opacity-100 z-[9998]"
-            : "opacity-0 pointer-events-none -z-10"
+            ? "z-[9998] opacity-100"
+            : "pointer-events-none -z-10 opacity-0"
         }`}
         style={{ height: "100vh", width: "100vw" }}
         onClick={() => setIsOpen(false)}
       >
         {/* Sidebar Panel Mobile */}
         <div
-          className={`fixed top-0 right-0 w-72 shadow-2xl p-6 transition-transform duration-300 ease-in-out z-[9999] ${
+          className={`fixed top-0 right-0 z-[9999] w-72 p-6 shadow-2xl transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
           style={{
@@ -222,10 +227,10 @@ const headerBg =
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button Area */}
-          <div className="flex justify-end mb-8">
+          <div className="mb-8 flex justify-end">
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 bg-gray-100 rounded-full text-black"
+              className="rounded-full bg-gray-100 p-2 text-black"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +238,7 @@ const headerBg =
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="h-6 w-6"
               >
                 <path
                   strokeLinecap="round"
@@ -251,12 +256,12 @@ const headerBg =
                 key={link.name}
                 className="border-b border-gray-50 last:border-0"
               >
-                <div className="flex justify-between items-center py-4">
+                <div className="flex items-center justify-between py-4">
                   <Link
                     href={link.href}
                     className={`text-lg transition-colors ${
                       isActive(link.href)
-                        ? "text-red-600 font-bold"
+                        ? "font-bold text-red-600"
                         : "text-gray-900"
                     }`}
                     onClick={() => !link.dropdown && setIsOpen(false)}
@@ -272,7 +277,7 @@ const headerBg =
                       }
                     >
                       <svg
-                        className={`w-5 h-5 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
+                        className={`h-5 w-5 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -288,12 +293,12 @@ const headerBg =
                   )}
                 </div>
                 {link.dropdown && activeDropdown === link.name && (
-                  <div className="flex flex-col pl-4 border-l-2 border-gray-100 mb-2 space-y-3">
+                  <div className="mb-2 flex flex-col space-y-3 border-l-2 border-gray-100 pl-4">
                     {link.dropdown.map((sub) => (
                       <Link
                         key={sub.name}
                         href={sub.href}
-                        className={`text-sm ${isActive(sub.href) ? "text-red-600 font-medium" : "text-gray-500"}`}
+                        className={`text-sm ${isActive(sub.href) ? "font-medium text-red-600" : "text-gray-500"}`}
                         onClick={() => setIsOpen(false)}
                       >
                         {sub.name}

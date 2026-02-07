@@ -116,8 +116,6 @@ const tallyFeatures = [
   },
 ];
 
-
-
 const crisscross = [
   {
     title: "TallyPrime Implementation",
@@ -184,8 +182,6 @@ const WhytallyFeatures = [
   },
 ];
 
-
-
 const tabData = [
   {
     id: "expertise",
@@ -217,7 +213,6 @@ const tabData = [
   },
 ];
 export default function TallySoftware() {
-
   const [activeTab, setActiveTab] = useState(tabData[0]);
   return (
     <div className="w-full bg-black">
@@ -537,44 +532,43 @@ export default function TallySoftware() {
 
               {/* why choose tab section  */}
               <section className="flex flex-col items-center px-6 py-20">
-                  {/* 1. THE RESPONSIVE TAB BAR */}
-                  <div className="mx-auto w-full max-w-2xl">
-                    <div
-                      className={`/* Mobile: 2-column with corners */ /* Desktop: Single row with full pill */ relative grid grid-cols-2 gap-2 rounded rounded-2xl border border-red-600/30 bg-black p-2 shadow-[0_0_30px_rgba(220,38,38,0.2)] md:flex md:items-center md:gap-1 md:rounded-full`}
-                    >
-                      {/* "Style:" label - only visible on desktop */}
-                      <span className="mr-4 ml-6 hidden font-medium text-white opacity-70 md:block">
-                        Why Tally ?
-                      </span>
+                {/* 1. THE RESPONSIVE TAB BAR */}
+                <div className="mx-auto w-full max-w-2xl">
+                  <div
+                    className={`/* Mobile: 2-column with corners */ /* Desktop: Single row with full pill */ relative grid grid-cols-2 gap-2 rounded rounded-2xl border border-red-600/30 bg-black p-2 shadow-[0_0_30px_rgba(220,38,38,0.2)] md:flex md:items-center md:gap-1 md:rounded-full`}
+                  >
+                    {/* "Style:" label - only visible on desktop */}
+                    <span className="mr-4 ml-6 hidden font-medium text-white opacity-70 md:block">
+                      Why Tally ?
+                    </span>
 
-                      {tabData.map((tab) => (
-                        <button
-                          key={tab.id}
-                          style={{cursor:"pointer"}}
-                          onClick={() => setActiveTab(tab)}
-                          className={`relative z-10 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300 md:rounded-full md:text-base ${activeTab.id === tab.id ? "text-white" : "text-gray-400 hover:text-gray-200"} `}
-                        >
-                          {tab.label}
+                    {tabData.map((tab) => (
+                      <button
+                        key={tab.id}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setActiveTab(tab)}
+                        className={`relative z-10 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300 md:rounded-full md:text-base ${activeTab.id === tab.id ? "text-white" : "text-gray-400 hover:text-gray-200"} `}
+                      >
+                        {tab.label}
 
-                          {activeTab.id === tab.id && (
-                            <motion.div
-                              layoutId="activeTab"
-                              className="absolute inset-0 -z-10 rounded-xl bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.6)] md:rounded-full"
-                              transition={{
-                                type: "spring",
-                                bounce: 0.2,
-                                duration: 0.6,
-                              }}
-                            />
-                          )}
-                        </button>
-                      ))}
-                    </div>
+                        {activeTab.id === tab.id && (
+                          <motion.div
+                            layoutId="activeTab"
+                            className="absolute inset-0 -z-10 rounded-xl bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.6)] md:rounded-full"
+                            transition={{
+                              type: "spring",
+                              bounce: 0.2,
+                              duration: 0.6,
+                            }}
+                          />
+                        )}
+                      </button>
+                    ))}
                   </div>
-            
+                </div>
 
                 {/* 2. TAB CONTENT DISPLAY */}
-                <div className="mt-12 w-full ">
+                <div className="mt-12 w-full">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeTab.id}
