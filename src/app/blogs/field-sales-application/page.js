@@ -163,22 +163,23 @@ const crisscross = [
 
 const WhytallyFeatures = [
   {
-    title: "User-Friendly Interface",
+    title: "Real-time Tracking ",
     description:
-      "Tally Prime offers an intuitive and easy-to-navigate interface, which reduces the learning curve and allows users to quickly get accustomed to the software.",
-    image: "/tally/7.png",
+      "Track your sales reps' activities in real time with powered tracking features. Monitor visits, optimize routes, and ensure accountability with geo-tagged check-ins and time-stamped logs, all from a central dashboard. Stay in control and boost productivity.",
+
+    image: "/images/blogs/field-sales1.webp",
   },
   {
-    title: "Inclusive Accounting Software",
+    title: "Faster Order Processing",
     description:
-      "It provides complete accounting solutions including general ledger, accounts receivable, accounts payable, and payroll management.",
-    image: "/tally/8.png",
+      "Speed up your sales cycle with instant, on-the-spot order creation. Field agents can generate and submit orders directly from their mobile devices during customer visits—no paperwork, no delays.",
+    image: "/images/blogs/field-sales2.webp",
   },
   {
-    title: "Realtime Reporting",
+    title: " Data-Driven Insights",
     description:
-      "The software offers real-time reporting and analysis, providing valuable insights into business performance and financial health.",
-    image: "/tally/9.png",
+      "Turn your field data into powerful business intelligence. Our app captures every interaction—orders, visits, collections, and routes—and transforms them into meaningful insights through visual reports and smart analytics.",
+    image: "/images/blogs/field-sales3.webp",
   },
 ];
 
@@ -218,8 +219,7 @@ export default function TallySoftware() {
     <div className="w-full bg-black">
       <Margin />
       <section className="relative w-full">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          {/* LEFT SIDE: Text Description */}
+        <div className="mx-auto max-w-6xl bg-black p-4">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -229,76 +229,92 @@ export default function TallySoftware() {
           >
             <h1 className="mb-6 text-4xl leading-tight font-bold text-white md:text-6xl">
               {/* Revolutionize Your <br /> */}
-              Powerful Upgrades and Connected Services for Your Growing Business
-              with Integrated
-              <span className="text-red-600">Tally Accounting Software</span>
+              Empower Your <span className="text-red-600"> Mpos</span> Field
+              Sales Team with Smart Mobility​
             </h1>
           </motion.div>
 
-          {/* RIGHT SIDE: Image Animation */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 50 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
-            viewport={{ once: true }}
-            className="relative flex items-center justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6 text-justify text-lg leading-relaxed text-gray-400"
           >
-            {/* Subtle Glow Background behind the phone */}
-            <div className="absolute h-[300px] w-[300px] rounded-full bg-red-600/20 blur-[120px]" />
+            <p>
+              In today’s fast-paced business landscape, staying ahead of the
+              competition is paramount, and traditional field sales methods are
+              no longer enough to drive success. Enter the field sales app—a
+              powerful tool that can transform your sales strategy and propel
+              your team to new heights. Imagine having real-time data at your
+              fingertips, streamlined communication, and enhanced customer
+              insights all in one convenient platform. This digital evolution
+              not only boosts productivity but also empowers your sales force to
+              engage with customers more effectively, making every interaction
+              count. As we delve into the world of field sales apps, you'll
+              discover how leveraging technology can unlock new opportunities,
+              streamline your processes, and ultimately revolutionize your
+              approach to sales. Get ready to redefine what success looks like
+              in your organization!
+            </p>
 
-            <motion.div
-              animate={{ y: [0, -20, 0] }} // Floating effect
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative h-[550px] w-[280px] md:h-[650px] md:w-[320px]"
-            >
-              <Image
-                src="/tally-prime-white-logo.svg"
-                alt="M-POS Mobile App"
-                fill
-                className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
-                priority
-              />
-            </motion.div>
+            <p>
+              Track performance, manage orders, and boost productivity from
+              anywhere. Equip your field sales representatives with the tools
+              they need to close more deals, streamline reporting, and stay
+              connected with the back office in real-time. Whether you're
+              managing a small team or a nationwide sales force, our powerful
+              Field Sales App keeps everyone aligned and efficient.
+            </p>
           </motion.div>
         </div>
+        {/* Features Grid */}
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 py-20 md:grid-cols-3">
+          {WhytallyFeatures.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group relative flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
+            >
+              {/* Image Container with Glow */}
+              <div className="relative mb-8 aspect-square w-full transition-transform duration-500 group-hover:scale-105">
+                <div className="absolute inset-0 rounded-full bg-red-600/5 blur-[60px] transition-colors group-hover:bg-red-600/10" />
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+                />
+              </div>
 
+              {/* Text Content */}
+              <h3 className="mb-4 text-2xl font-bold text-white transition-colors group-hover:text-red-500">
+                {feature.title}
+              </h3>
+              <p className="leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
+                {feature.description}
+              </p>
+
+              {/* Decorative Bottom Line */}
+              <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
+            </motion.div>
+          ))}
+        </div>
         {/* whats new section  */}
 
         <div className="mx-auto border-t border-white/5 px-6 py-20 pt-10 md:px-16">
-          <h2 className="mb-6 text-center text-4xl leading-tight font-light text-white md:text-6xl">
+          {/* <h2 className="mb-6 text-center text-4xl leading-tight font-light text-white md:text-6xl">
             What's
             <span className="text-red-600">New</span>
           </h2>
           <p className="text-center text-white">
             Discover the latest features in Tally Prime
-          </p>
+          </p> */}
 
-          <div className="py20 mt-20 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {whatsNew.map((item) => (
-              <div
-                key={item.id}
-                className="group flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
-              >
-                <div className="inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-                  <Image
-                    alt="icon"
-                    src={item.icon}
-                    width={30}
-                    height={30}
-                    className="transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-red-500">
-                  {item.title}
-                </h3>
-                <p className="text-gray-400">{item.description}</p>
-                {/* Decorative Bottom Line */}
-                <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
-              </div>
-            ))}
-          </div>
           {/* VAT Section  */}
-          <div className="py20 mt-20">
+          {/* <div className="py20 mt-20">
             <div className="group flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
               <div className="card-head flex items-center gap-4">
                 <div className="inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] shadow-[0px_10px_15px_-3px_rgba(231,0,11,0.50)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
@@ -352,16 +368,16 @@ export default function TallySoftware() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* another section of card  */}
-          <div className="py20 mt-20 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {/* <div className="py20 mt-20 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {Services.map((s) => (
               <div
                 key={s.id}
                 className="group relative flex flex-col gap-4 rounded-2xl border border-white/5 bg-[#111111] p-6 text-white shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-gradient-to-b hover:from-[#1a1a1a] hover:to-[#111111] hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
               >
-                {/* The Icon Container */}
+             
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-600 to-red-800 shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]">
                   <Image
                     alt="icon"
@@ -372,7 +388,6 @@ export default function TallySoftware() {
                   />
                 </div>
 
-                {/* Text Content */}
                 <h3 className="text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-red-500">
                   {s.title}
                 </h3>
@@ -384,7 +399,7 @@ export default function TallySoftware() {
                       className="list-inside text-sm text-gray-400 transition-colors duration-300 group-hover:text-gray-200"
                     >
                       <li className="flex items-start gap-2">
-                        {/* Custom Checkmark (Replacing list-disc for better control) */}
+                       
                         <span className="mt-1 text-red-500">
                           <svg
                             className="h-4 w-4"
@@ -406,15 +421,15 @@ export default function TallySoftware() {
                   ))}
                 </div>
 
-                {/* Decorative Bottom Line */}
+            
                 <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
               </div>
             ))}
-          </div>
+          </div> */}
 
           {/* stack cards  */}
 
-          <div className="relative mx-auto max-w-6xl md:px-6 py-20">
+          {/* <div className="relative mx-auto max-w-6xl py-20 md:px-6">
             <h2 className="mb-20 text-center text-4xl font-bold text-white">
               Do More with <span className="text-red-600">Tally Prime</span>
             </h2>
@@ -426,7 +441,7 @@ export default function TallySoftware() {
                   // 'sticky' makes it stay. 'top' value creates the stacking offset.
                   // Adjust the multiplier (index * 20) to change how much of the previous card stays visible.
                   style={{ top: `${100 + index * 20}px` }}
-                  className="sticky flex gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-7 py-7 md:p-10 md:py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]"
+                  className="sticky flex gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-7 py-7 shadow-[0_-20px_50px_rgba(0,0,0,0.9)] md:p-10 md:py-20"
                 >
                   <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-600 md:block"></div>
 
@@ -442,23 +457,13 @@ export default function TallySoftware() {
               ))}
             </div>
 
-            {/* Spacer to allow the last card to actually scroll into a sticky position */}
+       
             <div className="h-[10vh]"></div>
-          </div>
-          <div className="mx-auto grid max-w-6xl justify-items-center pb-20">
-            <Image
-              src="/images/Device-view/tally.png"
-              alt="M-POS Mobile App"
-              width={600}
-              height={600}
-              className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
-              priority
-            />
-          </div>
+          </div> */}
 
           {/* new section  */}
 
-          <section className="md:px-6 py-20">
+          <section className="py-20 md:px-6">
             <div className="mx-auto max-w-6xl space-y-24 md:space-y-12">
               {crisscross.map((item, index) => (
                 <div
@@ -504,7 +509,7 @@ export default function TallySoftware() {
 
           {/* why tally section  */}
 
-          <section className="overflow-hidden md:px-6 py-24 md:px-16">
+          <section className="overflow-hidden py-24 md:px-6 md:px-16">
             <div className="mx-auto max-w-7xl">
               {/* Header Section */}
               <div className="mb-20 text-center">
@@ -531,7 +536,7 @@ export default function TallySoftware() {
               </div>
 
               {/* why choose tab section  */}
-              <section className="flex flex-col items-center md:px-6 py-20">
+              <section className="flex flex-col items-center py-20 md:px-6">
                 {/* 1. THE RESPONSIVE TAB BAR */}
                 <div className="mx-auto w-full max-w-2xl">
                   <div
@@ -591,42 +596,6 @@ export default function TallySoftware() {
                   </AnimatePresence>
                 </div>
               </section>
-
-              {/* Features Grid */}
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                {WhytallyFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 }}
-                    className="group relative flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
-                  >
-                    {/* Image Container with Glow */}
-                    <div className="relative mb-8 aspect-square w-full transition-transform duration-500 group-hover:scale-105">
-                      <div className="absolute inset-0 rounded-full bg-red-600/5 blur-[60px] transition-colors group-hover:bg-red-600/10" />
-                      <Image
-                        src={feature.image}
-                        alt={feature.title}
-                        fill
-                        className="object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
-                      />
-                    </div>
-
-                    {/* Text Content */}
-                    <h3 className="mb-4 text-2xl font-bold text-white transition-colors group-hover:text-red-500">
-                      {feature.title}
-                    </h3>
-                    <p className="leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
-                      {feature.description}
-                    </p>
-
-                    {/* Decorative Bottom Line */}
-                    <div className="absolute bottom-0 left-1/2 h-1 w-0 -translate-x-1/2 rounded-t-full bg-red-600 transition-all duration-500 group-hover:w-1/3" />
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </section>
         </div>

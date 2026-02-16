@@ -51,12 +51,6 @@ export default function ITCompanySharjah() {
       title: "Why Choose Us for IT Services in the UAE?",
       desc: "At Al Saqr Technologies, we’ve earned the trust of our clients by consistently delivering reliable, high-quality IT support backed by unmatched professionalism. Our strong presence in Sharjah and across the UAE enables us to understand and address the unique challenges businesses face in both local and regional markets. We pride ourselves on a customer-focused approach, which means we don’t just offer services—we build long-lasting partnerships that add value to your business. Our team goes above and beyond to ensure that your IT needs are not only met but exceeded, with tailored solutions designed to enhance productivity, security, and growth. By choosing us, you're not just hiring an IT service provider; you're gaining a dedicated partner committed to helping your business succeed in the ever-evolving digital landscape.",
     },
-    // {
-    //   id: 7,
-    //   theme: "dark",
-    //   title: "",
-    //   desc: "",
-    // },
   ];
 
   const itSolutionsList = [
@@ -134,7 +128,7 @@ export default function ITCompanySharjah() {
     },
   ];
   return (
-    <div className="min-h-screen bg-black font-sans text-white selection:bg-red-600/30">
+    <div className="min-h-screen bg-black mt-10 font-sans text-white selection:bg-red-600/30">
       {/* 1. HERO SECTION */}
       <section className="relative flex min-h-[90vh] items-center overflow-hidden px-6 pt-20 md:px-16">
         {/* Abstract Background Glow */}
@@ -424,7 +418,7 @@ export default function ITCompanySharjah() {
           </h2>
           <div className="mx-auto mt-6 h-1.5 w-20 rounded-full bg-red-600" />
         </div>
-        <div className="mx-auto mb-10 max-w-6xl px-10 pb-20 text-center text-lg leading-relaxed text-gray-400 md:text-xl">
+        <div className="mx-auto mb-10 max-w-6xl px-6 md:px-10 pb-20 text-center text-lg leading-relaxed text-gray-400 md:text-xl">
           <p>
             In the heart of the United Arab Emirates lies Sharjah, a city that
             is undergoing a rapid digital transformation. With the rise of

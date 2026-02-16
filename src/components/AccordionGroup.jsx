@@ -119,7 +119,7 @@ const VATInformationAccordion = () => {
                 alt={`Tool Logo ${num}`}
                 width={120}
                 height={60}
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           ))}

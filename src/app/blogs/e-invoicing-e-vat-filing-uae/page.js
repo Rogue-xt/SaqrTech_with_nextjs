@@ -40,7 +40,7 @@ export default function page() {
   ];
 
   return (
-    <section className="min-h-screen bg-black font-sans text-white">
+    <section className="min-h-screen mt-10 md:mt-0 bg-black font-sans text-white">
       {/* hero section  */}
       <section className="relative flex min-h-[90vh] items-center overflow-hidden px-6 pt-20 md:px-16">
         {/* Abstract Background Glow */}
@@ -91,7 +91,7 @@ export default function page() {
       </section>
 
       <div className="group mx-auto flex max-w-7xl gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-10 py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]">
-        <div class="mt-2 hidden h-12 w-5 rounded-full bg-red-900 transition-all duration-500 group-hover:h-24 group-hover:bg-red-600 md:block"></div>
+        <div className="mt-2 hidden h-12 w-5 rounded-full bg-red-900 transition-all duration-500 group-hover:h-24 group-hover:bg-red-600 md:block"></div>
         <p className="leading-relaxed text-gray-400">
           E-Invoicing and E-VAT Filing are digital processes that help
           businesses in the UAE streamline their tax compliance. E-Invoicing

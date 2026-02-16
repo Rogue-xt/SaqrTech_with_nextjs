@@ -74,6 +74,10 @@ export default function Header() {
           name: "E-Invoicing & E-VAT Filing",
           href: "/blogs/e-invoicing-e-vat-filing-uae",
         },
+        {
+          name: "Field Sales Application",
+          href: "/blogs/field-sales-application",
+        },
       ],
     },
   ];
@@ -220,7 +224,7 @@ export default function Header() {
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
           style={{
-            backgroundColor: "white", // Forces white background
+            backgroundColor: "black", // Forces white background
             height: "100vh", // Forces full screen height
             position: "fixed", // Ensures it stays pinned
           }}
@@ -256,15 +260,22 @@ export default function Header() {
                 key={link.name}
                 className="border-b border-gray-50 last:border-0"
               >
-                <div className="flex items-center justify-between py-4">
+                <div
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === link.name ? null : link.name,
+                    )
+                  }
+                  className="flex items-center justify-between py-4"
+                >
                   <Link
                     href={link.href}
                     className={`text-lg transition-colors ${
                       isActive(link.href)
                         ? "font-bold text-red-600"
-                        : "text-gray-900"
+                        : "text-white"
                     }`}
-                    onClick={() => !link.dropdown && setIsOpen(false)}
+                    // onClick={() => !link.dropdown && setIsOpen(false)}
                   >
                     {link.name}
                   </Link>
@@ -277,7 +288,7 @@ export default function Header() {
                       }
                     >
                       <svg
-                        className={`h-5 w-5 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
+                        className={`h-5 w-5 invert transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -298,7 +309,7 @@ export default function Header() {
                       <Link
                         key={sub.name}
                         href={sub.href}
-                        className={`text-sm ${isActive(sub.href) ? "font-medium text-red-600" : "text-gray-500"}`}
+                        className={`text-sm ${isActive(sub.href) ? "font-medium text-red-600" : "text-white"}`}
                         onClick={() => setIsOpen(false)}
                       >
                         {sub.name}
