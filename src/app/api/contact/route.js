@@ -1,44 +1,50 @@
+import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { EnquiryMail } from "emails/EnquiryMail";
 
 export async function POST(request) {
   try {
-    const { name, phone, email, company, subject, requirements } =
-      await request.json();
+    const body = await request.json();
+    const { name, phone, email, company, subject, requirements } = body;
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // Use a Google App Password
-      },
-    });
+    // 1. Background Email Process
+    // We do NOT 'await' this wrapper to provide immediate UI feedback
+    (async () => {
+      try {
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+          },
+        });
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: "teamaxon2024@gmail.com", // Your company email
-      subject: `Website Inquiry: ${subject}`,
-      text: `
-        New Inquiry Details:
-        --------------------
-        Name: ${name}
-        Phone: ${phone}
-        Email: ${email}
-        Company: ${company || "N/A"}
-        Subject: ${subject}
-        Requirements: ${requirements}
-      `,
-    };
+        // Render the React Email template to HTML
+        const emailHtml = await render(<EnquiryMail data={body} />);
 
-    await transporter.sendMail(mailOptions);
+        await transporter.sendMail({
+          from: `"Website Monitor" <${process.env.EMAIL_USER}>`,
+          to: "saqrtechinfo@gmail.com",
+          subject: `🚀 New Inquiry: from ${name}`,
+          html: emailHtml,
+        });
+
+        console.log("Background email sent for inquiry:", subject);
+      } catch (mailError) {
+        console.error("Background Email Failure:", mailError);
+      }
+    })();
+
+    // 2. Immediate Response to UI
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: "Success! Your message has been sent." },
       { status: 200 },
     );
   } catch (error) {
-    console.error("Email Error:", error);
+    console.error("API Route Error:", error);
     return NextResponse.json(
-      { message: "Failed to send email" },
+      { message: "Failed to process request" },
       { status: 500 },
     );
   }

@@ -72,7 +72,6 @@ const handleSubmit = async (e) => {
 
   return (
     <div className="bg-black">
-
       <section className="mx-auto max-w-6xl bg-black p-4">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -132,11 +131,11 @@ const handleSubmit = async (e) => {
 
           {/* Right Side: Form */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 50 }}
-            whileInView={{ opacity: 1, scale: 0.8, x: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
-            viewport={{ once: true }}
-            className="form m-0 flex w-full flex-col justify-center rounded-[2.5rem] border border-2 border-white/10 bg-[#111111] p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl md:m-10 md:w-1/2 md:p-12"
+            // initial={{ opacity: 0, scale: 0.8, x: 50 }}
+            // whileInView={{ opacity: 1, scale: 0.8, x: 0 }}
+            // transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
+            // viewport={{ once: true }}
+            className="form m-0 flex w-full flex-col justify-center rounded-[2.5rem] border border-2 border-white/10 bg-red-600 p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl md:m-10 md:w-1/2 md:p-12"
           >
             <div className="mb-6">
               <span className="mb-4 inline-flex items-center gap-1 rounded-full bg-black px-4 py-2 text-sm font-light tracking-wider text-white uppercase invert">
@@ -229,7 +228,7 @@ const handleSubmit = async (e) => {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className={`flex w-full items-center justify-center gap-2 rounded-none border border-white py-4 font-bold invert transition duration-300 ${
+                className={`flex w-full items-center justify-center gap-2 rounded-[2.5rem] border border-white py-4 font-bold invert transition duration-300 ${
                   status === "sending"
                     ? "cursor-not-allowed bg-gray-400"
                     : "bg-black text-white hover:bg-gray-800"

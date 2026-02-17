@@ -9,48 +9,40 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const dynamicPaths = ["/"];
 
-  const pageConfigs = {
-    "/": 50,
-    "/services": 1000,
-    "/about-us": 1400,
-    "/blogs/why-mpos-van-sales-software": 1400,
-    "/van-sales-app": 4000,
-    "/blogs/tally-accounting-software": 8400,
-    "/blogs/best-it-company-in-sharjah": 8400,
-    "/blogs/e-invoicing-e-vat-filing-uae": 8400,
-  };
-
-  const isTransparentInitial = pathname in pageConfigs;
+  const isDynamicPage = dynamicPaths.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = pageConfigs[pathname] || 50;
+      const threshold = 50;
       setScrolled(window.scrollY > threshold);
     };
 
-    if (isTransparentInitial) {
+    if (isDynamicPage) {
       window.addEventListener("scroll", handleScroll);
-      handleScroll();
+      handleScroll(); // Check initial position
     } else {
       setScrolled(false);
     }
+
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname, isTransparentInitial]);
+  }, [pathname, isDynamicPage]);
 
-  const isCurrentTransparent = isTransparentInitial && !scrolled;
+  // 1. If it's a dynamic page (like home) and we HAVEN'T scrolled yet -> Transparent
+  // 2. If it's NOT a dynamic page -> Always Transparent (as per your request)
+  const isCurrentTransparent = !isDynamicPage || (isDynamicPage && !scrolled);
 
-  // --- Header style ---
-  const headerBg =
-    !isTransparentInitial || scrolled
-      ? "bg-white shadow-sm backdrop-blur-md"
-      : "bg-white md:bg-transparent md:backdrop-blur-none ";
+  // --- Dynamic Styles ---
+  const headerBg = isCurrentTransparent
+    ? "bg-transparent md:backdrop-blur-none"
+    : "bg-white shadow-sm backdrop-blur-md";
 
-  // Ensure the text and icons are always dark on mobile
   const textColor = isCurrentTransparent
-    ? "text-gray-900 md:text-white"
-    : "text-gray-700";
-  const logoInvert = isCurrentTransparent ? "md:brightness-0 md:invert" : "";
+    ? "text-white" // White text for transparent background
+    : "text-gray-700"; // Dark text for white background
+
+  const logoInvert = isCurrentTransparent ? "brightness-0 invert" : "";
 
   const navLinks = [
     { name: "Home", href: "/" },
