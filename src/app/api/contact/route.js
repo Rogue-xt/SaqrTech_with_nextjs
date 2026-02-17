@@ -2,6 +2,7 @@ import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { EnquiryMail } from "emails/EnquiryMail";
+import { UserContactReply } from "emails/UserContactReply";
 
 export async function POST(request) {
   try {
@@ -22,13 +23,29 @@ export async function POST(request) {
 
         // Render the React Email template to HTML
         const emailHtml = await render(<EnquiryMail data={body} />);
+         const userHtml = await render(<UserContactReply data={body} />);
 
-        await transporter.sendMail({
-          from: `"Website Monitor" <${process.env.EMAIL_USER}>`,
-          to: "saqrtechinfo@gmail.com",
-          subject: `🚀 New Inquiry: from ${name}`,
-          html: emailHtml,
-        });
+        await Promise.all([
+          transporter.sendMail({
+            from: `"Website Monitor" <${process.env.EMAIL_USER}>`,
+            to: "saqrtechinfo@gmail.com",
+            subject: `🚀 New Inquiry: from ${name}`,
+            html: emailHtml,
+          }),
+          // User Confirmation
+          transporter.sendMail({
+            from: `"Al Saqr Technologies" <${process.env.EMAIL_USER}>`,
+            to: email,
+            subject: "Thank You",
+            html: userHtml,
+            attachments: [
+              {
+                filename: "Mpos-Brochure.pdf",
+                path: "https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/Route-Sales-Management%20Software.pdf",
+              },
+            ],
+          }),
+        ]);
 
         console.log("Background email sent for inquiry:", subject);
       } catch (mailError) {
