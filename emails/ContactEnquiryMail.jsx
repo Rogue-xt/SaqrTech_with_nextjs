@@ -55,7 +55,7 @@ export const ContactEnquiryMail = ({ data }) => (
 
           <Text style={label}>Requirements / Message:</Text>
           <Section style={messageBox}>
-            <Text style={messageText}>{data.requirements}</Text>
+            <Text style={messageText}>{data.subject}</Text>
           </Section>
 
           {/* Action Buttons: Call and Email */}

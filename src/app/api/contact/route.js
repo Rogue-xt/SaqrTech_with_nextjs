@@ -7,7 +7,7 @@ import { UserContactReplyMail } from "emails/UserContactReplyMail";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, phone, email, subject } = body;
+    const { name, phone, email, company, subject } = body;
 
     (async () => {
       try {
@@ -33,7 +33,7 @@ export async function POST(request) {
             from: `"Website Monitor" <${process.env.EMAIL_USER}>`,
             to: "info@saqrtech.com",
             replyTo: email, // Click 'Reply' to email the customer directly
-            subject: `🚀 New Inquiry: ${subject || "General"} from ${name}`,
+            subject: ` New Inquiry from ${name} | ${company||""}`,
             html: emailHtml,
           }),
           // 2. User Confirmation (To Customer)

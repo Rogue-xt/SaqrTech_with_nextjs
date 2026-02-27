@@ -135,7 +135,7 @@ const handleSubmit = async (e) => {
                     Requirements
                   </label>
                   <textarea
-                    name="requirements"
+                    name="subject"
                     required
                     rows="4"
                     className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
