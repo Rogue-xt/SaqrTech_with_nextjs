@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
-
 export default function VanSales() {
   const [isTallyUser, setIsTallyUser] = useState(null);
   const [status, setStatus] = useState("");
@@ -24,51 +23,51 @@ export default function VanSales() {
   const imageOpacity = useTransform(imageScroll, [0, 0.3], [0, 1]); // Fades in
   const imageY = useTransform(imageScroll, [0, 1], [50, -50]); // Parallax movement
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // 1. Prepare data
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData);
+    // 1. Prepare data
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
 
-  // 2. Disable button immediately via state
-  setStatus("sending");
+    // 2. Disable button immediately via state
+    setStatus("sending");
 
-  // 3. Define the fetch as a promise for the toast
-  const saveLeadRequest = fetch("/api/vanSalesTrial", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
-  }).then(async (res) => {
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || "Failed to send");
+    // 3. Define the fetch as a promise for the toast
+    const saveLeadRequest = fetch("/api/vanSalesTrial", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }).then(async (res) => {
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to send");
+      }
+      return res;
+    });
+
+    // 4. Fire the toast and handle the UI logic
+    toast.promise(saveLeadRequest, {
+      loading: "Processing your request...",
+      success: "Success! Your trial is on its way.",
+      error: (err) => `Error: ${err.message}`,
+    });
+
+    try {
+      await saveLeadRequest;
+
+      // Cleanup UI on success
+      e.target.reset();
+      setIsTallyUser(null);
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
+      // Allow re-submission after a short cooldown
+      setTimeout(() => setStatus(""), 3000);
     }
-    return res;
-  });
-
-  // 4. Fire the toast and handle the UI logic
-  toast.promise(saveLeadRequest, {
-    loading: "Processing your request...",
-    success: "Success! Your trial is on its way.",
-    error: (err) => `Error: ${err.message}`,
-  });
-
-  try {
-    await saveLeadRequest;
-
-    // Cleanup UI on success
-    e.target.reset();
-    setIsTallyUser(null);
-    setStatus("success");
-  } catch (err) {
-    console.error(err);
-    setStatus("error");
-  } finally {
-    // Allow re-submission after a short cooldown
-    setTimeout(() => setStatus(""), 3000);
-  }
-};
+  };
 
   return (
     <div className="bg-black">
@@ -163,7 +162,7 @@ const handleSubmit = async (e) => {
                   <label className="text-sm font-medium">Phone Number *</label>
                   <input
                     name="number"
-                    type="text"
+                    type="number"
                     required
                     placeholder="+971 00 000 0000"
                     className="w-full rounded-xl border border-[#E5E7EB] p-3 transition outline-none focus:ring-2 focus:ring-black"
@@ -257,7 +256,7 @@ const handleSubmit = async (e) => {
           </motion.div>
         </div>
 
-        <div className="description rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
+        <div className="description rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
           <p
             style={{ opacity: "0.7", lineHeight: "2rem" }}
             className="mx-auto text-sm leading-relaxed text-white md:text-base"
@@ -368,7 +367,10 @@ const handleSubmit = async (e) => {
           </h3>
         </motion.div>
 
-        <div className="mt-20 mb-20 grid grid-cols-1 gap-8 px-4 md:grid-cols-2">
+        <div
+          style={{ overflow: "hidden" }}
+          className="mt-20 mb-20 grid grid-cols-1 gap-8 px-4 md:grid-cols-2"
+        >
           {/* Left Image: Slides in from the left */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -462,18 +464,18 @@ const handleSubmit = async (e) => {
 // Small helper component to keep code clean
 function RadioOption({ label, value, onChange }) {
   return (
-    <label className="flex items-center justify-center gap-4 flex-1 py-3 border border-[#E5E7EB] rounded-xl  font-medium cursor-pointer group">
+    <label className="group flex flex-1 cursor-pointer items-center justify-center gap-4 rounded-xl border border-[#E5E7EB] py-3 font-medium">
       <span className="text-white-700">{label}</span>
-      <div className="relative flex items-center border border-white rounded-full">
+      <div className="relative flex items-center rounded-full border border-white">
         <input
           type="radio"
           name="tallyUser"
           value={value}
           onChange={onChange}
-          className="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-full checked:bg-black checked:border-black transition-all"
+          className="peer h-5 w-5 appearance-none rounded-full border-2 border-gray-300 transition-all checked:border-black checked:bg-black"
         />
         <svg
-          className="absolute w-3 h-3 text-white left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 transition-opacity"
+          className="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"

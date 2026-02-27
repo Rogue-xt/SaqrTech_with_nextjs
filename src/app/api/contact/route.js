@@ -1,42 +1,46 @@
 import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { EnquiryMail } from "emails/EnquiryMail";
-import { UserContactReply } from "emails/UserContactReply";
+import { ContactEnquiryMail } from "emails/ContactEnquiryMail";
+import { UserContactReplyMail } from "emails/UserContactReplyMail";
 
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, phone, email, company, subject, requirements } = body;
+    const { name, phone, email, subject } = body;
 
-    // 1. Background Email Process
-    // We do NOT 'await' this wrapper to provide immediate UI feedback
     (async () => {
       try {
         const transporter = nodemailer.createTransport({
-          service: "gmail",
+          host: "smtp.zoho.com", // Changed to Zoho
+          port: 465,
+          secure: true,
           auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
+            user: process.env.EMAIL_USER, // Ensure this is info@saqrtech.com
+            pass: process.env.EMAIL_PASS, // Your 16-character Zoho App Password
           },
         });
 
-        // Render the React Email template to HTML
-        const emailHtml = await render(<EnquiryMail data={body} />);
-         const userHtml = await render(<UserContactReply data={body} />);
+        const [emailHtml, userHtml] = await Promise.all([
+          render(<ContactEnquiryMail data={body} />),
+          render(<UserContactReplyMail data={body} />),
+        ]);
 
         await Promise.all([
+          // 1. Admin Notification (To Yourself)
           transporter.sendMail({
+            // Setting 'from' as your company email address
             from: `"Website Monitor" <${process.env.EMAIL_USER}>`,
-            to: "saqrtechinfo@gmail.com",
-            subject: `🚀 New Inquiry: from ${name}`,
+            to: "info@saqrtech.com",
+            replyTo: email, // Click 'Reply' to email the customer directly
+            subject: `🚀 New Inquiry: ${subject || "General"} from ${name}`,
             html: emailHtml,
           }),
-          // User Confirmation
+          // 2. User Confirmation (To Customer)
           transporter.sendMail({
             from: `"Al Saqr Technologies" <${process.env.EMAIL_USER}>`,
             to: email,
-            subject: "Thank You",
+            subject: "Thank You for Contacting Al Saqr Technologies",
             html: userHtml,
             attachments: [
               {
@@ -47,13 +51,12 @@ export async function POST(request) {
           }),
         ]);
 
-        console.log("Background email sent for inquiry:", subject);
+        console.log("Zoho background emails sent for:", name);
       } catch (mailError) {
-        console.error("Background Email Failure:", mailError);
+        console.error("Zoho SMTP Failure:", mailError);
       }
     })();
 
-    // 2. Immediate Response to UI
     return NextResponse.json(
       { message: "Success! Your message has been sent." },
       { status: 200 },

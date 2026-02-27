@@ -1,9 +1,9 @@
 import { render } from "@react-email/render";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { EnquiryMail } from "emails/EnquiryMail";
 import { PrismaClient } from "@prisma/client";
-import { UserWelcomeMail } from "emails/UserWelcomeMail";
+import { VanSalesEnquiryMail } from "emails/VanSalesEnquiryMail";
+import { UserVansalesReplyMail } from "emails/UserVansalesReplyMail";
 
 const prisma = new PrismaClient();
 export async function POST(request) {
@@ -22,35 +22,33 @@ export async function POST(request) {
         info,
       },
     });
-
-    // 2. Start the Email process in the background (DO NOT 'await' this)
-    // This allows the function to move to the return statement immediately.
     (async () => {
       try {
         const transporter = nodemailer.createTransport({
-          service: "gmail",
+          host: "smtp.zoho.com", // Zoho SMTP Host
+          port: 465, // Secure SSL Port
+          secure: true, // Use SSL
           auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
+            user: process.env.EMAIL_USER, // e.g., info@saqrtech.com
+            pass: process.env.EMAIL_PASS, // Your 16-character Zoho App Password
           },
         });
-
         // Render templates in parallel to save time
         const [adminHtml, userHtml] = await Promise.all([
-          render(<EnquiryMail data={body} />),
-          render(<UserWelcomeMail name={name} />),
+          render(<VanSalesEnquiryMail data={body} />),
+          render(<UserVansalesReplyMail name={name} />),
         ]);
 
-        // Send both emails in parallel
         await Promise.all([
-          // Admin Notification
+          // Admin Notification (Sent to your company)
           transporter.sendMail({
             from: process.env.EMAIL_USER,
-            to: "saqrtechinfo@gmail.com",
-            subject: `🚀 New Lead: ${name}`,
+            to: "info@saqrtech.com",
+            replyTo: email, // Direct reply to customer
+            subject: `🚚 Van Sales trial request from ${name}`,
             html: adminHtml,
           }),
-          // User Confirmation
+          // User Confirmation (Sent to the customer)
           transporter.sendMail({
             from: `"Al Saqr Technologies" <${process.env.EMAIL_USER}>`,
             to: email,
@@ -64,7 +62,6 @@ export async function POST(request) {
             ],
           }),
         ]);
-
         console.log("Background emails sent successfully for:", email);
       } catch (mailError) {
         // Since the response is already sent, we log errors to the server console

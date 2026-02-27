@@ -58,7 +58,7 @@ const handleSubmit = async (e) => {
       <div className="relative z-10 container mx-auto px-6">
         <div className="mb-12">
           <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Let's{" "}
+            Let &apos;s
             <span className="text-red-600 underline decoration-red-600/30 underline-offset-8">
               Connect
             </span>
@@ -84,7 +84,7 @@ const handleSubmit = async (e) => {
                       name="name"
                       type="text"
                       required
-                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500  focus:ring-2 focus:ring-red-500/20"
+                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                       placeholder="Your Full Name"
                     />
                   </div>
@@ -97,7 +97,7 @@ const handleSubmit = async (e) => {
                       name="phone"
                       type="text"
                       required
-                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500  focus:ring-2 focus:ring-red-500/20"
+                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                       placeholder="+971 -- --- ----"
                     />
                   </div>
@@ -112,7 +112,7 @@ const handleSubmit = async (e) => {
                       name="email"
                       type="email"
                       required
-                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500  focus:ring-2 focus:ring-red-500/20"
+                      className="w-full rounded-2xl border border-white/20  p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                       placeholder="info@yourcompany.com"
                     />
                   </div>
@@ -124,7 +124,7 @@ const handleSubmit = async (e) => {
                     <input
                       name="company"
                       type="text"
-                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500  focus:ring-2 focus:ring-red-500/20"
+                      className="w-full rounded-2xl border border-white/20  p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                       placeholder="Business Name"
                     />
                   </div>
@@ -138,7 +138,7 @@ const handleSubmit = async (e) => {
                     name="requirements"
                     required
                     rows="4"
-                    className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500  focus:ring-2 focus:ring-red-500/20"
+                    className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>
@@ -155,7 +155,7 @@ const handleSubmit = async (e) => {
 
           {/* --- RIGHT SIDE INFO (High Contrast) --- */}
           <div className="lg:col-span-1">
-            <div className="flex h-full flex-col justify-between rounded-[2.5rem]  bg-gradient-to-br from-red-600 via-red-700 to-black-10 p-10 shadow-2xl">
+            <div className="to-black-10 flex h-full flex-col justify-between rounded-[2.5rem] bg-gradient-to-br from-red-600 via-red-700 p-10 shadow-2xl">
               <div className="space-y-12">
                 <h2 className="text-3xl leading-none font-black tracking-tighter uppercase">
                   Contact <br /> Details
@@ -184,7 +184,7 @@ const handleSubmit = async (e) => {
                       <p className="mb-1 text-xs font-bold tracking-widest text-red-200 uppercase">
                         Phone
                       </p>
-                      <p className="text-xl font-bold">+971 58 951 6916</p>
+                      <p className="text-xl font-bold">+971545252469</p>
                     </div>
                   </div>
 

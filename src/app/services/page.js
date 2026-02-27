@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 const services = [
   {
@@ -81,17 +82,19 @@ const services = [
 export default function ServicesCursorGlow() {
   const sectionRef = useRef(null);
   const [active, setActive] = useState(services[0]);
-
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
+  const cardRefs = useRef({});
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  // const imageY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const glowBackground = useTransform(
+    [mouseX, mouseY],
+    ([x, y]) =>
+      `radial-gradient(600px at ${x}px ${y}px, rgba(0,120,255,0.15), transparent 60%)`,
+  );
 
   return (
     <section
@@ -106,90 +109,118 @@ export default function ServicesCursorGlow() {
       <motion.div
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className="text-center pt-32 pb-12 relative z-20"
+        className="relative z-20 px-5 pt-32 pb-12 text-center"
       >
-        <div className="inline-block px-4 py-1.5 rounded-full border border-purple-500/20 text-[10px] uppercase tracking-[0.3em] font-medium text-purple-300/60 mb-6 backdrop-blur-md">
+        <div className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md">
           Excellence in IT Solutions
         </div>
-        <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+        <h2 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl">
           Services We Provide
         </h2>
-        <p className="text-gray-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+        <p className="sub mx-auto max-w-xl text-center text-sm leading-relaxed text-gray-500 md:text-base">
           Experience the future of IT Solutions with cutting-edge technology and
           personalized care.
         </p>
       </motion.div>
 
       {/* Cursor Glow */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-10"
-        style={{
-          background: useTransform(
-            [mouseX, mouseY],
-            ([x, y]) =>
-              `radial-gradient(600px at ${x}px ${y}px, rgba(0,120,255,0.15), transparent 60%)`,
-          ),
-        }}
-      />
+      {!isMobile && (
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-10"
+          style={{ background: glowBackground }}
+        />
+      )}
 
       {/* 2. Main Content Area */}
-      {/* Changed h-screen to a fixed height or min-h to prevent cutting off footer/next section */}
-      <div className="sticky top-0 min-h-screen flex items-center pb-24">
-        <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
+      <div className="flex min-h-screen items-center pb-24 lg:sticky lg:top-0">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
           {/* LEFT – Services: Reduced space-y from 4 to 2 for tighter alignment */}
-          <div className="tv space-y-2 relative z-20">
+          <div className="tv relative z-20 order-2 space-y-2 lg:order-1">
             {services.map((service) => {
               const isActive = service.id === active.id;
 
               return (
                 <button
+                  ref={(el) => (cardRefs.current[service.id] = el)}
                   key={service.id}
-                  onClick={() => setActive(service)}
-                  className={`w-full text-left rounded-2xl px-6 py-4 transition-all duration-300
-                ${isActive ? "bg-white/10 translate-x-2" : "hover:bg-white/5 opacity-50 hover:opacity-100"}
-              `}
+                  onClick={() => {
+                    setActive(service);
+
+                    if (window.innerWidth < 1024) {
+                      setTimeout(() => {
+                        cardRefs.current[service.id]?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      }, 50);
+                    }
+                  }}
+                  className={`group w-full rounded-2xl px-6 py-5 text-left transition-all duration-300 ${
+                    isActive
+                      ? "bg-white/10 shadow-lg backdrop-blur-xl"
+                      : "opacity-60 hover:bg-white/5 hover:opacity-100"
+                  }`}
                 >
                   {/* Smaller margin for titles */}
                   <h3
-                    className={`text-xl font-semibold transition-colors ${isActive ? "text-red-400" : "text-white"}`}
+                    className={`text-xl font-semibold transition-colors duration-300 ${
+                      isActive
+                        ? "text-red-400"
+                        : "text-white group-hover:text-red-300"
+                    }`}
                   >
                     {`${service.title}`}
                   </h3>
-
                   {isActive && (
-                    <motion.p
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 0.7 }}
-                      className="mt-2 text-sm leading-relaxed overflow-hidden"
+                    <motion.div
+                      layout
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="mt-3 space-y-4"
                     >
-                      {service.description}
-                    </motion.p>
+                      <p className="text-sm leading-relaxed opacity-70">
+                        {service.description}
+                      </p>
+
+                      {/* Mobile Image */}
+                      <motion.div
+                        layout
+                        className="overflow-hidden rounded-2xl lg:hidden"
+                      >
+                        <motion.img
+                          src={service.image}
+                          alt={service.title}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5 }}
+                          className="w-full object-contain"
+                        />
+                      </motion.div>
+                    </motion.div>
                   )}
                 </button>
               );
             })}
           </div>
 
-          {/* RIGHT – Visual: Centered relative to the button block */}
-          <div className="relative h-[500px] lg:h-[550px]  overflow-hidden shadow-2xl">
-            <motion.img
-              key={active.image}
-              src={active.image}
-              alt={active.title}
-              style={{
-                scale: imageScale,
-                // y: imageY,
-              }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              // className="real absolute inset-0 w-full h-full object-contain"
-              className={`absolute inset-0 w-full h-full ${
-                active.id === 4 ? "object-cover" : "object-contain"
-              }`}
-            />
+          <div className="relative order-1 hidden h-[500px] overflow-hidden shadow-2xl lg:order-2 lg:block lg:h-[550px]">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={active.image}
+                src={active.image}
+                alt={active.title}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`absolute inset-0 h-full w-full ${
+                  active.id === 4 ? "object-cover" : "object-contain"
+                }`}
+              />
+            </AnimatePresence>
             {/* Soft UI Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </div>
         </div>
       </div>

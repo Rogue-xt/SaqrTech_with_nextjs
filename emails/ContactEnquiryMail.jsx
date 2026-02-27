@@ -13,7 +13,7 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-export const EnquiryMail = ({ data }) => (
+export const ContactEnquiryMail = ({ data }) => (
   <Html>
     <Head />
     <Preview>New Website Inquiry: {data.subject}</Preview>
@@ -51,9 +51,6 @@ export const EnquiryMail = ({ data }) => (
             <Text style={boxText}>
               <strong>Company:</strong> {data.company || "N/A"}
             </Text>
-            <Text style={boxText}>
-              <strong>Subject:</strong> {data.subject}
-            </Text>
           </Section>
 
           <Text style={label}>Requirements / Message:</Text>
@@ -61,9 +58,17 @@ export const EnquiryMail = ({ data }) => (
             <Text style={messageText}>{data.requirements}</Text>
           </Section>
 
+          {/* Action Buttons: Call and Email */}
           <Section style={{ textAlign: "center", marginTop: "30px" }}>
-            <Link href={`mailto:${data.email}`} style={button}>
-              Reply via Email
+            <Link
+              href={`tel:${data.phone.replace(/\s/g, "")}`}
+              style={callButton}
+            >
+              📞 Call Client
+            </Link>
+            <span style={{ padding: "0 10px" }}></span>
+            <Link href={`mailto:${data.email}`} style={emailButton}>
+              ✉️ Reply via Email
             </Link>
           </Section>
 
@@ -79,7 +84,7 @@ export const EnquiryMail = ({ data }) => (
 
 // Styles
 const main = {
-  backgroundColor: "#000000",
+  backgroundColor: "#f4f4f5",
   padding: "40px 0",
   fontFamily:
     "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif",
@@ -131,16 +136,30 @@ const messageText = {
   lineHeight: "1.6",
   margin: "0",
 };
-const button = {
-  backgroundColor: "#dc2626",
+
+// Updated Button Styles
+const callButton = {
+  backgroundColor: "#16a34a", // Green for calling
   color: "#ffffff",
-  padding: "12px 30px",
+  padding: "12px 25px",
   borderRadius: "50px",
   textDecoration: "none",
   fontWeight: "bold",
   fontSize: "14px",
   display: "inline-block",
 };
+
+const emailButton = {
+  backgroundColor: "#dc2626", // Red for email
+  color: "#ffffff",
+  padding: "12px 25px",
+  borderRadius: "50px",
+  textDecoration: "none",
+  fontWeight: "bold",
+  fontSize: "14px",
+  display: "inline-block",
+};
+
 const logo = { margin: "0 auto" };
 const hr = { borderColor: "#e5e7eb", margin: "30px 0" };
 const footer = {
