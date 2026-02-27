@@ -11,60 +11,56 @@ import {
   useInView,
 } from "framer-motion";
 
-// Important: Ensure these components exist in your project or comment them out if they don't
 import Modal from "@/components/Modal";
 import ServiceSlider from "@/components/ServicesSlider";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import { ArrowRight, BarChart3, CheckCircle2, Layers, MapPin, RefreshCw, Settings, ShieldCheck, Smartphone, Users, Zap } from "lucide-react";
 
-// --- 1. STATS COUNTER COMPONENT ---
+/* ================= COUNTER ================= */
+
 const Counter = ({ value, label, suffix = "+" }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true });
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
 
   useEffect(() => {
     if (isInView) {
-      animate(count, value, { duration: 2.5, ease: "easeOut" });
+      animate(count, value, { duration: 2, ease: "easeOut" });
     }
   }, [isInView, count, value]);
 
   return (
-    <div
-      ref={ref}
-      className="flex flex-col items-center justify-center p-6 text-center"
-    >
-      <div className="flex items-baseline gap-1">
-        <motion.span className="text-5xl font-black tracking-tighter text-black md:text-7xl">
+    <div ref={ref} className="text-center">
+      <div className="flex items-end justify-center gap-1">
+        <motion.span className="text-5xl font-extrabold text-white md:text-7xl">
           {rounded}
         </motion.span>
-        <span className="text-2xl font-bold text-red-600">{suffix}</span>
+        <span className="text-2xl font-bold text-red-500">{suffix}</span>
       </div>
-      <p className="mt-3 text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase">
+      <p className="mt-3 text-xs tracking-widest text-gray-400 uppercase">
         {label}
       </p>
     </div>
   );
 };
 
-export default function HomePage() {
-  // Animation Variants
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  };
+/* ================= HOMEPAGE ================= */
 
-  const fadeLeft = {
-    hidden: { opacity: 0, x: -60 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
-  };
+export default function HomePage() {
+    const features = [
+      { icon: <RefreshCw size={18} />, text: "Real-time Tally ERP Sync" },
+      { icon: <MapPin size={18} />, text: "Route Optimization & GPS" },
+      { icon: <Smartphone size={18} />, text: "Instant PDF Invoicing" },
+      { icon: <CheckCircle2 size={18} />, text: "Inventory Management" },
+    ];
 
   return (
-    <main className="relative w-full overflow-x-hidden bg-white">
+    <main className="relative w-full overflow-x-hidden bg-black text-white">
       <Modal />
 
-      {/* --- HERO SECTION --- */}
-      <section className="relative flex h-screen items-center overflow-hidden text-white">
+      {/* ================= HERO (Enhanced Contrast) ================= */}
+      <section className="relative flex min-h-[90vh] items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -75,178 +71,66 @@ export default function HomePage() {
           >
             <source src="/Mpos/Mpos-Banner-Video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 z-[1] bg-black/50" />
+          {/* Layered Overlays for Depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          className="relative z-10 max-w-5xl px-6 md:px-12"
-        >
-          <h1 className="mb-6 text-5xl leading-[1.1] font-bold md:text-7xl">
-            Creative Software <br /> & IT Solutions
-          </h1>
-          <p className="mb-8 max-w-2xl text-lg font-light text-gray-200 md:text-2xl">
-            Advanced IT and ITES solutions customized to address the distinct
-            needs of clients throughout the UAE.
-          </p>
-          <Link
-            href="/services"
-            className="inline-block rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-white hover:text-black"
-          >
-            Explore Our Services →
-          </Link>
-        </motion.div>
-      </section>
-
-      {/* --- SECTION 1: MPOS LOGO & VIDEO --- */}
-      <section className="bg-white px-6 py-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-12">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeLeft}
-            className="flex flex-col items-start"
-          >
-            <Image
-              src="/Mpos/Mpos Logo/mPos_logo.jpg"
-              alt="MPOS"
-              width={160}
-              height={60}
-              className="mb-8"
-            />
-            <h2 className="mb-6 text-4xl leading-tight font-black text-black md:text-6xl">
-              Tally Integrated <br />
-              <span className="text-red-600">Van Sales</span> Software
-            </h2>
-            <p className="mb-8 text-xl text-gray-500">
-              Android based business solutions. Streamline distribution with
-              real-time Tally integration and Bluetooth printing.
-            </p>
-            <Link
-              href="/van-sales-app"
-              className="bg-black px-10 py-4 text-lg font-bold text-white shadow-xl transition-all hover:bg-red-600"
-            >
-              Request 7 Days Trial →
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative aspect-video overflow-hidden rounded-3xl bg-gray-100 shadow-2xl"
+            className="max-w-4xl"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="h-full w-full object-cover"
-            >
-              <source src="/Mpos/Mpos-Animated-Video.mp4" type="video/mp4" />
-            </video>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* --- SECTION 2: THE MODERN REDESIGN & STATISTICS --- */}
-      <section className="relative bg-slate-50 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-32 grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
-            {/* Left: Modern App Preview */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="relative"
-            >
-              <div className="rounded-3xl border border-gray-100 bg-white p-4 shadow-2xl">
-                <div className="rounded-2xl bg-gray-50 p-8">
-                  <div className="mb-10 flex items-center justify-between">
-                    <div className="h-4 w-4 rounded-full bg-red-500" />
-                    <div className="h-2 w-24 rounded-full bg-gray-200" />
-                  </div>
-                  <div className="space-y-6">
-                    <div className="h-4 w-3/4 rounded-full bg-black" />
-                    <div className="h-4 w-1/2 rounded-full bg-gray-200" />
-                    <div className="grid grid-cols-2 gap-4 pt-4">
-                      <div className="flex h-24 flex-col justify-end rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
-                        <div className="mb-2 h-2 w-1/2 bg-red-100" />
-                        <div className="h-3 w-3/4 bg-red-500" />
-                      </div>
-                      <div className="flex h-24 flex-col justify-end rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
-                        <div className="mb-2 h-2 w-1/2 bg-gray-100" />
-                        <div className="h-3 w-3/4 bg-black" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Stat Card */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -right-8 -bottom-8 hidden rounded-2xl bg-black p-6 text-white shadow-2xl md:block"
-              >
-                <p className="mb-1 text-[10px] font-bold tracking-widest uppercase opacity-60">
-                  System Sync
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="h-3 w-3 animate-pulse rounded-full bg-green-500" />
-                  <span className="text-lg font-bold">Active Tally Link</span>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Right: Content */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-            >
-              <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-red-600 uppercase">
-                Enterprise Solution
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-600"></span>
               </span>
-              <h2 className="mb-6 text-4xl leading-tight font-extrabold text-black md:text-5xl">
-                Van Sales App & <br /> Tally ERP Software
-              </h2>
-              <p className="mb-6 text-lg leading-relaxed text-gray-600">
-                Empower your mobile workforce with the Mpos Van Sales management
-                app. Specifically engineered to bridge the gap between field
-                operations and back-office accounting.
-              </p>
-              <div className="mb-10 space-y-4">
-                {[
-                  "Automated Route Optimization",
-                  "Instant Invoice Generation",
-                  "Direct Tally ERP Sync",
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-3 font-semibold text-gray-800"
-                  >
-                    <span className="text-red-600">✓</span> {item}
-                  </div>
-                ))}
-              </div>
+              <span className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">
+                New: Cloud ERP Integration 2.0
+              </span>
+            </div>
+
+            <h1 className="mb-8 text-6xl leading-[1.0] font-black tracking-tighter md:text-8xl lg:text-9xl">
+              Enterprise-Grade
+              <span className="block bg-gradient-to-r from-red-500 to-red-800 bg-clip-text text-transparent">
+                Software & IT
+              </span>
+            </h1>
+
+            <p className="mb-12 max-w-xl text-lg leading-relaxed text-gray-400 md:text-xl">
+              Tailored ERP ecosystems and custom software architecture
+              engineered for the specific demands of the UAE market.
+            </p>
+
+            <div className="flex flex-wrap gap-5">
+              <Link
+                href="/services"
+                className="group relative overflow-hidden rounded-full bg-red-600 px-10 py-4 font-bold transition-all hover:bg-red-700"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Explore Solutions{" "}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
               <Link
                 href="/contact-us"
-                className="inline-flex items-center gap-3 border-2 border-black px-8 py-4 font-bold transition-all duration-300 hover:bg-black hover:text-white"
+                className="rounded-full border border-white/20 px-10 py-4 font-bold backdrop-blur-sm transition-all hover:bg-white hover:text-black"
               >
-                Discover More <span>→</span>
+                Talk to an Expert
               </Link>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-          {/* --- THE STATISTICS BAR --- */}
-          <div className="grid grid-cols-2 gap-4 rounded-[2rem] border border-slate-100 bg-white px-4 py-12 shadow-xl shadow-slate-200/50 md:gap-8 lg:grid-cols-4">
+      {/* ================= STATS ================= */}
+
+      <section className="border-t border-gray-800 bg-black px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
             <Counter value={100} label="Enterprise Clients" />
             <Counter value={15} label="Years Experience" />
             <Counter value={500} label="Active Users" />
@@ -254,31 +138,293 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      {/* ================= INDUSTRIES (Glow Cards) ================= */}
+      <section className="relative bg-black px-6 py-32">
+        <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-red-900/10 blur-[120px]" />
+        <div className="mx-auto max-w-7xl text-center">
+          <h2 className="mb-20 text-4xl font-black tracking-tight md:text-7xl">
+            Verticals We <span className="text-red-600">Master</span>
+          </h2>
 
-      {/* --- EXTERNAL COMPONENTS --- */}
-      <ServiceSlider />
-      <div className="h-px w-full bg-gray-100" />
-      <WhyChooseUs />
-
-      {/* --- FOOTER CTA --- */}
-      <section className="bg-white px-6 py-24 text-center">
-        <div className="mx-auto max-w-4xl">
-          <p className="mb-12 text-xl text-gray-500 italic md:text-2xl">
-            "If you're looking for an IT partner that combines technological
-            expertise with a deep understanding of the GCC market, Al Saqr
-            Technologies is the clear choice."
-          </p>
-          <h3 className="mb-8 text-3xl font-bold">
-            Ready to transform your business?
-          </h3>
-          <Link
-            href="/contact-us"
-            className="bg-black px-12 py-5 text-xl font-bold text-white shadow-2xl transition-all hover:bg-red-600"
-          >
-            Contact us
-          </Link>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+            {[
+              { name: "FMCG", icon: <Layers className="h-5 w-5" /> },
+              { name: "Retail", icon: <Zap className="h-5 w-5" /> },
+              { name: "Wholesale", icon: <BarChart3 className="h-5 w-5" /> },
+              { name: "Construction", icon: <Settings className="h-5 w-5" /> },
+              { name: "Logistics", icon: <ShieldCheck className="h-5 w-5" /> },
+              { name: "Manufacturing", icon: <Users className="h-5 w-5" /> },
+            ].map((ind) => (
+              <div
+                key={ind.name}
+                className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-red-500/50 hover:bg-red-500/[0.05]"
+              >
+                <div className="text-gray-500 transition-colors group-hover:text-red-500">
+                  {ind.icon}
+                </div>
+                <span className="text-sm font-bold tracking-widest uppercase">
+                  {ind.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* ================= PROCESS (Journey Flow) ================= */}
+      {/* <section className="border-t border-white/5 bg-[#050505] px-6 py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-24 text-center">
+            <h2 className="mb-4 text-4xl font-black tracking-tight md:text-7xl">
+              Precision Workflow
+            </h2>
+            <p className="mx-auto max-w-2xl text-xs tracking-[0.2em] text-gray-500 uppercase">
+              From initial blueprint to hyper-scale optimization
+            </p>
+          </div>
+
+          <div className="relative grid grid-cols-1 gap-12 md:grid-cols-5">
+
+            <div className="absolute top-12 left-0 hidden h-[1px] w-full bg-gradient-to-r from-transparent via-red-900/50 to-transparent md:block" />
+
+            {[
+              "Consultation",
+              "System Design",
+              "Development",
+              "Integration",
+              "Support",
+            ].map((step, i) => (
+              <div
+                key={step}
+                className="group relative z-10 flex flex-col items-center text-center"
+              >
+                <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-3xl border border-white/10 bg-black transition-all group-hover:border-red-600 group-hover:bg-red-600/10">
+                  <span className="text-3xl font-black text-white/20 group-hover:text-red-600">
+                    0{i + 1}
+                  </span>
+                </div>
+                <h3 className="mb-2 text-lg font-bold tracking-tight uppercase">
+                  {step}
+                </h3>
+                <div className="h-[2px] w-8 origin-center scale-x-0 bg-red-600 transition-transform group-hover:scale-x-100" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* ================= TESTIMONIALS (Bento) ================= */}
+      <section className="bg-black px-6 py-32">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-20 text-center text-4xl font-black tracking-tight md:text-6xl">
+            Client <span className="text-red-600">Vouches</span>
+          </h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[1, 2, 3].map((item) => (
+              <div
+                key={item}
+                className="group rounded-[2rem] border border-white/5 bg-[#0a0a0a] p-10 transition-all hover:border-white/10 hover:bg-white/[0.03]"
+              >
+                <div className="mb-8 flex gap-1">
+                  {[...Array(5)].map((_, star) => (
+                    <div
+                      key={star}
+                      className="h-4 w-4 rounded-full bg-red-600 opacity-40 transition-opacity group-hover:opacity-100"
+                    />
+                  ))}
+                </div>
+                <p className="mb-10 text-xl leading-relaxed font-medium text-gray-300 italic">
+                  “The level of integration achieved with our Tally ERP system
+                  was beyond expectations. Our delivery speeds doubled within 3
+                  months.”
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-red-600 to-red-900" />
+                  <div>
+                    <div className="font-bold">Hassan Ahmed</div>
+                    <div className="text-[10px] tracking-widest text-gray-600 uppercase">
+                      Operations Director, Dubai
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* ================= PRODUCT SECTION ================= */}
+
+      <section className="relative overflow-hidden bg-black px-6 py-32">
+        {/* Background Decorative Elements */}
+        <div className="pointer-events-none absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-600/5 blur-[120px]" />
+
+        <div className="mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            {/* --- Left Content --- */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-red-500/20 bg-red-500/5 px-4 py-2">
+                <span className="text-[10px] font-black tracking-[0.2em] text-red-500 uppercase">
+                  Flagship Product
+                </span>
+              </div>
+
+              {/* <Image
+                src="/Mpos/Mpos Logo/mPos_logo.jpg"
+                alt="mPos Logo"
+                width={140}
+                height={50}
+                className="mb-8 brightness-110"
+              /> */}
+
+              <h2 className="mb-6 text-5xl leading-[1.1] font-black tracking-tighter md:text-7xl">
+                The Future of <br />
+                <span className="font-outline text-red-600">Van Sales</span>
+              </h2>
+
+              <p className="mb-8 max-w-lg text-xl leading-relaxed font-light text-gray-400">
+                Transform your mobile workforce with the UAE’s most powerful
+                <span className="font-medium text-white">
+                  {" "}
+                  Tally-integrated
+                </span>{" "}
+                sales automation platform.
+              </p>
+
+              {/* Feature Grid */}
+              <div className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {features.map((feature, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 text-gray-300"
+                  >
+                    <div className="text-red-600">{feature.icon}</div>
+                    <span className="text-sm font-semibold tracking-wide uppercase">
+                      {feature.text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/van-sales-app"
+                  className="group relative overflow-hidden rounded-full bg-red-600 px-10 py-5 text-lg font-bold transition-all hover:scale-105 hover:bg-red-700"
+                >
+                  Request 7-Day Free Trial
+                </Link>
+                <Link
+                  href="/demo"
+                  className="rounded-full border border-white/10 px-10 py-5 text-lg font-bold transition-all hover:bg-white hover:text-black"
+                >
+                  Watch Demo
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* --- Right Visuals (The Composition) --- */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: 50 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative flex h-[500px] items-center justify-center md:h-[650px]"
+            >
+              {/* Tablet Mockup */}
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative z-10 aspect-[4/3] w-[85%] overflow-hidden rounded-[2rem]"
+              >
+                <Image style={{maxWidth:"67%"}}
+                  src="/mpos-logo.png"
+                  // src="/images/services/tab-homepage.png"
+                  alt="mPos Tablet Interface"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+
+              {/* Mobile Mockup (Overlapping) */}
+              <motion.div
+                animate={{ y: [0, 20, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -right-4 -bottom-10 z-20 aspect-[9/19.5] w-[40%] overflow-hidden rounded-[2.5rem]"
+              >
+                <Image
+                  src="https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png" // Add your mobile screenshot here
+                  alt="mPos Mobile App"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Tally Connection Badge */}
+              <div className="absolute top-10 -left-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl bg-white p-4 shadow-2xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 font-black text-white">
+                  T
+                </div>
+                <div>
+                  <p className="text-[10px] leading-none font-bold tracking-tighter text-black uppercase">
+                    Status
+                  </p>
+                  <p className="text-xs font-black text-green-600">
+                    Tally Linked
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SERVICES & WHY ================= */}
+
+      <ServiceSlider />
+      <WhyChooseUs />
+
+      {/* ================= FINAL CTA ================= */}
+
+      <section className="border-t border-gray-800 bg-black px-6 py-32 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-4xl"
+        >
+          <h3 className="mb-10 text-3xl font-bold md:text-5xl">
+            Ready to Transform Your Business?
+          </h3>
+
+          <Link
+            href="/contact-us"
+            className="rounded-full bg-red-600 px-14 py-5 text-xl font-semibold shadow-lg shadow-red-600/40 transition-all hover:scale-105 hover:bg-red-700"
+          >
+            Get in Touch →
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* ================= FLOATING WHATSAPP ================= */}
+
+      <Link
+        href="https://wa.me/971545252469"
+        target="_blank"
+        className="fixed right-6 bottom-6 z-50 rounded-full bg-red-600 px-6 py-4 font-semibold text-white shadow-2xl transition-all hover:scale-110 hover:bg-red-700"
+      >
+        WhatsApp
+      </Link>
     </main>
   );
 }

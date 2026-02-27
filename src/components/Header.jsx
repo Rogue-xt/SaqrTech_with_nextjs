@@ -6,43 +6,20 @@ import Image from "next/image";
 
 export default function Header() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const dynamicPaths = ["/"];
-
-  const isDynamicPage = dynamicPaths.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = 50;
-      setScrolled(window.scrollY > threshold);
+      setScrolled(window.scrollY > 40);
     };
 
-    if (isDynamicPage) {
-      window.addEventListener("scroll", handleScroll);
-      handleScroll(); // Check initial position
-    } else {
-      setScrolled(false);
-    }
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname, isDynamicPage]);
-
-  // 1. If it's a dynamic page (like home) and we HAVEN'T scrolled yet -> Transparent
-  // 2. If it's NOT a dynamic page -> Always Transparent (as per your request)
-  const isCurrentTransparent = !isDynamicPage || (isDynamicPage && !scrolled);
-
-  // --- Dynamic Styles ---
-  const headerBg = isCurrentTransparent
-    ? "bg-transparent md:backdrop-blur-none"
-    : "bg-white shadow-sm backdrop-blur-md";
-
-  const textColor = isCurrentTransparent
-    ? "text-white" // White text for transparent background
-    : "text-gray-700"; // Dark text for white background
-
-  const logoInvert = isCurrentTransparent ? "brightness-0 invert" : "";
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -74,235 +51,62 @@ export default function Header() {
     },
   ];
 
-  // Helper to check if link is active
   const isActive = (href) =>
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 md:px-8 ${headerBg}`}
-    >
-      {/* Logo */}
-      <div className="flex items-center">
-        <Link href="/">
-          <Image
-            src="/images/logo.png"
-            alt="Al Saqr Logo"
-            width={140}
-            height={40}
-            className={`transition-all duration-500 ${logoInvert}`}
-          />
-        </Link>
-      </div>
-
-      {/* Desktop Navigation */}
-      <nav
-        className={`hidden items-center space-x-8 font-medium transition-colors duration-500 md:flex ${textColor}`}
-      >
-        {navLinks.map((link) => (
-          <div
-            key={link.name}
-            className="group relative py-2"
-            onMouseEnter={() => link.dropdown && setActiveDropdown(link.name)}
-            onMouseLeave={() => setActiveDropdown(null)}
-          >
-            <Link
-              href={link.href}
-              className={`relative flex items-center gap-1 transition-all ${
-                isActive(link.href)
-                  ? "font-bold text-red-600"
-                  : "hover:text-red-600"
-              }`}
-            >
-              {link.name}
-              {/* Active Underline Effect */}
-              {isActive(link.href) && (
-                <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-red-600" />
-              )}
-              {link.dropdown && (
-                <svg
-                  className={`h-4 w-4 transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              )}
-            </Link>
-
-            {/* Dropdown Menu */}
-            {link.dropdown && activeDropdown === link.name && (
-              <div className="animate-in fade-in slide-in-from-top-2 absolute top-full left-0 w-48 pt-2 duration-200">
-                <div
-                  className={`overflow-hidden rounded-xl border shadow-xl ${
-                    isCurrentTransparent
-                      ? "border-white/10 bg-zinc-900 text-white"
-                      : "border-gray-100 bg-white text-gray-800"
-                  }`}
-                >
-                  {link.dropdown.map((sub) => (
-                    <Link
-                      key={sub.name}
-                      href={sub.href}
-                      className={`block px-5 py-3 text-sm transition ${
-                        isActive(sub.href)
-                          ? "bg-red-500/5 text-red-500"
-                          : "hover:bg-red-500/10 hover:text-red-600"
-                      }`}
-                    >
-                      {sub.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
-      </nav>
-
-      {/* Right Side */}
-      <div className="hidden items-center space-x-4 md:flex">
-        <Link
-          href="/contact-us"
-          className={`border px-6 py-2 transition-all duration-500 ${
-            isCurrentTransparent
-              ? "border-white text-white hover:bg-white hover:text-black"
-              : "border-black bg-black text-white hover:bg-white hover:text-black"
-          }`}
-        >
-          Contact Us
-        </Link>
-      </div>
-
-      {/* Mobile Toggle Button */}
-      <button
-        className={`p-2 transition-colors duration-500 md:hidden ${isCurrentTransparent ? "text-black" : "text-black"}`}
-        onClick={() => setIsOpen(true)}
-      >
-        <svg
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="h-8 w-8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      </button>
-
-      {/* Mobile Sidebar Overlay */}
-      <div
-        className={`fixed inset-0 bg-black/60 transition-opacity duration-300 ${
-          isOpen
-            ? "z-[9998] opacity-100"
-            : "pointer-events-none -z-10 opacity-0"
+    <>
+      {/* Header */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled ? "bg-white/5 backdrop-blur-xl" : "bg-transparent"
         }`}
-        style={{ height: "100vh", width: "100vw" }}
-        onClick={() => setIsOpen(false)}
       >
-        {/* Sidebar Panel Mobile */}
-        <div
-          className={`fixed top-0 right-0 z-[9999] w-72 p-6 shadow-2xl transition-transform duration-300 ease-in-out ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          style={{
-            backgroundColor: "black", // Forces white background
-            height: "100vh", // Forces full screen height
-            position: "fixed", // Ensures it stays pinned
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Close Button Area */}
-          <div className="mb-8 flex justify-end">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="rounded-full bg-gray-100 p-2 text-black"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="h-6 w-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          {/* Logo */}
+          <Link href="/">
+            <Image
+              src="/images/logo.png"
+              alt="Logo"
+              width={150}
+              height={40}
+              className="brightness-0 invert"
+            />
+          </Link>
 
-          {/* Navigation - Items will now be on a solid white background */}
-          <nav className="flex flex-col space-y-2">
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center space-x-10 text-sm font-medium text-white md:flex">
             {navLinks.map((link) => (
               <div
                 key={link.name}
-                className="border-b border-gray-50 last:border-0"
+                className="group relative"
+                onMouseEnter={() =>
+                  link.dropdown && setActiveDropdown(link.name)
+                }
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                <div
-                  onClick={() =>
-                    setActiveDropdown(
-                      activeDropdown === link.name ? null : link.name,
-                    )
-                  }
-                  className="flex items-center justify-between py-4"
+                <Link
+                  href={link.href}
+                  className="relative transition-opacity duration-300 hover:opacity-70"
                 >
-                  <Link
-                    href={link.href}
-                    className={`text-lg transition-colors ${
-                      isActive(link.href)
-                        ? "font-bold text-red-600"
-                        : "text-white"
-                    }`}
-                    // onClick={() => !link.dropdown && setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                  {link.dropdown && (
-                    <button
-                      onClick={() =>
-                        setActiveDropdown(
-                          activeDropdown === link.name ? null : link.name,
-                        )
-                      }
-                    >
-                      <svg
-                        className={`h-5 w-5 invert transition-transform ${activeDropdown === link.name ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
-                  )}
-                </div>
+                  {link.name}
+                </Link>
+
+                {/* Underline animation */}
+                <span
+                  className={`absolute -bottom-2 left-0 h-[1px] bg-white transition-all duration-300 ${
+                    isActive(link.href) ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+
+                {/* Desktop Dropdown */}
                 {link.dropdown && activeDropdown === link.name && (
-                  <div className="mb-2 flex flex-col space-y-3 border-l-2 border-gray-100 pl-4">
+                  <div className="absolute top-full left-0 mt-0 pt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-white/10 shadow-2xl backdrop-blur-xl">
                     {link.dropdown.map((sub) => (
                       <Link
                         key={sub.name}
                         href={sub.href}
-                        className={`text-sm ${isActive(sub.href) ? "font-medium text-red-600" : "text-white"}`}
-                        onClick={() => setIsOpen(false)}
+                        className="block px-6 py-3 text-sm text-white transition hover:bg-white/10"
                       >
                         {sub.name}
                       </Link>
@@ -312,8 +116,110 @@ export default function Header() {
               </div>
             ))}
           </nav>
+
+          {/* Desktop Contact */}
+          <div className="hidden md:block">
+            <Link
+              href="/contact-us"
+              className="rounded-full border border-white px-5 py-2 text-sm text-white transition-all duration-300 hover:bg-white hover:text-black"
+            >
+              Contact Us
+            </Link>
+          </div>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="text-white md:hidden"
+          >
+            <svg
+              className="h-8 w-8"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-md transition-opacity duration-300 ${
+          isOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+        onClick={() => setIsOpen(false)}
+      >
+        <div
+          className={`fixed top-0 right-0 h-full w-80 bg-black/90 p-8 text-white backdrop-blur-xl transition-transform duration-300 ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="mb-10 flex justify-end">
+            <button onClick={() => setIsOpen(false)}>✕</button>
+          </div>
+
+          <nav className="flex flex-col space-y-6 text-lg">
+            {navLinks.map((link) => (
+              <div key={link.name}>
+                <div
+                  className="flex items-center justify-between"
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === link.name ? null : link.name,
+                    )
+                  }
+                >
+                  <Link
+                    href={link.href}
+                    className="hover:opacity-70"
+                    onClick={() => !link.dropdown && setIsOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+
+                  {link.dropdown && (
+                    <span className="text-sm">
+                      {activeDropdown === link.name ? "−" : "+"}
+                    </span>
+                  )}
+                </div>
+
+                {link.dropdown && activeDropdown === link.name && (
+                  <div className="mt-4 ml-4 flex flex-col space-y-4 text-base">
+                    {link.dropdown.map((sub) => (
+                      <Link
+                        key={sub.name}
+                        href={sub.href}
+                        onClick={() => setIsOpen(false)}
+                        className="hover:opacity-70"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Mobile Contact */}
+            <Link
+              href="/contact-us"
+              onClick={() => setIsOpen(false)}
+              className="mt-8 rounded-full border border-white py-3 text-center transition-all hover:bg-white hover:text-black"
+            >
+              Contact Us
+            </Link>
+          </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 }

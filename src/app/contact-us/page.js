@@ -1,213 +1,228 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Building2,
+  ArrowRight,
+  Globe2,
+  Briefcase,
+} from "lucide-react";
 
 export default function ContactUs() {
   const [status, setStatus] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    setStatus("sending");
 
-  // 1. Prepare data
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData);
+    const contactRequest = fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }).then(async (res) => {
+      if (!res.ok) throw new Error("Failed");
+      return res.json();
+    });
 
-  // 2. Disable button via state
-  setStatus("sending");
+    toast.promise(contactRequest, {
+      loading: "Transmitting data...",
+      success: "Inquiry received.",
+      error: "Transmission failed.",
+    });
 
-  // 3. Define the fetch as a promise for the toast
-  const contactRequest = fetch("/api/contact", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
-  }).then(async (res) => {
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || "Failed to send message");
+    try {
+      await contactRequest;
+      e.target.reset();
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+    } finally {
+      setTimeout(() => setStatus(""), 3000);
     }
-    return res.json();
-  });
+  };
 
-  // 4. Fire the toast notification
-  toast.promise(contactRequest, {
-    loading: "Sending your message to our team...",
-    success: "Message sent! We will contact you soon.",
-    error: (err) => `${err.message}`,
-  });
-
-  try {
-    await contactRequest;
-
-    // 5. Cleanup UI on success
-    e.target.reset();
-    setStatus("success");
-  } catch (err) {
-    console.error("Submission Error:", err);
-    setStatus("error");
-  } finally {
-    // 6. Reset status after cooldown to allow button re-entry
-    setTimeout(() => setStatus(""), 3000);
-  }
-};
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black pt-32 pb-12 text-white">
-      {/* Background Glows - Adjusted for higher visibility */}
-      <div className="absolute top-0 left-0 h-full w-full bg-[radial-gradient(circle_at_30%_30%,rgba(220,38,38,0.08),transparent_50%)]"></div>
+    <div className="relative min-h-screen overflow-hidden bg-black pt-32 pb-20 text-white">
+      {/* Texture Layer */}
+      <div className="pointer-events-none absolute inset-0 bg-[url('/grid.svg')] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] bg-center opacity-20"></div>
 
       <div className="relative z-10 container mx-auto px-6">
-        <div className="mb-12">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Let &apos;s
-            <span className="text-red-600 underline decoration-red-600/30 underline-offset-8">
-              Connect
-            </span>
+        <div className="mb-16">
+          <h1 className="text-5xl leading-[0.9] font-black tracking-tighter uppercase md:text-6xl">
+            Enterprise <br />
+            <span className="font-outline text-red-600">Enquiry</span>
           </h1>
-          <p className="text-lg text-zinc-400">
-            Have a project in mind? Fill out the form below and our team will
-            get back to you shortly.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-3">
-          {/* --- ENHANCED GLASS FORM CARD --- */}
-          <div className="relative lg:col-span-2">
-            <div className="relative rounded-[2.5rem] border border-white/10 bg-zinc-900/40 p-8 shadow-[0_0_50px_-12px_rgba(220,38,38,0.25)] backdrop-blur-2xl md:p-12">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                  {/* Field Wrapper */}
-                  <div className="space-y-2">
-                    <label className="ml-1 text-xs font-bold tracking-widest text-red-500 uppercase">
-                      Name
-                    </label>
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-3">
+          {/* --- REFINED FORM STYLE --- */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="order-2 lg:order-1 lg:col-span-2"
+          >
+            <div className="rounded-[2rem] border border-white/5 bg-[#080808] p-8 shadow-2xl md:p-12">
+              <form onSubmit={handleSubmit} className="space-y-10">
+                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+                  <div className="group relative">
                     <input
                       name="name"
-                      type="text"
                       required
-                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Your Full Name"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      placeholder="Name"
                     />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="ml-1 text-xs font-bold tracking-widest text-red-500 uppercase">
-                      Phone
+                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                      Full Name
                     </label>
+                  </div>
+                  <div className="group relative">
                     <input
                       name="phone"
-                      type="text"
                       required
-                      className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                      placeholder="+971 -- --- ----"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      placeholder="Phone"
                     />
+                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                      Phone Number
+                    </label>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                  <div className="space-y-2">
-                    <label className="ml-1 text-xs font-bold tracking-widest text-red-500 uppercase">
-                      Email
-                    </label>
+                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+                  <div className="group relative">
                     <input
                       name="email"
                       type="email"
                       required
-                      className="w-full rounded-2xl border border-white/20  p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                      placeholder="info@yourcompany.com"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      placeholder="Email"
                     />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="ml-1 text-xs font-bold tracking-widest text-red-500 uppercase">
-                      Company
+                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                      Work Email
                     </label>
+                  </div>
+                  <div className="group relative">
                     <input
                       name="company"
-                      type="text"
-                      className="w-full rounded-2xl border border-white/20  p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Business Name"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      placeholder="Company"
                     />
+                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                      Company Name
+                    </label>
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="ml-1 text-xs font-bold tracking-widest text-red-500 uppercase">
-                    Requirements
-                  </label>
+                <div className="group relative">
                   <textarea
                     name="subject"
+                    rows="3"
                     required
-                    rows="4"
-                    className="w-full rounded-2xl border border-white/20 bg-white/10 p-4 text-white transition-all outline-none placeholder:text-zinc-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                    placeholder="Tell us about your project..."
+                    className="peer w-full resize-none border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                    placeholder="Message"
                   ></textarea>
+                  <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    Project Brief
+                  </label>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full rounded-2xl bg-red-600 py-5 text-lg font-black tracking-wider text-white uppercase shadow-[0_20px_40px_-10px_rgba(220,38,38,0.5)] transition-all hover:scale-[1.01] active:scale-[0.99]"
+                  className="group flex w-full items-center justify-center gap-4 rounded-xl bg-red-600 py-6 text-sm font-black tracking-[0.3em] uppercase transition-all hover:bg-red-700"
                 >
-                  {status === "sending" ? "SENDING..." : "SEND MESSAGE"}
+                  Send Message
+                  <ArrowRight
+                    size={20}
+                    className="transition-transform group-hover:translate-x-2"
+                  />
                 </button>
               </form>
             </div>
-          </div>
+          </motion.div>
 
-          {/* --- RIGHT SIDE INFO (High Contrast) --- */}
-          <div className="lg:col-span-1">
-            <div className="to-black-10 flex h-full flex-col justify-between rounded-[2.5rem] bg-gradient-to-br from-red-600 via-red-700 p-10 shadow-2xl">
-              <div className="space-y-12">
-                <h2 className="text-3xl leading-none font-black tracking-tighter uppercase">
-                  Contact <br /> Details
+          {/* --- UNIFIED RED STACK --- */}
+          <div className="order-1 space-y-6 lg:order-2 lg:col-span-1">
+            {/* Card 1: Technologies */}
+            <div className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-red-600 to-red-800 p-8 shadow-2xl">
+              <div className="relative z-10">
+                <div className="mb-8 flex items-center gap-2">
+                  <div className="rounded-lg bg-white/20 p-2">
+                    <Briefcase size={16} />
+                  </div>
+                  <span className="text-[10px] font-black tracking-widest text-red-100 uppercase">
+                    Tech Division
+                  </span>
+                </div>
+                <h2 className="mb-10 text-3xl font-black tracking-tight">
+                  Al Saqr <br /> Technologies
                 </h2>
 
-                <div className="space-y-8">
-                  <div className="group flex items-start gap-4">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:bg-white group-hover:text-red-600">
-                      📍
+                <div className="space-y-5">
+                  <a
+                    href="tel:+971545252469"
+                    className="group/item flex items-center gap-4"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition-colors group-hover/item:bg-white/20">
+                      <Phone size={18} />
                     </div>
-                    <div>
-                      <p className="mb-1 text-xs font-bold tracking-widest text-red-200 uppercase">
-                        Location
-                      </p>
-                      <p className="text-sm leading-relaxed font-medium">
-                        Al Sajaa Industrial, Sharjah, UAE
-                      </p>
+                    <span className="text-lg font-bold">+971 54 525 2469</span>
+                  </a>
+                  <a
+                    href="mailto:info@saqrtech.com"
+                    className="group/item flex items-center gap-4"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition-colors group-hover/item:bg-white/20">
+                      <Mail size={18} />
                     </div>
-                  </div>
-
-                  <div className="group flex items-center gap-4">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:bg-white group-hover:text-red-600">
-                      📞
-                    </div>
-                    <div>
-                      <p className="mb-1 text-xs font-bold tracking-widest text-red-200 uppercase">
-                        Phone
-                      </p>
-                      <p className="text-xl font-bold">+971545252469</p>
-                    </div>
-                  </div>
-
-                  <div className="group flex items-center gap-4">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20 transition-all duration-300 group-hover:bg-white group-hover:text-red-600">
-                      ✉️
-                    </div>
-                    <div>
-                      <p className="mb-1 text-xs font-bold tracking-widest text-red-200 uppercase">
-                        Email
-                      </p>
-                      <p className="text-lg font-bold underline decoration-white/30 underline-offset-4">
-                        info@saqrtech.com
-                      </p>
-                    </div>
-                  </div>
+                    <span className="font-medium opacity-90">
+                      info@saqrtech.com
+                    </span>
+                  </a>
                 </div>
               </div>
+              <Building2 className="absolute -right-6 -bottom-6 h-48 w-48 text-white/10" />
+            </div>
 
-              <div className="border-t border-white/20 pt-8">
-                <p className="text-[10px] font-black tracking-[0.4em] text-white/70 uppercase">
-                  Al Saqr Technologies
-                </p>
+            {/* Card 2: Parent (Now matching the style) */}
+            <div className="group relative overflow-hidden rounded-[2rem] border border-white/5 bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 shadow-2xl">
+              <div className="relative z-10">
+                <div className="mb-8 flex items-center gap-2 text-red-500">
+                  <div className="rounded-lg bg-red-500/10 p-2">
+                    <Globe2 size={16} />
+                  </div>
+                  <span className="text-[10px] font-black tracking-widest uppercase">
+                    Parent Group
+                  </span>
+                </div>
+                <h2 className="mb-10 text-3xl font-black tracking-tight text-white">
+                  Al Saqr <br /> Industries
+                </h2>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5">
+                      <MapPin size={18} />
+                    </div>
+                    <p className="text-sm leading-relaxed font-medium text-zinc-400">
+                      Industrial Area 13,
+                      <br /> Sharjah, UAE
+                    </p>
+                  </div>
+                  <div className="border-t border-white/5 pt-6">
+                    <p className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">
+                      Sectors
+                    </p>
+                    <p className="mt-2 text-xs text-zinc-300">
+                      Manufacturing • Logistics • Trading
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
