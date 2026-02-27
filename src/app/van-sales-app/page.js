@@ -406,7 +406,7 @@ export default function VanSales() {
               </div>
             </div>
             <Image
-              src="/images/services/Mpos-app-view.png"
+              src="https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png"
               alt="Mpos App View"
               fill
               className="mt-5 mb-5 object-contain" // Matches the height of the first image

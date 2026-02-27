@@ -1,305 +1,283 @@
 "use client";
+
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  useInView,
+} from "framer-motion";
+
+// Important: Ensure these components exist in your project or comment them out if they don't
 import Modal from "@/components/Modal";
-import { motion } from "framer-motion";
 import ServiceSlider from "@/components/ServicesSlider";
 import WhyChooseUs from "@/components/WhyChooseUs";
 
+// --- 1. STATS COUNTER COMPONENT ---
+const Counter = ({ value, label, suffix = "+" }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (isInView) {
+      animate(count, value, { duration: 2.5, ease: "easeOut" });
+    }
+  }, [isInView, count, value]);
+
+  return (
+    <div
+      ref={ref}
+      className="flex flex-col items-center justify-center p-6 text-center"
+    >
+      <div className="flex items-baseline gap-1">
+        <motion.span className="text-5xl font-black tracking-tighter text-black md:text-7xl">
+          {rounded}
+        </motion.span>
+        <span className="text-2xl font-bold text-red-600">{suffix}</span>
+      </div>
+      <p className="mt-3 text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase">
+        {label}
+      </p>
+    </div>
+  );
+};
+
 export default function HomePage() {
+  // Animation Variants
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
   const fadeLeft = {
-    hidden: { opacity: 0, x: -100 },
-    visible: { opacity: 1, x: 0 },
-    transition: {
-      delay: 4.5, // delay in seconds
-      duration: 4.8, // how long the animation lasts
-    },
-  };
-
-  const fadeRight = {
-    hidden: { opacity: 0, x: 60 },
-    visible: { opacity: 1, x: 0 },
-  };
-
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.3, // each child delayed by 0.3s
-      },
-    },
-  };
-
-  const item = {
     hidden: { opacity: 0, x: -60 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
   };
 
   return (
-    <main className="relative">
+    <main className="relative w-full overflow-x-hidden bg-white">
       <Modal />
 
       {/* --- HERO SECTION --- */}
-      {/* Changed to h-screen (100vh) */}
-      <section className="relative h-screen flex items-center text-white overflow-hidden">
-        {/* Video Background */}
+      <section className="relative flex h-screen items-center overflow-hidden text-white">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           >
             <source src="/Mpos/Mpos-Banner-Video.mp4" type="video/mp4" />
           </video>
-          {/* Added a dark overlay so white text is readable on light video parts */}
-          <div className="absolute inset-0 bg-black/30 z-[1]" />
+          <div className="absolute inset-0 z-[1] bg-black/50" />
         </div>
 
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={fadeLeft}
-          className="relative z-10 px-6 md:px-12 max-w-5xl"
+          variants={fadeUp}
+          className="relative z-10 max-w-5xl px-6 md:px-12"
         >
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
-            Creative Software Development Services & IT Solutions
+          <h1 className="mb-6 text-5xl leading-[1.1] font-bold md:text-7xl">
+            Creative Software <br /> & IT Solutions
           </h1>
-          <p className="text-lg md:text-2xl mb-8 text-gray-100 max-w-2xl">
-            Advanced IT and ITES solutions that are customized to address the
-            distinct needs of clients throughout the UAE and the Middle East.
+          <p className="mb-8 max-w-2xl text-lg font-light text-gray-200 md:text-2xl">
+            Advanced IT and ITES solutions customized to address the distinct
+            needs of clients throughout the UAE.
           </p>
           <Link
             href="/services"
-            className="inline-block border border-white text-white px-10 py-4 rounded-full text-lg font-medium hover:bg-white hover:text-black transition duration-300"
+            className="inline-block rounded-full border-2 border-white px-10 py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-white hover:text-black"
           >
             Explore Our Services →
           </Link>
         </motion.div>
       </section>
 
-      {/* --- VAN SALES APP INTRO SECTION --- */}
-      <section className=" text-center">
-        <section className="min-h-screen flex items-center bg-white px-8 ">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* LEFT SIDE: Content */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeRight}
-              className="flex flex-col justify-center text-center"
-            >
-              <div className="mx-auto">
-                <Image
-                  src="/Mpos/Mpos Logo/mPos_logo.jpg"
-                  alt="MPOS"
-                  width={200}
-                  height={80}
-                  className="object-contain"
-                />
-              </div>
-
-              <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-6 leading-tight">
-                {/* Tally Integrated <br /> */}
-                <span className="text-red-600">Van Sales</span> Management
-                Software <br />
-                with Tally Integration
-              </h2>
-
-              <p className="text-[#525252] text-xl mb-2 font-medium">
-                Android based business solutions.
-              </p>
-              <p className="text-[#737373] text-lg mb-10 max-w-full">
-                Streamline your distribution with real-time Tally integration
-                and Bluetooth printing.
-              </p>
-
-              <Link
-                href="/van-sales-app"
-                className="bg-black mx-auto border-2 border-black text-white px-10 py-4  text-lg font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-xl"
-              >
-                Request 7 Days Trial →
-              </Link>
-            </motion.div>
-
-            {/* RIGHT SIDE: Visual (Video or Animation) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="relative rounded-none overflow-hidden shadow-2xl bg-gray-100 aspect-square lg:aspect-video"
-            >
-              
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              >
-                <source src="/Mpos/Mpos-Animated-Video.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-           
-            </motion.div>
-          </div>
-        </section>
-
-        {/* <div className="flex justify-center"> */}
-        <section className="border-t border-b border-[#e5e5e5] bg-white py-20">
+      {/* --- SECTION 1: MPOS LOGO & VIDEO --- */}
+      <section className="bg-white px-6 py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeLeft}
-            className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+            className="flex flex-col items-start"
           >
-            {/* LEFT – Image / Card Mock */}
+            <Image
+              src="/Mpos/Mpos Logo/mPos_logo.jpg"
+              alt="MPOS"
+              width={160}
+              height={60}
+              className="mb-8"
+            />
+            <h2 className="mb-6 text-4xl leading-tight font-black text-black md:text-6xl">
+              Tally Integrated <br />
+              <span className="text-red-600">Van Sales</span> Software
+            </h2>
+            <p className="mb-8 text-xl text-gray-500">
+              Android based business solutions. Streamline distribution with
+              real-time Tally integration and Bluetooth printing.
+            </p>
+            <Link
+              href="/van-sales-app"
+              className="bg-black px-10 py-4 text-lg font-bold text-white shadow-xl transition-all hover:bg-red-600"
+            >
+              Request 7 Days Trial →
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative aspect-video overflow-hidden rounded-3xl bg-gray-100 shadow-2xl"
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="h-full w-full object-cover"
+            >
+              <source src="/Mpos/Mpos-Animated-Video.mp4" type="video/mp4" />
+            </video>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- SECTION 2: THE MODERN REDESIGN & STATISTICS --- */}
+      <section className="relative bg-slate-50 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-32 grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
+            {/* Left: Modern App Preview */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               className="relative"
             >
-              <div className="bg-white border border-gray-200 shadow-sm p-8 w-full max-w-md rotate-[-2deg]">
-                {/* Top row */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full border border-black flex items-center justify-center font-semibold">
-                    M
+              <div className="rounded-3xl border border-gray-100 bg-white p-4 shadow-2xl">
+                <div className="rounded-2xl bg-gray-50 p-8">
+                  <div className="mb-10 flex items-center justify-between">
+                    <div className="h-4 w-4 rounded-full bg-red-500" />
+                    <div className="h-2 w-24 rounded-full bg-gray-200" />
                   </div>
-                  <div className="flex-1">
-                    <div className="h-3 bg-black w-32 mb-2"></div>
-                    <div className="h-2 bg-gray-300 w-20"></div>
-                  </div>
-                </div>
-
-                <hr className="my-6" />
-
-                {/* Bottom row */}
-                <div className="flex items-center gap-4">
-                  <div className="text-xl font-bold">↗</div>
-                  <div className="flex-1">
-                    <div className="h-3 bg-black w-28 mb-2"></div>
-                    <div className="h-2 bg-gray-300 w-24"></div>
+                  <div className="space-y-6">
+                    <div className="h-4 w-3/4 rounded-full bg-black" />
+                    <div className="h-4 w-1/2 rounded-full bg-gray-200" />
+                    <div className="grid grid-cols-2 gap-4 pt-4">
+                      <div className="flex h-24 flex-col justify-end rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+                        <div className="mb-2 h-2 w-1/2 bg-red-100" />
+                        <div className="h-3 w-3/4 bg-red-500" />
+                      </div>
+                      <div className="flex h-24 flex-col justify-end rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+                        <div className="mb-2 h-2 w-1/2 bg-gray-100" />
+                        <div className="h-3 w-3/4 bg-black" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="rotate-[-2deg] absolute"></div>
-            </motion.div>
 
-            {/* RIGHT – Content */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-            >
-              {/* Tag */}
-              <span className="inline-block border border-black px-4 py-1 text-xs tracking-widest uppercase mb-6">
-                Professional Solution
-              </span>
-
-              {/* Heading */}
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-                Van Sales App & Tally <br /> ERP Software
-              </h2>
-
-              {/* Description */}
-              <p className="text-gray-600 mb-4">
-                Improve your business operations with our Professional Van Sales
-                management App and Tally ERP Software. Mpos van sales app is
-                developed to improve efficiency in managing routes and
-                inventory, while our Tally ERP solutions provide robust support
-                for all your accounting and business management needs.
-              </p>
-
-              <p className="text-gray-600 mb-8">
-                Experience hassle free integration and expert guidance to drive
-                your sales and operational success.
-              </p>
-
-              {/* Button */}
-              <a
-                href="/contact-us"
-                className="inline-flex items-center gap-2 border border-black px-6 py-3 text-sm font-medium hover:bg-black hover:text-white transition"
+              {/* Floating Stat Card */}
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -right-8 -bottom-8 hidden rounded-2xl bg-black p-6 text-white shadow-2xl md:block"
               >
-                Discover more →
-              </a>
+                <p className="mb-1 text-[10px] font-bold tracking-widest uppercase opacity-60">
+                  System Sync
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-3 w-3 animate-pulse rounded-full bg-green-500" />
+                  <span className="text-lg font-bold">Active Tally Link</span>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        </section>
+
+            {/* Right: Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+            >
+              <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-red-600 uppercase">
+                Enterprise Solution
+              </span>
+              <h2 className="mb-6 text-4xl leading-tight font-extrabold text-black md:text-5xl">
+                Van Sales App & <br /> Tally ERP Software
+              </h2>
+              <p className="mb-6 text-lg leading-relaxed text-gray-600">
+                Empower your mobile workforce with the Mpos Van Sales management
+                app. Specifically engineered to bridge the gap between field
+                operations and back-office accounting.
+              </p>
+              <div className="mb-10 space-y-4">
+                {[
+                  "Automated Route Optimization",
+                  "Instant Invoice Generation",
+                  "Direct Tally ERP Sync",
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 font-semibold text-gray-800"
+                  >
+                    <span className="text-red-600">✓</span> {item}
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/contact-us"
+                className="inline-flex items-center gap-3 border-2 border-black px-8 py-4 font-bold transition-all duration-300 hover:bg-black hover:text-white"
+              >
+                Discover More <span>→</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* --- THE STATISTICS BAR --- */}
+          <div className="grid grid-cols-2 gap-4 rounded-[2rem] border border-slate-100 bg-white px-4 py-12 shadow-xl shadow-slate-200/50 md:gap-8 lg:grid-cols-4">
+            <Counter value={100} label="Enterprise Clients" />
+            <Counter value={15} label="Years Experience" />
+            <Counter value={500} label="Active Users" />
+            <Counter value={99} label="Sync Accuracy" suffix="%" />
+          </div>
+        </div>
       </section>
 
-      {/* slider */}
-
+      {/* --- EXTERNAL COMPONENTS --- */}
       <ServiceSlider />
-      <hr style={{ backgroundColor: "#efefefe" }} />
-
+      <div className="h-px w-full bg-gray-100" />
       <WhyChooseUs />
-      {/* --- TRUST & CTA SECTION --- */}
-      <section className="py-20 bg-white">
-        <motion.div
-          variants={item}
-          className="container mx-auto px-4 text-center max-w-6xl"
-        >
-          <p className="text-gray-700 text-lg leading-relaxed mb-16 italic">
-            {/* <span>
-              In the fast-paced digital era, the Gulf Cooperation Council (GCC)
-              region has witnessed an exponential rise in technological
-              advancements. As businesses and individuals strive to keep up with
-              the ever-evolving landscape, one company has emerged as the
-              frontrunner in the IT industry. With its innovative solutions and
-              unparalleled expertise, Al Saqr Technologies has cemented its
-              position as the go-to technology partner for businesses across the
-              GCC.
-            </span>
-            <br />
-            <br />
-            <span>
-              Al Saqr Technologies has built a strong reputation for its
-              excellent services, fit to meet the unique needs and challenges
-              faced by businesses in the region. With a team of highly skilled
-              professionals, the company offers a comprehensive suite of IT
-              services, ranging from software development, to cloud computing
-              and data analytics.
-            </span>
-            <br />
-            <br />
-            <span>
-              Drawing on their extensive industry knowledge and forward-thinking
-              approach, Al Saqr Technologies takes pride in empowering their
-              clients to harness the full potential of technology. Their
-              commitment to delivering exceptional customer experiences and
-              driving tangible business outcomes has earned them numerous
-              accolades and a loyal clientele.
-            </span> */}
-            <br />
-            <br />
-            <span>
-              "If you're looking for an IT partner that combines technological
-              expertise with a deep understanding of the GCC market, Al Saqr
-              Technologies is the clear choice. Stay ahead of the curve and
-              unlock the power of technology with a company that is fully
-              dedicated to transforming businesses in the GCC region."
-            </span>
+
+      {/* --- FOOTER CTA --- */}
+      <section className="bg-white px-6 py-24 text-center">
+        <div className="mx-auto max-w-4xl">
+          <p className="mb-12 text-xl text-gray-500 italic md:text-2xl">
+            "If you're looking for an IT partner that combines technological
+            expertise with a deep understanding of the GCC market, Al Saqr
+            Technologies is the clear choice."
           </p>
-
-          <h3 className="text-2xl md:text-4xl font-light text-gray-800 mb-4 leading-snug">
-            Uphold the highest standards of quality in our IT services, ensuring
-            the reliability and efficiency of our solutions.
+          <h3 className="mb-8 text-3xl font-bold">
+            Ready to transform your business?
           </h3>
-          <p className="text-gray-500 mb-8">Feel Free To Contact Us</p>
-
           <Link
             href="/contact-us"
-            className="bg-black border border-black text-white px-12 py-4 rounded-none text-xl font-bold hover:bg-white hover:text-black transition shadow-lg"
+            className="bg-black px-12 py-5 text-xl font-bold text-white shadow-2xl transition-all hover:bg-red-600"
           >
             Contact us
           </Link>
-        </motion.div>
+        </div>
       </section>
     </main>
   );
