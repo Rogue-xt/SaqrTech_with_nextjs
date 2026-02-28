@@ -350,7 +350,7 @@ export default function HomePage() {
                   Request 7-Day Free Trial
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/video"
                   className="rounded-full border border-white/10 px-10 py-5 text-lg font-bold transition-all hover:bg-white hover:text-black"
                 >
                   Watch Demo
