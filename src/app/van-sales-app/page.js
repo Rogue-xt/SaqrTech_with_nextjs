@@ -101,7 +101,7 @@ export default function VanSales() {
               src="/images/Device-view/Mpos-Tab.png"
               alt="Consultation"
               fill
-              className="object-contain"
+              className="z-1 object-contain"
               priority
             />
             {/* Floating Badge */}
@@ -134,7 +134,7 @@ export default function VanSales() {
             // whileInView={{ opacity: 1, scale: 0.8, x: 0 }}
             // transition={{ duration: 1, delay: 0.2, ease: "backOut" }}
             // viewport={{ once: true }}
-            className="form m-0 flex w-full flex-col justify-center rounded-[2.5rem] border border-2 border-white/10 bg-red-600 p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl md:m-10 md:w-1/2 md:p-12"
+            className="form z-1 m-0 flex w-full flex-col justify-center rounded-[2.5rem] border border-2 border-white/10 bg-red-600 p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl md:m-10 md:w-1/2 md:p-12"
           >
             <div className="mb-6">
               <span className="mb-4 inline-flex items-center gap-1 rounded-full bg-black px-4 py-2 text-sm font-light tracking-wider text-white uppercase invert">
@@ -294,7 +294,7 @@ export default function VanSales() {
                 y: imageY,
                 opacity: imageOpacity,
               }}
-              className="h-full w-full object-cover"
+              className="z-1 h-full w-full object-cover"
             />
           </div>
           <p
@@ -359,7 +359,7 @@ export default function VanSales() {
           transition={{ duration: 1 }}
           className="relative z-20 pt-32 pb-1 text-center"
         >
-          <div className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md">
+          <div className="z-1 mb-6 inline-block rounded-full border border-red-500/20 bg-black px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/100 uppercase backdrop-blur-2xl">
             Display Modes
           </div>
           <h3 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl">
@@ -380,7 +380,7 @@ export default function VanSales() {
             className="relative flex h-[350px] w-full justify-center md:h-[600px]"
           >
             <div>
-              <div className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md">
+              <div className="z-1 mb-6 inline-block rounded-full border border-red-500/20 bg-black px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/100 uppercase backdrop-blur-2xl">
                 Tab View
               </div>
             </div>
@@ -388,7 +388,7 @@ export default function VanSales() {
               src="/images/Device-view/Mpos-Tab.png"
               alt="Mpos Tablet View"
               fill
-              className="object-contain" // Ensures the height is filled completely
+              className="z-1 object-contain" // Ensures the height is filled completely
             />
           </motion.div>
 
@@ -401,7 +401,7 @@ export default function VanSales() {
             className="relative flex h-[350px] w-full justify-center gap-10 md:h-[600px]"
           >
             <div>
-              <div className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md">
+              <div className="z-1 mb-6 inline-block rounded-full border border-red-500/20 bg-black px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/100 uppercase backdrop-blur-2xl">
                 Mobile View
               </div>
             </div>
@@ -414,7 +414,7 @@ export default function VanSales() {
           </motion.div>
         </div>
 
-        <div className="mb-24 grid min-h-[500px] grid-cols-1 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#111111] lg:grid-cols-4">
+        <div className="mb-24 z-1 grid min-h-[500px] grid-cols-1 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0a0a0a] backdrop-blur-xl lg:grid-cols-4">
           {/* Left AREA (Video) - Span 1 column on LG */}
           <div className="relative flex w-full items-center justify-center bg-black/20 p-6 lg:col-span-1 lg:p-10">
             <div className="relative aspect-video w-full max-w-[400px] overflow-hidden rounded-2xl shadow-2xl lg:aspect-[9/16]">

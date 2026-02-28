@@ -95,7 +95,7 @@ function WhyMpos() {
             <motion.div
               animate={{ y: [0, -20, 0] }} // Floating effect
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="relative h-[550px] w-[280px] md:h-[650px] md:w-[320px]"
+              className="relative z-2 h-[550px] w-[280px] md:h-[650px] md:w-[320px]"
             >
               <Image
                 src="https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png"
@@ -217,7 +217,7 @@ function WhyMpos() {
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
-              className="group relative rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
+              className="group relative z-1 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
             >
               {/* Internal Reflection / Shine */}
               <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

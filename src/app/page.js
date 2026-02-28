@@ -14,7 +14,7 @@ import {
 import Modal from "@/components/Modal";
 import ServiceSlider from "@/components/ServicesSlider";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import { ArrowRight, BarChart3, CheckCircle2, Layers, MapPin, RefreshCw, Settings, ShieldCheck, Smartphone, Users, Zap } from "lucide-react";
+import { ArrowRight, BarChart3, CheckCircle2, Layers, MapPin, RefreshCw, Settings, ShieldCheck, Smartphone, Star, Users, Zap } from "lucide-react";
 
 /* ================= COUNTER ================= */
 
@@ -55,13 +55,33 @@ export default function HomePage() {
       { icon: <CheckCircle2 size={18} />, text: "Inventory Management" },
     ];
 
+    const testimonials = [
+      {
+        author: "Haii Al Khaleel Trading LLC",
+        rating: 5,
+        review:
+          "Really happy with their van sales software – super easy to use and works great for our business. Best in the GCC for sure!",
+      },
+      {
+        author: "Abdul Raheem Annath",
+        rating: 5,
+        review:
+          "Leading IT company with software experts in the UAE. Highly recommended for those looking for van sales management software and other IT services.",
+      },
+      {
+        author: "Hasharudheen K",
+        rating: 5,
+        review:
+          "Best IT company in UAE with uncompromising service quality. Van sales software and ERP software providers",
+      },
+    ];
   return (
     <main className="relative w-full overflow-x-hidden bg-black text-white">
       <Modal />
 
       {/* ================= HERO (Enhanced Contrast) ================= */}
       <section className="relative flex min-h-[90vh] items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-1">
           <video
             autoPlay
             muted
@@ -131,10 +151,10 @@ export default function HomePage() {
       <section className="border-t border-gray-800 bg-black px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
-            <Counter value={100} label="Enterprise Clients" />
-            <Counter value={15} label="Years Experience" />
-            <Counter value={500} label="Active Users" />
-            <Counter value={99} label="Sync Accuracy" suffix="%" />
+            <Counter value={10} label="Years Experience" />{" "}
+            <Counter value={2500} label="Enterprise Clients" />
+            <Counter value={6} label="Products" />
+            <Counter value={5} label="Countries Covered" />
           </div>
         </div>
       </section>
@@ -157,7 +177,7 @@ export default function HomePage() {
             ].map((ind) => (
               <div
                 key={ind.name}
-                className="group flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-red-500/50 hover:bg-red-500/[0.05]"
+                className="group z-1 flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-red-500/50 hover:bg-red-500/[0.05]"
               >
                 <div className="text-gray-500 transition-colors group-hover:text-red-500">
                   {ind.icon}
@@ -212,38 +232,50 @@ export default function HomePage() {
           </div>
         </div>
       </section> */}
-
       {/* ================= TESTIMONIALS (Bento) ================= */}
       <section className="bg-black px-6 py-32">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-20 text-center text-4xl font-black tracking-tight md:text-6xl">
+          <h2 className="mb-20 text-center text-4xl font-black tracking-tight uppercase italic md:text-6xl">
             Client <span className="text-red-600">Vouches</span>
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((item) => (
+            {testimonials?.map((item, idx) => (
               <div
-                key={item}
-                className="group rounded-[2rem] border border-white/5 bg-[#0a0a0a] p-10 transition-all hover:border-white/10 hover:bg-white/[0.03]"
+                key={idx}
+                className="group relative z-1 rounded-[2.5rem] border border-white/5 bg-[#0a0a0a] p-10 transition-all hover:border-red-600/20 hover:bg-[#0f0f0f]"
               >
+                {/* Top Decorative Line */}
+                <div className="absolute top-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-red-600 transition-all duration-500 group-hover:w-1/2" />
+
+                {/* ⭐ STAR RATING LOGIC ⭐ */}
                 <div className="mb-8 flex gap-1">
-                  {[...Array(5)].map((_, star) => (
-                    <div
-                      key={star}
-                      className="h-4 w-4 rounded-full bg-red-600 opacity-40 transition-opacity group-hover:opacity-100"
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={`transition-all duration-300 ${
+                        i < (item.rating || 5)
+                          ? "fill-yellow-500 text-yellow-500 opacity-100"
+                          : "fill-transparent text-gray-700 opacity-40"
+                      } group-hover:scale-110`}
                     />
                   ))}
                 </div>
+
                 <p className="mb-10 text-xl leading-relaxed font-medium text-gray-300 italic">
-                  “The level of integration achieved with our Tally ERP system
-                  was beyond expectations. Our delivery speeds doubled within 3
-                  months.”
+                  {item?.review || ""}
                 </p>
+
                 <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-red-600 to-red-900" />
+                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-red-600 to-red-900">
+                    <span className="text-lg font-black text-white/50">
+                      {item.author[0]}
+                    </span>
+                  </div>
                   <div>
-                    <div className="font-bold">Hassan Ahmed</div>
-                    <div className="text-[10px] tracking-widest text-gray-600 uppercase">
-                      Operations Director, Dubai
+                    <div className="font-bold text-white">{item?.author}</div>
+                    <div className="text-[10px] font-bold tracking-widest text-gray-600 uppercase">
+                      Verified Business Partner
                     </div>
                   </div>
                 </div>
@@ -343,7 +375,8 @@ export default function HomePage() {
                 }}
                 className="relative z-10 aspect-[4/3] w-[85%] overflow-hidden rounded-[2rem]"
               >
-                <Image style={{maxWidth:"67%"}}
+                <Image
+                  style={{ maxWidth: "67%" }}
                   src="/mpos-logo.png"
                   // src="/images/services/tab-homepage.png"
                   alt="mPos Tablet Interface"
@@ -415,16 +448,6 @@ export default function HomePage() {
           </Link>
         </motion.div>
       </section>
-
-      {/* ================= FLOATING WHATSAPP ================= */}
-
-      <Link
-        href="https://wa.me/971545252469"
-        target="_blank"
-        className="fixed right-6 bottom-6 z-50 rounded-full bg-red-600 px-6 py-4 font-semibold text-white shadow-2xl transition-all hover:scale-110 hover:bg-red-700"
-      >
-        WhatsApp
-      </Link>
     </main>
   );
 }

@@ -114,7 +114,7 @@ export default function WhyChooseUs() {
   return (
     <section className="relative overflow-hidden bg-black px-6 py-24 text-white">
       {/* --- ADDED DOTS START --- */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-40">
+      {/* <div className="pointer-events-none absolute inset-0 z-0 opacity-40">
         {particles.map((dot) => (
           <div
             key={dot.id}
@@ -128,7 +128,7 @@ export default function WhyChooseUs() {
             }}
           />
         ))}
-      </div>
+      </div> */}
       {/* --- ADDED DOTS END --- */}
       {/* Background Depth: One single light red glow behind the grid */}
       <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-900/10 blur-[160px]" />
@@ -160,7 +160,7 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
               key={item.id}
-              className="group relative rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
+              className="group relative rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-1 hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
             >
               {/* Internal Reflection / Shine */}
               <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-red-500/10 via-transparent to-white/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -171,7 +171,7 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Background Numbering */}
-              <span className="absolute top-8 right-10 text-5xl font-black text-white/[0.03] transition-colors duration-500 select-none group-hover:text-red-500/10">
+              <span className="absolute top-8 right-10 text-5xl font-black text-red-500/40 transition-colors duration-500 select-none group-hover:text-red-500">
                 {item.id}
               </span>
 

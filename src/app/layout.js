@@ -4,6 +4,7 @@ import "@/styles/globals.css";
 import Map from "@/components/Map";
 import GlobalCursorGlow from "@/components/GlobalCursorGlow";
 import { Toaster } from "react-hot-toast";
+import GlobalTechBackground from "@/components/GlobalTechBackground";
 
 export const metadata = {
   title: "Al Saqr Technologies",
@@ -15,8 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="flex min-h-screen flex-col">
         <GlobalCursorGlow />
+        <GlobalTechBackground />
         <Header />
-       
+
         <main className="flex-grow">{children}</main>
         <Footer />
         <Toaster

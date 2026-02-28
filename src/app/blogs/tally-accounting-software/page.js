@@ -277,7 +277,7 @@ export default function TallySoftware() {
             {whatsNew.map((item) => (
               <div
                 key={item.id}
-                className="group flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
+                className="group z-1 flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl backdrop-blur-2xl transition-all duration-300 hover:-translate-y-2 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl"
               >
                 <div className="inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                   <Image
@@ -299,7 +299,7 @@ export default function TallySoftware() {
           </div>
           {/* VAT Section  */}
           <div className="py20 mt-20">
-            <div className="group flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
+            <div className="group relative z-1 flex flex-col gap-3 rounded-2xl border-transparent bg-[#111111] p-5 px-6 pt-6 text-white shadow-2xl backdrop-blur-2xl transition-all duration-300 hover:-translate-y-3 hover:border hover:border-red-500/50 hover:bg-white/[0.07] hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
               <div className="card-head flex items-center gap-4">
                 <div className="inline-flex h-15 w-15 items-center justify-center rounded-[10px] bg-gradient-to-br from-red-600 to-red-700 shadow-[0px_4px_6px_-4px_rgba(231,0,11,0.50)] shadow-[0px_10px_15px_-3px_rgba(231,0,11,0.50)] group-hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]">
                   <Image
@@ -359,7 +359,7 @@ export default function TallySoftware() {
             {Services.map((s) => (
               <div
                 key={s.id}
-                className="group relative flex flex-col gap-4 rounded-2xl border border-white/5 bg-[#111111] p-6 text-white shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-gradient-to-b hover:from-[#1a1a1a] hover:to-[#111111] hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+                className="group z-1 relative flex flex-col gap-4 rounded-2xl border border-white/5 bg-[#111111] p-6 text-white shadow-2xl transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:bg-gradient-to-b hover:from-[#1a1a1a] hover:to-[#111111] hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
               >
                 {/* The Icon Container */}
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-red-600 to-red-800 shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[0_0_20px_rgba(220,38,38,0.4)]">
@@ -414,7 +414,7 @@ export default function TallySoftware() {
 
           {/* stack cards  */}
 
-          <div className="relative mx-auto max-w-6xl md:px-6 py-20">
+          <div className="relative mx-auto max-w-6xl py-20 md:px-6">
             <h2 className="mb-20 text-center text-4xl font-bold text-white">
               Do More with <span className="text-red-600">Tally Prime</span>
             </h2>
@@ -426,7 +426,7 @@ export default function TallySoftware() {
                   // 'sticky' makes it stay. 'top' value creates the stacking offset.
                   // Adjust the multiplier (index * 20) to change how much of the previous card stays visible.
                   style={{ top: `${100 + index * 20}px` }}
-                  className="sticky flex gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-7 py-7 md:p-10 md:py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]"
+                  className="sticky z-1 flex gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-7 py-7 shadow-[0_-20px_50px_rgba(0,0,0,0.9)] md:p-10 md:py-20"
                 >
                   <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-600 md:block"></div>
 
@@ -458,7 +458,7 @@ export default function TallySoftware() {
 
           {/* new section  */}
 
-          <section className="md:px-6 py-20">
+          <section className="py-20 md:px-6">
             <div className="mx-auto max-w-6xl space-y-24 md:space-y-12">
               {crisscross.map((item, index) => (
                 <div
@@ -482,7 +482,7 @@ export default function TallySoftware() {
 
                   {/* Content Card */}
                   <div
-                    className={`mt-[-30px] flex-grow rounded-2xl border border-white/5 bg-[#111111] p-8 text-white shadow-[0_-20px_50px_rgba(0,0,0,0.9)] transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-white/10 group-hover:bg-[#161616] md:mt-0 ${item.reverse ? "md:rounded-[40px_10px_10px_40px]" : "md:rounded-[10px_40px_40px_10px]"} md:p-12 ${item.reverse ? "md:mr-[-80px] md:pr-32" : "md:ml-[-80px] md:pl-32"} `}
+                    className={`mt-[-30px] z-1 flex-grow rounded-2xl border border-white/5 bg-[#111111] p-8 text-white shadow-[0_-20px_50px_rgba(0,0,0,0.9)] transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-white/10 group-hover:bg-[#161616] md:mt-0 ${item.reverse ? "md:rounded-[40px_10px_10px_40px]" : "md:rounded-[10px_40px_40px_10px]"} md:p-12 ${item.reverse ? "md:mr-[-80px] md:pr-32" : "md:ml-[-80px] md:pl-32"} `}
                   >
                     <div className="flex items-start gap-4">
                       <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-900 transition-all duration-500 group-hover:h-24 group-hover:bg-red-600 md:block"></div>
@@ -504,7 +504,7 @@ export default function TallySoftware() {
 
           {/* why tally section  */}
 
-          <section className="overflow-hidden md:px-6 py-24 md:px-16">
+          <section className="overflow-hidden py-24 md:px-6 md:px-16">
             <div className="mx-auto max-w-7xl">
               {/* Header Section */}
               <div className="mb-20 text-center">
@@ -531,7 +531,7 @@ export default function TallySoftware() {
               </div>
 
               {/* why choose tab section  */}
-              <section className="flex flex-col items-center md:px-6 py-20">
+              <section className="flex flex-col items-center py-20 md:px-6">
                 {/* 1. THE RESPONSIVE TAB BAR */}
                 <div className="mx-auto w-full max-w-2xl">
                   <div
@@ -576,7 +576,7 @@ export default function TallySoftware() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
-                      className="rounded-3xl border border-white/5 p-8 text-center shadow-2xl md:p-12"
+                      className="rounded-3xl relative z-1 backdrop-blur-2xl border border-white/30 p-8 text-center shadow-2xl md:p-12"
                     >
                       <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">
                         {activeTab.title}
@@ -601,7 +601,7 @@ export default function TallySoftware() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.2 }}
-                    className="group relative flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
+                    className="group z-1 relative flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
                   >
                     {/* Image Container with Glow */}
                     <div className="relative mb-8 aspect-square w-full transition-transform duration-500 group-hover:scale-105">

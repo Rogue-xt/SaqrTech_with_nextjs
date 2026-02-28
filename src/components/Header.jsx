@@ -101,12 +101,12 @@ export default function Header() {
 
                 {/* Desktop Dropdown */}
                 {link.dropdown && activeDropdown === link.name && (
-                  <div className="absolute top-full left-0 mt-0 pt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-white/10 shadow-2xl backdrop-blur-xl">
+                  <div className="absolute top-full left-0 mt-0 pt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-red-500 shadow-2xl backdrop-blur-xl">
                     {link.dropdown.map((sub) => (
                       <Link
                         key={sub.name}
                         href={sub.href}
-                        className="block px-6 py-3 text-sm text-white transition hover:bg-white/10"
+                        className="block px-6 py-3 text-sm text-white transition hover:bg-black/10"
                       >
                         {sub.name}
                       </Link>

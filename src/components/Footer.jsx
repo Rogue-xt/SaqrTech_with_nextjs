@@ -28,7 +28,16 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black pt-16 pb-8 text-white">
+    <footer className="bg-black pt-16 pb-8 text-white z-10">
+      {/* ================= FLOATING WHATSAPP ================= */}
+
+      <Link
+        href="https://wa.me/971545252469"
+        target="_blank"
+        className="fixed right-6 bottom-6 z-50 rounded-full bg-red-600 px-6 py-4 font-semibold text-white shadow-2xl transition-all hover:scale-110 hover:bg-red-700"
+      >
+        WhatsApp
+      </Link>
       <div className="container mx-auto px-6 lg:px-12">
         {/* --- Top Section: Contact Grid --- */}
         <div className="mb-16 grid grid-cols-1 gap-12 border-b border-white/10 pb-12 md:grid-cols-3">
