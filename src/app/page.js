@@ -150,7 +150,7 @@ export default function HomePage() {
 
       <section className="border-t border-gray-800 bg-black px-6 py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
+          <div className="z-2 grid relative  grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
             <Counter value={10} label="Years Experience" />{" "}
             <Counter value={2500} label="Enterprise Clients" />
             <Counter value={6} label="Products" />
@@ -404,7 +404,7 @@ export default function HomePage() {
               </motion.div>
 
               {/* Tally Connection Badge */}
-              <div className="absolute top-10 md:top-10 md:-left-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl bg-white p-4 shadow-2xl">
+              <div className="absolute top-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl bg-white p-4 shadow-2xl md:top-10 md:-left-10">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 font-black text-white">
                   T
                 </div>
