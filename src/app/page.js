@@ -393,7 +393,7 @@ export default function HomePage() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -right-4 -bottom-10 z-20 aspect-[9/19.5] w-[40%] overflow-hidden rounded-[2.5rem]"
+                className="absolute -right-4 -bottom-10 z-2 aspect-[9/19.5] w-[40%] overflow-hidden rounded-[2.5rem]"
               >
                 <Image
                   src="https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png" // Add your mobile screenshot here
@@ -404,7 +404,7 @@ export default function HomePage() {
               </motion.div>
 
               {/* Tally Connection Badge */}
-              <div className="absolute top-10 -left-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl bg-white p-4 shadow-2xl">
+              <div className="absolute top-10 md:top-10 md:-left-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl bg-white p-4 shadow-2xl">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 font-black text-white">
                   T
                 </div>
