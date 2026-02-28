@@ -409,11 +409,11 @@ export default function HomePage() {
                   T
                 </div>
                 <div>
-                  <p className="text-[10px] leading-none font-bold tracking-tighter text-black uppercase">
+                  {/* <p className="text-[10px] leading-none font-bold tracking-tighter text-black uppercase">
                     Status
-                  </p>
+                  </p> */}
                   <p className="text-xs font-black text-green-600">
-                    Tally Linked
+                    Tally Integrated
                   </p>
                 </div>
               </div>

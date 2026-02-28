@@ -190,7 +190,7 @@ export default function ContactUs() {
             </div>
 
             {/* Card 2: Parent (Now matching the style) */}
-            <div className="group relative overflow-hidden rounded-[2rem] border border-white/5 bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 shadow-2xl">
+            {/* <div className="group relative overflow-hidden rounded-[2rem] border border-white/5 bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 shadow-2xl">
               <div className="relative z-10">
                 <div className="mb-8 flex items-center gap-2 text-red-500">
                   <div className="rounded-lg bg-red-500/10 p-2">
@@ -224,7 +224,7 @@ export default function ContactUs() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
