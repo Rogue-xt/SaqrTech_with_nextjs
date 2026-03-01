@@ -153,7 +153,7 @@ export default function HomePage() {
           <div className="z-2 grid relative  grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
             <Counter value={10} label="Years Experience" />{" "}
             <Counter value={2500} label="Enterprise Clients" />
-            <Counter value={6} label="Products" />
+            <Counter value={100} label="Projects Completed" />
             <Counter value={5} label="Countries Covered" />
           </div>
         </div>
