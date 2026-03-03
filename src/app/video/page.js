@@ -26,7 +26,7 @@ export default function VideoWatchPage() {
   };
 
   return (
-    <main className="z-80 mt-1 relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
+    <main className="z-111 mt-1 relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
       {/* --- Close Button (Back to Home) --- */}
       <Link
         href="/"

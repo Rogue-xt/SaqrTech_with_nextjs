@@ -150,7 +150,7 @@ export default function HomePage() {
 
       <section className="border-t border-gray-800 bg-black px-6 py-24">
         <div className="mx-auto max-w-7xl">
-          <div className="z-2 grid relative  grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
+          <div className="relative z-2 grid grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
             <Counter value={10} label="Years Experience" />{" "}
             <Counter value={2500} label="Enterprise Clients" />
             <Counter value={100} label="Projects Completed" />
@@ -284,7 +284,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* ================= PRODUCT SECTION ================= */}
+      {/* ================= PRODUCT SECTION M-Pos ================= */}
 
       <section className="relative overflow-hidden bg-black px-6 py-32">
         {/* Background Decorative Elements */}
@@ -373,7 +373,7 @@ export default function HomePage() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="relative z-10 aspect-[4/3] w-[85%] overflow-hidden rounded-[2rem]"
+                className="moDiv1 relative z-10 aspect-[4/3] w-[85%] overflow-hidden rounded-[2rem]"
               >
                 <Image
                   style={{ maxWidth: "67%" }}
@@ -381,7 +381,7 @@ export default function HomePage() {
                   // src="/images/services/tab-homepage.png"
                   alt="mPos Tablet Interface"
                   fill
-                  className="object-contain"
+                  className="sm:mx-w-[100%] object-contain"
                 />
               </motion.div>
 
@@ -393,7 +393,7 @@ export default function HomePage() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute -right-4 -bottom-10 z-2 aspect-[9/19.5] w-[40%] overflow-hidden rounded-[2.5rem]"
+                className="moDiv2 absolute -right-4 -bottom-10 z-2 aspect-[9/19.5] w-[40%] overflow-hidden rounded-[2.5rem]"
               >
                 <Image
                   src="https://nxtgcgexmtuubojcfztc.supabase.co/storage/v1/object/public/Public/services/Mpos-app-view.png" // Add your mobile screenshot here

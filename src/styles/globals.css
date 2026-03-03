@@ -45,6 +45,12 @@ html, body {
     p.sub{
     text-align: center !important;
   }
+  .moDiv1 {
+    width: 100%;
+}
+.moDiv1 img {
+    width: 100%;
+}
 }
 
 @keyframes gradientMove {
