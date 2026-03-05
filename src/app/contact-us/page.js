@@ -101,7 +101,7 @@ const handleSubmit = async (e) => {
                       className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Name"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="pointer-events-none absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Full Name
                     </label>
                   </div>
@@ -114,7 +114,7 @@ const handleSubmit = async (e) => {
                       className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Phone"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="pointer-events-none absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Phone Number
                     </label>
                   </div>
@@ -130,7 +130,7 @@ const handleSubmit = async (e) => {
                       className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Email"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="pointer-events-none absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Work Email
                     </label>
                   </div>
@@ -142,7 +142,7 @@ const handleSubmit = async (e) => {
                       className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Company"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="pointer-events-none absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Company Name
                     </label>
                   </div>
@@ -158,7 +158,7 @@ const handleSubmit = async (e) => {
                     placeholder="Message"
                   ></textarea>
 
-                  <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                  <label className="pointer-events-none absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                     Project Brief
                   </label>
                 </div>
