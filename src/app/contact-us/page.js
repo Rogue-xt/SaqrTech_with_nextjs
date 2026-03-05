@@ -11,6 +11,7 @@ import {
   Globe2,
   Briefcase,
 } from "lucide-react";
+import Map from "@/components/Map";
 
 export default function ContactUs() {
   const [status, setStatus] = useState("");
@@ -48,108 +49,133 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black pt-32 pb-20 text-white">
-      {/* Texture Layer */}
-      <div className="pointer-events-none absolute inset-0 bg-[url('/grid.svg')] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] bg-center opacity-20"></div>
+    <div className="relative min-h-screen overflow-hidden bg-black pt-32 text-white">
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(220,38,38,0.2),transparent_60%)]"></div>
 
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="mb-16">
-          <h1 className="text-5xl leading-[0.9] font-black tracking-tighter uppercase md:text-6xl">
-            Enterprise <br />
-            <span className="font-outline text-red-600">Enquiry</span>
+      {/* Texture Layer */}
+      <div className="pointer-events-none absolute inset-0 bg-[url('/grid.svg')] opacity-20"></div>
+
+      <div className="relative z-10 container mx-auto px-6 pb-20">
+        {/* Header */}
+        <div className="mb-16 max-w-2xl">
+          <h1 className="text-5xl leading-[0.9] font-black tracking-tighter md:text-6xl">
+            Contact
+            <span className="ml-3 text-red-600">Us</span>
           </h1>
+
+          <p className="mt-6 text-lg leading-8 text-slate-300">
+            Got a question, a big idea, or just want to talk shop? We’re
+            <span className="font-semibold text-red-600"> all ears </span>
+            and ready to help you scale. Drop us a line and let’s make something
+            great happen!
+          </p>
         </div>
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-3">
-          {/* --- REFINED FORM STYLE --- */}
+          {/* FORM */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
             className="order-2 lg:order-1 lg:col-span-2"
           >
-            <div className="rounded-[2rem] border border-white/5 bg-[#080808] p-8 shadow-2xl md:p-12">
-              <form onSubmit={handleSubmit} className="space-y-10">
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+            <div className="rounded-[2rem] border border-white/10 bg-[#080808]/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl md:p-12">
+              <form className="space-y-10">
+                <div className="grid gap-10 md:grid-cols-2">
+                  {/* NAME */}
                   <div className="group relative">
                     <input
                       name="name"
                       required
-                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Name"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Full Name
                     </label>
                   </div>
+
+                  {/* PHONE */}
                   <div className="group relative">
                     <input
                       name="phone"
                       required
-                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Phone"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Phone Number
                     </label>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+                <div className="grid gap-10 md:grid-cols-2">
+                  {/* EMAIL */}
                   <div className="group relative">
                     <input
                       name="email"
                       type="email"
                       required
-                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Email"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Work Email
                     </label>
                   </div>
+
+                  {/* COMPANY */}
                   <div className="group relative">
                     <input
                       name="company"
-                      className="peer w-full border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                      className="peer w-full border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                       placeholder="Company"
                     />
-                    <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+                    <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                       Company Name
                     </label>
                   </div>
                 </div>
 
+                {/* MESSAGE */}
                 <div className="group relative">
                   <textarea
                     name="subject"
                     rows="3"
                     required
-                    className="peer w-full resize-none border-b border-white/10 bg-transparent py-3 transition-colors outline-none placeholder:text-transparent focus:border-red-600"
+                    className="peer w-full resize-none border-b border-white/10 bg-transparent py-3 outline-none placeholder:text-transparent focus:border-red-600"
                     placeholder="Message"
                   ></textarea>
-                  <label className="absolute top-0 left-0 text-[10px] font-black tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
+
+                  <label className="absolute top-0 left-0 text-[10px] tracking-widest text-zinc-500 uppercase transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-red-600">
                     Project Brief
                   </label>
                 </div>
 
+                {/* BUTTON */}
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-center gap-4 rounded-xl bg-red-600 py-6 text-sm font-black tracking-[0.3em] uppercase transition-all hover:bg-red-700"
+                  className="group relative w-full overflow-hidden rounded-xl bg-red-600 py-6 text-sm font-black tracking-[0.3em] uppercase transition-all hover:bg-red-700"
                 >
-                  Send Message
-                  <ArrowRight
-                    size={20}
-                    className="transition-transform group-hover:translate-x-2"
-                  />
+                  <span className="relative z-10 flex items-center justify-center gap-4">
+                    Send Message
+                    <ArrowRight className="transition-transform group-hover:translate-x-2" />
+                  </span>
+
+                  {/* button shine */}
+                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></span>
                 </button>
               </form>
             </div>
           </motion.div>
 
-          {/* --- UNIFIED RED STACK --- */}
-          <div className="order-1 space-y-6 lg:order-2 lg:col-span-1">
-            {/* Card 1: Technologies */}
-            <div className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-red-600 to-red-800 p-8 shadow-2xl">
+          {/* CONTACT CARD */}
+          <div className="order-1 space-y-6 lg:order-2">
+            <div className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-red-600 to-red-800 p-8 shadow-[0_30px_80px_rgba(220,38,38,0.5)]">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.3),transparent_60%)] opacity-0 transition group-hover:opacity-100"></div>
+
               <div className="relative z-10">
                 <div className="mb-8 flex items-center gap-2">
                   <div className="rounded-lg bg-white/20 p-2">
@@ -159,8 +185,9 @@ export default function ContactUs() {
                     Tech Division
                   </span>
                 </div>
+
                 <h2 className="mb-10 text-3xl font-black tracking-tight">
-                  Al Saqr <br /> Technologies
+                  Al Saqr <br /> Technologies L.L.C
                 </h2>
 
                 <div className="space-y-5">
@@ -168,16 +195,17 @@ export default function ContactUs() {
                     href="tel:+971545252469"
                     className="group/item flex items-center gap-4"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition-colors group-hover/item:bg-white/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition group-hover/item:bg-white/20">
                       <Phone size={18} />
                     </div>
                     <span className="text-lg font-bold">+971 54 525 2469</span>
                   </a>
+
                   <a
                     href="mailto:info@saqrtech.com"
                     className="group/item flex items-center gap-4"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition-colors group-hover/item:bg-white/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black/10 transition group-hover/item:bg-white/20">
                       <Mail size={18} />
                     </div>
                     <span className="font-medium opacity-90">
@@ -186,48 +214,14 @@ export default function ContactUs() {
                   </a>
                 </div>
               </div>
+
               <Building2 className="absolute -right-6 -bottom-6 h-48 w-48 text-white/10" />
             </div>
-
-            {/* Card 2: Parent (Now matching the style) */}
-            {/* <div className="group relative overflow-hidden rounded-[2rem] border border-white/5 bg-gradient-to-br from-zinc-800 to-zinc-900 p-8 shadow-2xl">
-              <div className="relative z-10">
-                <div className="mb-8 flex items-center gap-2 text-red-500">
-                  <div className="rounded-lg bg-red-500/10 p-2">
-                    <Globe2 size={16} />
-                  </div>
-                  <span className="text-[10px] font-black tracking-widest uppercase">
-                    Parent Group
-                  </span>
-                </div>
-                <h2 className="mb-10 text-3xl font-black tracking-tight text-white">
-                  Al Saqr <br /> Industries
-                </h2>
-
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5">
-                      <MapPin size={18} />
-                    </div>
-                    <p className="text-sm leading-relaxed font-medium text-zinc-400">
-                      Industrial Area 13,
-                      <br /> Sharjah, UAE
-                    </p>
-                  </div>
-                  <div className="border-t border-white/5 pt-6">
-                    <p className="text-[10px] font-bold tracking-widest text-zinc-500 uppercase">
-                      Sectors
-                    </p>
-                    <p className="mt-2 text-xs text-zinc-300">
-                      Manufacturing • Logistics • Trading
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
+
+      <Map />
     </div>
   );
 }

@@ -7,15 +7,32 @@ import {
   FaTiktok,
   FaFacebookF,
   FaYoutube,
+  FaWhatsapp,
 } from "react-icons/fa6"; // Recommended: npm install react-icons
 
 const socialLinks = [
-  { name: "Facebook", href: "#", icon: <FaFacebookF /> },
-  { name: "Instagram", href: "#", icon: <FaInstagram /> },
-  { name: "X", href: "#", icon: <FaXTwitter /> },
-  { name: "LinkedIn", href: "#", icon: <FaLinkedinIn /> },
-  { name: "TikTok", href: "#", icon: <FaTiktok /> },
-  { name: "YouTube", href: "#", icon: <FaYoutube /> },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/alsaqrtechnologies/",
+    icon: <FaFacebookF />,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/saqrtechllc/",
+    icon: <FaInstagram />,
+  },
+  { name: "X", href: "https://x.com/Saqrtechllc", icon: <FaXTwitter /> },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/saqrtechllc",
+    icon: <FaLinkedinIn />,
+  },
+  // { name: "TikTok", href: "#", icon: <FaTiktok /> },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/channel/UCuLNPDpkzI43J-Us8uJarqw",
+    icon: <FaYoutube />,
+  },
 ];
 
 const navLinks = [
@@ -28,15 +45,15 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black pt-16 pb-8 text-white z-10">
+    <footer className="z-10 bg-black pt-16 pb-8 text-white">
       {/* ================= FLOATING WHATSAPP ================= */}
 
       <Link
         href="https://wa.me/971545252469"
         target="_blank"
-        className="fixed right-6 bottom-6 z-50 rounded-full bg-red-600 px-6 py-4 font-semibold text-white shadow-2xl transition-all hover:scale-110 hover:bg-red-700"
+        className="fixed right-6 bottom-6 z-50 rounded-full bg-green-600 px-6 py-6 font-semibold text-white shadow-2xl transition-all hover:scale-110 hover:bg-red-700"
       >
-        WhatsApp
+       <FaWhatsapp /> 
       </Link>
       <div className="container mx-auto px-6 lg:px-12">
         {/* --- Top Section: Contact Grid --- */}
@@ -97,6 +114,7 @@ export default function Footer() {
               <a
                 key={social.name}
                 href={social.href}
+                target="_blank"
                 className="text-xl text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:text-white"
                 aria-label={social.name}
               >

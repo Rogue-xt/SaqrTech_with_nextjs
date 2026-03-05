@@ -451,7 +451,7 @@ export default function TallySoftware() {
               alt="M-POS Mobile App"
               width={600}
               height={600}
-              className="object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+              className="z-2 object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
               priority
             />
           </div>

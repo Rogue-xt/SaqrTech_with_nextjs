@@ -48,33 +48,42 @@ const Counter = ({ value, label, suffix = "+" }) => {
 /* ================= HOMEPAGE ================= */
 
 export default function HomePage() {
-    const features = [
-      { icon: <RefreshCw size={18} />, text: "Real-time Tally ERP Sync" },
-      { icon: <MapPin size={18} />, text: "Route Optimization & GPS" },
-      { icon: <Smartphone size={18} />, text: "Instant PDF Invoicing" },
-      { icon: <CheckCircle2 size={18} />, text: "Inventory Management" },
-    ];
+  const features = [
+    { icon: <RefreshCw size={18} />, text: "Real-time Tally ERP Sync" },
+    { icon: <MapPin size={18} />, text: "Route Optimization & GPS" },
+    { icon: <Smartphone size={18} />, text: "Instant PDF Invoicing" },
+    { icon: <CheckCircle2 size={18} />, text: "Inventory Management" },
+  ];
+  const logos = [
+    { name: "HRM", src: "/logos/axonLogo.png" },
+    { name: "Van Sales", src: "/mpos-logo.png" },
+    // { name: "POS", src: "/logos/pos.svg" },
+    // { name: "Inventory", src: "/logos/inventory.svg" },
+    // { name: "AWS", src: "/logos/aws.svg" },
+    // { name: "Tally", src: "/logos/tally.svg" },
+  ];
+  const repeatedLogos = [...logos, ...logos, ...logos]; //
 
-    const testimonials = [
-      {
-        author: "Haii Al Khaleel Trading LLC",
-        rating: 5,
-        review:
-          "Really happy with their van sales software – super easy to use and works great for our business. Best in the GCC for sure!",
-      },
-      {
-        author: "Abdul Raheem Annath",
-        rating: 5,
-        review:
-          "Leading IT company with software experts in the UAE. Highly recommended for those looking for van sales management software and other IT services.",
-      },
-      {
-        author: "Hasharudheen K",
-        rating: 5,
-        review:
-          "Best IT company in UAE with uncompromising service quality. Van sales software and ERP software providers",
-      },
-    ];
+  const testimonials = [
+    {
+      author: "Haii Al Khaleel Trading LLC",
+      rating: 5,
+      review:
+        "Really happy with their van sales software – super easy to use and works great for our business. Best in the GCC for sure!",
+    },
+    {
+      author: "Abdul Raheem Annath",
+      rating: 5,
+      review:
+        "Leading IT company with software experts in the UAE. Highly recommended for those looking for van sales management software and other IT services.",
+    },
+    {
+      author: "Hasharudheen K",
+      rating: 5,
+      review:
+        "Best IT company in UAE with uncompromising service quality. Van sales software and ERP software providers",
+    },
+  ];
   return (
     <main className="relative w-full overflow-x-hidden bg-black text-white">
       <Modal />
@@ -159,38 +168,28 @@ export default function HomePage() {
         </div>
       </section>
       {/* ================= INDUSTRIES (Glow Cards) ================= */}
-      <section className="relative bg-black px-6 py-32">
-        <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-red-900/10 blur-[120px]" />
-        <div className="mx-auto max-w-7xl text-center">
-          <h2 className="mb-20 text-4xl font-black tracking-tight md:text-7xl">
-            Verticals We <span className="text-red-600">Master</span>
+      <section className="relative overflow-hidden bg-black py-24">
+        <div className="mx-auto mb-16 max-w-7xl px-6 text-center">
+          <h2 className="text-4xl font-black tracking-tight md:text-6xl">
+            Our <span className="text-red-600">Products</span>
           </h2>
+        </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-            {[
-              { name: "FMCG", icon: <Layers className="h-5 w-5" /> },
-              { name: "Retail", icon: <Zap className="h-5 w-5" /> },
-              { name: "Wholesale", icon: <BarChart3 className="h-5 w-5" /> },
-              { name: "Construction", icon: <Settings className="h-5 w-5" /> },
-              { name: "Logistics", icon: <ShieldCheck className="h-5 w-5" /> },
-              { name: "Manufacturing", icon: <Users className="h-5 w-5" /> },
-            ].map((ind) => (
-              <div
-                key={ind.name}
-                className="group z-1 flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-red-500/50 hover:bg-red-500/[0.05]"
-              >
-                <div className="text-gray-500 transition-colors group-hover:text-red-500">
-                  {ind.icon}
-                </div>
-                <span className="text-sm font-bold tracking-widest uppercase">
-                  {ind.name}
-                </span>
-              </div>
+        <div className="relative w-full overflow-hidden">
+          <div className="animate-marquee flex w-max items-center gap-16">
+            {repeatedLogos.map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.src}
+                alt={logo.name}
+                width={300}
+                height={160}
+                className="h-10 w-auto object-contain opacity-70 transition hover:opacity-100 md:h-12"
+              />
             ))}
           </div>
         </div>
       </section>
-
       {/* ================= PROCESS (Journey Flow) ================= */}
       {/* <section className="border-t border-white/5 bg-[#050505] px-6 py-32">
         <div className="mx-auto max-w-7xl">
