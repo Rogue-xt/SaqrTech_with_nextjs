@@ -17,6 +17,7 @@ export default function VanSales() {
     // 1. Prepare data
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
+    data.tallyUser = isTallyUser;
 
     // 2. Disable button immediately via state
     setStatus("sending");
@@ -130,7 +131,7 @@ export default function VanSales() {
                 <p className="mb-2 text-xs tracking-widest text-gray-400 uppercase">
                   Are you a Tally User?
                 </p>
-
+           
                 <div className="flex gap-3">
                   {["Yes", "No"].map((opt) => (
                     <button
