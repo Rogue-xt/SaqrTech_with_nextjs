@@ -16,37 +16,47 @@ import Map from "@/components/Map";
 export default function ContactUs() {
   const [status, setStatus] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    setStatus("sending");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
 
-    const contactRequest = fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    }).then(async (res) => {
-      if (!res.ok) throw new Error("Failed");
-      return res.json();
-    });
+  // --- ADD VALIDATION ---
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!data.email || !emailRegex.test(data.email)) {
+    toast.error("Please enter a valid work email.");
+    return;
+  }
+  // ----------------------
 
-    toast.promise(contactRequest, {
-      loading: "Transmitting data...",
-      success: "Inquiry received.",
-      error: "Transmission failed.",
-    });
+  setStatus("sending");
 
-    try {
-      await contactRequest;
-      e.target.reset();
-      setStatus("success");
-    } catch (err) {
-      setStatus("error");
-    } finally {
-      setTimeout(() => setStatus(""), 3000);
-    }
-  };
+  const contactRequest = fetch("/api/contact", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+  }).then(async (res) => {
+    const result = await res.json();
+    if (!res.ok) throw new Error(result.message || "Failed");
+    return result;
+  });
+
+  toast.promise(contactRequest, {
+    loading: "Transmitting data...",
+    success: "Inquiry received.",
+    error: (err) => `Error: ${err.message}`,
+  });
+
+  try {
+    await contactRequest;
+    e.target.reset();
+    setStatus("success");
+  } catch (err) {
+    setStatus("error");
+  } finally {
+    setTimeout(() => setStatus(""), 3000);
+  }
+};
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black pt-32 text-white">
@@ -81,7 +91,7 @@ export default function ContactUs() {
             className="order-2 lg:order-1 lg:col-span-2"
           >
             <div className="rounded-[2rem] border border-white/10 bg-[#080808]/80 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl md:p-12">
-              <form className="space-y-10">
+              <form onSubmit={handleSubmit} className="space-y-10">
                 <div className="grid gap-10 md:grid-cols-2">
                   {/* NAME */}
                   <div className="group relative">

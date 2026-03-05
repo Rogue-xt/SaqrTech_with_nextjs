@@ -75,8 +75,9 @@ export async function POST(request) {
    return NextResponse.json({ success: true, id: newLead.id }, { status: 200 });
  } catch (error) {
    console.error("General API Error:", error);
+   // Inside your API route.js catch block
    return NextResponse.json(
-     { error: "Internal Server Error" },
+     { message: "The server encountered an error saving your lead." },
      { status: 500 },
    );
  }

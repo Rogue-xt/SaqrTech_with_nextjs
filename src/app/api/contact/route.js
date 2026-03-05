@@ -11,9 +11,16 @@ const getUserEmail = (data) => <UserContactReplyMail name={data.name} />;
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, email, company } = body;
+    const { name, email, company, phone, subject } = body;
 
-    // 2. Transporter Setup
+    // 1. Server-side Validation
+    if (!name || !email || !subject) {
+      return NextResponse.json(
+        { message: "Missing required fields (Name, Email, or Message)" },
+        { status: 400 },
+      );
+    }
+
     const transporter = nodemailer.createTransport({
       host: "smtp.zoho.com",
       port: 465,
@@ -24,13 +31,12 @@ export async function POST(request) {
       },
     });
 
-    // 3. Render HTML (Awaited)
+    // 2. Render HTML
+    // Make sure 'body' contains everything ContactEnquiryMail needs
     const adminHtml = await render(getAdminEmail(body));
     const userHtml = await render(getUserEmail(body));
 
-    // 4. Send Mail (CRITICAL: Await this so Netlify doesn't kill the process)
     await Promise.all([
-      // Admin Notification
       transporter.sendMail({
         from: `"Website Monitor" <${process.env.EMAIL_USER}>`,
         to: "info@saqrtech.com",
@@ -38,7 +44,6 @@ export async function POST(request) {
         subject: `New Enquiry from ${name} | ${company || "Individual"}`,
         html: adminHtml,
       }),
-      // User Confirmation
       transporter.sendMail({
         from: `"Al Saqr Technologies" <${process.env.EMAIL_USER}>`,
         to: email,
@@ -53,16 +58,11 @@ export async function POST(request) {
       }),
     ]);
 
-    console.log("Zoho emails successfully sent for:", name);
-
-    return NextResponse.json(
-      { message: "Success! Your message has been sent." },
-      { status: 200 },
-    );
+    return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (error) {
-    console.error("Zoho SMTP/API Failure:", error);
+    console.error("DETAILED ERROR:", error); // Check your VS Code terminal for this!
     return NextResponse.json(
-      { message: "Failed to process request" },
+      { message: error.message || "Failed to process request" },
       { status: 500 },
     );
   }

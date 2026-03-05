@@ -10,53 +10,68 @@ export default function VanSales() {
   const [status, setStatus] = useState("");
 
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // 1. Prepare data
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+  data.tallyUser = isTallyUser;
 
-    // 1. Prepare data
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-    data.tallyUser = isTallyUser;
+  // --- NEW VALIDATION SECTION ---
+  // Simple regex for basic email format check
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // 2. Disable button immediately via state
-    setStatus("sending");
+  if (!data.email || !emailRegex.test(data.email)) {
+    toast.error("Please enter a valid email address.");
+    return; // Stop the function here so no API call is made
+  }
 
-    // 3. Define the fetch as a promise for the toast
-    const saveLeadRequest = fetch("/api/vanSalesTrial", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    }).then(async (res) => {
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Failed to send");
-      }
-      return res;
-    });
+  if (isTallyUser === null) {
+    toast.error("Please select if you are a Tally user.");
+    return; // Stop the function here
+  }
+  // -------------------------------
 
-    // 4. Fire the toast and handle the UI logic
-    toast.promise(saveLeadRequest, {
-      loading: "Processing your request...",
-      success: "Success! Your trial is on its way.",
-      error: (err) => `Error: ${err.message}`,
-    });
+  // 2. Disable button immediately via state
+  setStatus("sending");
 
-    try {
-      await saveLeadRequest;
-
-      // Cleanup UI on success
-      e.target.reset();
-      setIsTallyUser(null);
-      setStatus("success");
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-    } finally {
-      // Allow re-submission after a short cooldown
-      setTimeout(() => setStatus(""), 3000);
+  // 3. Define the fetch as a promise for the toast
+  const saveLeadRequest = fetch("/api/vanSalesTrial", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
+  }).then(async (res) => {
+    if (!res.ok) {
+      const errorData = await res.json();
+      // This will now catch the "Invalid email" error if it comes from the server too
+      throw new Error(errorData.message || "Failed to send");
     }
-  };
+    return res;
+  });
+
+  // 4. Fire the toast and handle the UI logic
+  toast.promise(saveLeadRequest, {
+    loading: "Processing your request...",
+    success: "Success! Your trial is on its way.",
+    error: (err) => `${err.message}`, // Cleaned up the "Error:" prefix for better toast UI
+  });
+
+  try {
+    await saveLeadRequest;
+
+    // Cleanup UI on success
+    e.target.reset();
+    setIsTallyUser(null);
+    setStatus("success");
+  } catch (err) {
+    console.error(err);
+    setStatus("error");
+  } finally {
+    // Allow re-submission after a short cooldown
+    setTimeout(() => setStatus(""), 3000);
+  }
+};
 
   return (
     <section className="relative w-full overflow-hidden py-24">
