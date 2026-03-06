@@ -102,7 +102,7 @@ export default function HomePage() {
       <Modal />
 
       {/* ================= HERO (Enhanced Contrast) ================= */}
-      <section className="relative flex min-h-[90vh] items-center overflow-hidden">
+      <section className="banner relative flex min-h-[90vh] items-center overflow-hidden">
         <div className="absolute inset-0 z-1">
           <video
             autoPlay

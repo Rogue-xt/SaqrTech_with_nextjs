@@ -39,6 +39,9 @@ html, body {
 }
 
 @media (max-width:769px){
+  .banner{
+    margin-top: 70px;
+  }
   p{
     text-align: left !important;
   }
