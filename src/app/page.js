@@ -275,7 +275,7 @@ export default function HomePage() {
           >
             {testimonials?.map((item, idx) => (
               <SwiperSlide key={idx}>
-                <div className="group flex h-[300px] flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-red-500/40 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]">
+                <div className="group flex h-[350px] flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-red-500/40 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]">
                   {/* Stars */}
                   <div className="mb-2 flex gap-1">
                     {[...Array(5)].map((_, i) => (
