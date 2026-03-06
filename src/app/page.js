@@ -15,6 +15,10 @@ import Modal from "@/components/Modal";
 import ServiceSlider from "@/components/ServicesSlider";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import { ArrowRight, BarChart3, CheckCircle2, Layers, MapPin, RefreshCw, Settings, ShieldCheck, Smartphone, Star, Users, Zap } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 /* ================= COUNTER ================= */
 
@@ -59,6 +63,8 @@ export default function HomePage() {
     { name: "Mpos", src: "/mpos-logo.png" },
     { name: "Tally", src: "/logos/tallyLogo.svg" },
     { name: "Sewoo", src: "/logos/sewooLogo.png" },
+    { name: "AWS", src: "/logos/aws.png" },
+    { name: "Microsoft", src: "/logos/microsoft.png" },
     ,
   ];
  const repeatedLogos = Array(6).fill(logos).flat();
@@ -82,7 +88,15 @@ export default function HomePage() {
       review:
         "Best IT company in UAE with uncompromising service quality. Van sales software and ERP software providers",
     },
+    {
+      author: "Haii Al Khaleel Trading LLC",
+      rating: 5,
+      review:
+        "Really happy with their van sales software – super easy to use and works great for our business. Best in the GCC for sure!",
+    },
   ];
+
+  const duplicated = [...testimonials, ...testimonials];
   return (
     <main className="relative w-full overflow-x-hidden bg-black text-white">
       <Modal />
@@ -240,61 +254,73 @@ export default function HomePage() {
         </div>
       </section> */}
       {/* ================= TESTIMONIALS (Bento) ================= */}
+
       <section className="bg-black px-6 py-32">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="mb-20 text-center text-4xl font-black tracking-tight uppercase md:text-6xl">
+        <div className="mx-auto max-w-6xl overflow-hidden">
+          {/* Title */}
+          <h2 className="mb-20 text-center text-4xl font-black tracking-tight md:text-6xl">
             Client <span className="text-red-600">Vouches</span>
           </h2>
-          <div className="grid gap-6 md:grid-cols-3">
+
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={24}
+            autoplay={{ delay: 4000 }}
+            loop={true}
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
             {testimonials?.map((item, idx) => (
-              <div
-                key={idx}
-                className="group relative z-1 rounded-[2.5rem] border border-white/5 bg-[#0a0a0a] p-10 transition-all hover:border-red-600/20 hover:bg-[#0f0f0f]"
-              >
-                {/* Top Decorative Line */}
-                <div className="absolute top-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-red-600 transition-all duration-500 group-hover:w-1/2" />
-
-                {/* ⭐ STAR RATING LOGIC ⭐ */}
-                <div className="mb-8 flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={16}
-                      className={`transition-all duration-300 ${
-                        i < (item.rating || 5)
-                          ? "fill-yellow-500 text-yellow-500 opacity-100"
-                          : "fill-transparent text-gray-700 opacity-40"
-                      } group-hover:scale-110`}
-                    />
-                  ))}
-                </div>
-
-                <p className="mb-10 text-xl leading-relaxed font-medium text-gray-300 italic">
-                  {item?.review || ""}
-                </p>
-
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl">
-                    {/* <span className="text-lg font-black text-white/50">
-                      {item.author[0]}
-                    </span> */}
-                    <Image
-                      src="/logos/google.png"
-                      width={30}
-                      height={30}
-                      alt="Google"
-                    />
+              <SwiperSlide key={idx}>
+                <div className="group flex h-[300px] flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-red-500/40 hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]">
+                  {/* Stars */}
+                  <div className="mb-2 flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={16}
+                        className={`transition-transform duration-300 ${
+                          i < (item.rating || 5)
+                            ? "fill-yellow-500 text-yellow-500"
+                            : "text-gray-700"
+                        } group-hover:scale-110`}
+                      />
+                    ))}
                   </div>
-                  <div>
-                    <div className="font-bold text-white">{item?.author}</div>
-                    <div className="text-[10px] font-bold tracking-widest text-gray-600 uppercase">
-                      Verified Business Partner
+
+                  {/* Review */}
+                  <p className="text-lg leading-relaxed text-gray-300 italic">
+                    {item?.review || ""}
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4 border-t border-white/10 pt-6">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+                      <Image
+                        src="/logos/google.png"
+                        width={28}
+                        height={28}
+                        alt="Google"
+                      />
+                    </div>
+
+                    <div>
+                      <div className="font-semibold text-white">
+                        {item?.author}
+                      </div>
+
+                      <div className="text-xs tracking-widest text-gray-500 uppercase">
+                        Verified Business Partner
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         </div>
       </section>
       {/* ================= PRODUCT SECTION M-Pos ================= */}
@@ -317,14 +343,6 @@ export default function HomePage() {
                   Flagship Product
                 </span>
               </div>
-
-              {/* <Image
-                src="/Mpos/Mpos Logo/mPos_logo.jpg"
-                alt="mPos Logo"
-                width={140}
-                height={50}
-                className="mb-8 brightness-110"
-              /> */}
 
               <h2 className="mb-6 text-5xl leading-[1.1] font-black tracking-tighter md:text-7xl">
                 The Future of <br />
@@ -417,7 +435,7 @@ export default function HomePage() {
               </motion.div>
 
               {/* Tally Connection Badge */}
-              <div className="absolute border top-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl p-4 shadow-2xl md:top-10 md:-left-10">
+              <div className="absolute top-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl border p-4 shadow-2xl md:top-10 md:-left-10">
                 {/* <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 font-black text-white">
                   T
                 </div>
@@ -431,7 +449,7 @@ export default function HomePage() {
                 />
                 <div>
                   <p className="text-xs font-black text-green-600">
-                     Integrated
+                    Integrated
                   </p>
                 </div>
               </div>

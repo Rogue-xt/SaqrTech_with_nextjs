@@ -101,3 +101,25 @@ textarea:-webkit-autofill:focus {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+
+
+
+
+@keyframes testimonialScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-testimonials {
+  animation: testimonialScroll 40s linear infinite;
+}
+
+.animate-testimonials:hover {
+  animation-play-state: paused;
+}
+
