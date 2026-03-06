@@ -18,16 +18,19 @@ export default function ContactUs() {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+
+  // Basic validation check...
+  if (status === "sending") return; // Safety check to prevent double submissions
+
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
 
-  // --- ADD VALIDATION ---
+  // Validation...
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!data.email || !emailRegex.test(data.email)) {
     toast.error("Please enter a valid work email.");
     return;
   }
-  // ----------------------
 
   setStatus("sending");
 
@@ -164,17 +167,27 @@ const handleSubmit = async (e) => {
                 </div>
 
                 {/* BUTTON */}
+                {/* BUTTON */}
                 <button
                   type="submit"
-                  className="group relative w-full overflow-hidden rounded-xl bg-red-600 py-6 text-sm font-black tracking-[0.3em] uppercase transition-all hover:bg-red-700"
+                  disabled={status === "sending"} // Disable the button here
+                  className={`group relative w-full overflow-hidden rounded-xl py-6 text-sm font-black tracking-[0.3em] uppercase transition-all ${
+                    status === "sending"
+                      ? "cursor-not-allowed bg-red-800 opacity-70"
+                      : "bg-red-600 hover:bg-red-700"
+                  }`}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-4">
-                    Send Message
-                    <ArrowRight className="transition-transform group-hover:translate-x-2" />
+                    {status === "sending" ? "Transmitting..." : "Send Message"}
+                    {status !== "sending" && (
+                      <ArrowRight className="transition-transform group-hover:translate-x-2" />
+                    )}
                   </span>
 
-                  {/* button shine */}
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></span>
+                  {/* Only show shine effect if NOT sending */}
+                  {status !== "sending" && (
+                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></span>
+                  )}
                 </button>
               </form>
             </div>
