@@ -55,14 +55,13 @@ export default function HomePage() {
     { icon: <CheckCircle2 size={18} />, text: "Inventory Management" },
   ];
   const logos = [
-    { name: "HRM", src: "/logos/axonLogo.png" },
-    { name: "Van Sales", src: "/mpos-logo.png" },
-    // { name: "POS", src: "/logos/pos.svg" },
-    // { name: "Inventory", src: "/logos/inventory.svg" },
-    // { name: "AWS", src: "/logos/aws.svg" },
-    // { name: "Tally", src: "/logos/tally.svg" },
+    { name: "Axon", src: "/logos/axonLogo.png" },
+    { name: "Mpos", src: "/mpos-logo.png" },
+    { name: "Tally", src: "/logos/tallyLogo.svg" },
+    { name: "Sewoo", src: "/logos/sewooLogo.png" },
+    ,
   ];
-  const repeatedLogos = [...logos, ...logos, ...logos]; //
+ const repeatedLogos = Array(6).fill(logos).flat();
 
   const testimonials = [
     {
@@ -154,7 +153,38 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+      {/* ================= INDUSTRIES (Glow Cards) ================= */}
+      <section className="relative overflow-hidden bg-black py-24">
+        <div className="mx-auto mb-16 max-w-7xl px-6 text-center">
+          <h2 className="text-4xl font-black md:text-6xl">
+            Our <span className="text-red-600">Technology Stack</span>
+          </h2>
 
+          <p className="mx-auto mt-4 max-w-xl text-gray-400">
+            We build powerful solutions using trusted platforms and
+            industry-leading technologies.
+          </p>
+        </div>
+
+        <div className="relative w-full overflow-hidden">
+          <div className="animate-marquee relative z-2 flex min-w-max gap-20 hover:[animation-play-state:paused]">
+            {repeatedLogos.map((logo, index) => (
+              <div
+                key={index}
+                className="relative z-2 flex h-20 flex-shrink-0 items-center"
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={200}
+                  height={80}
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* ================= STATS ================= */}
 
       <section className="border-t border-gray-800 bg-black px-6 py-24">
@@ -167,29 +197,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* ================= INDUSTRIES (Glow Cards) ================= */}
-      <section className="relative overflow-hidden bg-black py-24">
-        <div className="mx-auto mb-16 max-w-7xl px-6 text-center">
-          <h2 className="text-4xl font-black tracking-tight md:text-6xl">
-            Our <span className="text-red-600">Products</span>
-          </h2>
-        </div>
 
-        <div className="relative w-full overflow-hidden">
-          <div className="animate-marquee flex w-max items-center gap-16">
-            {repeatedLogos.map((logo, index) => (
-              <Image
-                key={index}
-                src={logo.src}
-                alt={logo.name}
-                width={300}
-                height={160}
-                className="h-10 w-auto object-contain opacity-70 transition hover:opacity-100 md:h-12"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
       {/* ================= PROCESS (Journey Flow) ================= */}
       {/* <section className="border-t border-white/5 bg-[#050505] px-6 py-32">
         <div className="mx-auto max-w-7xl">
@@ -234,7 +242,7 @@ export default function HomePage() {
       {/* ================= TESTIMONIALS (Bento) ================= */}
       <section className="bg-black px-6 py-32">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-20 text-center text-4xl font-black tracking-tight uppercase italic md:text-6xl">
+          <h2 className="mb-20 text-center text-4xl font-black tracking-tight uppercase md:text-6xl">
             Client <span className="text-red-600">Vouches</span>
           </h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -266,10 +274,16 @@ export default function HomePage() {
                 </p>
 
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-red-600 to-red-900">
-                    <span className="text-lg font-black text-white/50">
+                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl">
+                    {/* <span className="text-lg font-black text-white/50">
                       {item.author[0]}
-                    </span>
+                    </span> */}
+                    <Image
+                      src="/logos/google.png"
+                      width={30}
+                      height={30}
+                      alt="Google"
+                    />
                   </div>
                   <div>
                     <div className="font-bold text-white">{item?.author}</div>
@@ -403,16 +417,21 @@ export default function HomePage() {
               </motion.div>
 
               {/* Tally Connection Badge */}
-              <div className="absolute top-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl bg-white p-4 shadow-2xl md:top-10 md:-left-10">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 font-black text-white">
+              <div className="absolute border top-10 z-30 flex animate-pulse items-center gap-3 rounded-2xl p-4 shadow-2xl md:top-10 md:-left-10">
+                {/* <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 font-black text-white">
                   T
                 </div>
+                */}
+
+                <Image
+                  src="/tally-prime-white-logo.svg"
+                  width={70}
+                  alt="tally"
+                  height={30}
+                />
                 <div>
-                  {/* <p className="text-[10px] leading-none font-bold tracking-tighter text-black uppercase">
-                    Status
-                  </p> */}
                   <p className="text-xs font-black text-green-600">
-                    Tally Integrated
+                     Integrated
                   </p>
                 </div>
               </div>

@@ -9,68 +9,68 @@ export default function VanSales() {
   const [isTallyUser, setIsTallyUser] = useState(null);
   const [status, setStatus] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // 1. Prepare data
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData);
-  data.tallyUser = isTallyUser;
+    // 1. Prepare data
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    data.tallyUser = isTallyUser;
 
-  // --- NEW VALIDATION SECTION ---
-  // Simple regex for basic email format check
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // --- NEW VALIDATION SECTION ---
+    // Simple regex for basic email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!data.email || !emailRegex.test(data.email)) {
-    toast.error("Please enter a valid email address.");
-    return; // Stop the function here so no API call is made
-  }
-
-  if (isTallyUser === null) {
-    toast.error("Please select if you are a Tally user.");
-    return; // Stop the function here
-  }
-  // -------------------------------
-
-  // 2. Disable button immediately via state
-  setStatus("sending");
-
-  // 3. Define the fetch as a promise for the toast
-  const saveLeadRequest = fetch("/api/vanSalesTrial", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
-  }).then(async (res) => {
-    if (!res.ok) {
-      const errorData = await res.json();
-      // This will now catch the "Invalid email" error if it comes from the server too
-      throw new Error(errorData.message || "Failed to send");
+    if (!data.email || !emailRegex.test(data.email)) {
+      toast.error("Please enter a valid email address.");
+      return; // Stop the function here so no API call is made
     }
-    return res;
-  });
 
-  // 4. Fire the toast and handle the UI logic
-  toast.promise(saveLeadRequest, {
-    loading: "Processing your request...",
-    success: "Success! Your trial is on its way.",
-    error: (err) => `${err.message}`, // Cleaned up the "Error:" prefix for better toast UI
-  });
+    if (isTallyUser === null) {
+      toast.error("Please select if you are a Tally user.");
+      return; // Stop the function here
+    }
+    // -------------------------------
 
-  try {
-    await saveLeadRequest;
+    // 2. Disable button immediately via state
+    setStatus("sending");
 
-    // Cleanup UI on success
-    e.target.reset();
-    setIsTallyUser(null);
-    setStatus("success");
-  } catch (err) {
-    console.error(err);
-    setStatus("error");
-  } finally {
-    // Allow re-submission after a short cooldown
-    setTimeout(() => setStatus(""), 3000);
-  }
-};
+    // 3. Define the fetch as a promise for the toast
+    const saveLeadRequest = fetch("/api/vanSalesTrial", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }).then(async (res) => {
+      if (!res.ok) {
+        const errorData = await res.json();
+        // This will now catch the "Invalid email" error if it comes from the server too
+        throw new Error(errorData.message || "Failed to send");
+      }
+      return res;
+    });
+
+    // 4. Fire the toast and handle the UI logic
+    toast.promise(saveLeadRequest, {
+      loading: "Processing your request...",
+      success: "Success! Your trial is on its way.",
+      error: (err) => `${err.message}`, // Cleaned up the "Error:" prefix for better toast UI
+    });
+
+    try {
+      await saveLeadRequest;
+
+      // Cleanup UI on success
+      e.target.reset();
+      setIsTallyUser(null);
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
+      // Allow re-submission after a short cooldown
+      setTimeout(() => setStatus(""), 3000);
+    }
+  };
 
   return (
     <div className="bg-black">
@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
           viewport={{ once: true }}
           className="relative z-20 pt-32 pb-1 text-center"
         >
-          <div className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md">
+        <div className="mb-6 inline-block border border-red-600/50 px-4 py-1 text-[10px] font-bold tracking-[0.3em] text-red-500 uppercase">
             Mpos
           </div>
           <h1 className="mb-6 text-5xl font-bold tracking-tight text-white md:text-6xl">
@@ -102,6 +102,7 @@ const handleSubmit = async (e) => {
               className="relative"
             >
               <Image
+                loading="eager"
                 src="/images/Device-view/Mpos-Tab.png"
                 alt="consultation"
                 width={900}
@@ -219,7 +220,7 @@ const handleSubmit = async (e) => {
           </div>
         </section>
 
-        <div className="description rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
+        <div className="description relative z-2 rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 backdrop-blur-2xl transition-all duration-500 hover:-translate-y-3 hover:border-red-500/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] hover:backdrop-blur-2xl">
           <p
             style={{ opacity: "0.7", lineHeight: "2rem" }}
             className="mx-auto text-sm leading-relaxed text-white md:text-base"
@@ -257,7 +258,7 @@ const handleSubmit = async (e) => {
               //   y: imageY,
               //   opacity: imageOpacity,
               // }}
-              className="z-2 relative h-full w-full object-cover"
+              className="relative z-2 h-full w-full object-cover"
             />
           </div>
           <p
@@ -340,10 +341,10 @@ const handleSubmit = async (e) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative flex h-[350px] w-full justify-center md:h-[600px]"
+            className="relative z-2 flex h-[350px] w-full justify-center md:h-[600px]"
           >
             <div>
-              <div className="z-1 mb-6 inline-block rounded-full border border-red-500/20 bg-black px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/100 uppercase backdrop-blur-2xl">
+              <div className="mb-6 inline-block rounded-full border border-red-500/20 bg-black px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/100 uppercase backdrop-blur-2xl">
                 Tab View
               </div>
             </div>
@@ -351,7 +352,7 @@ const handleSubmit = async (e) => {
               src="/images/Device-view/Mpos-Tab.png"
               alt="Mpos Tablet View"
               fill
-              className="z-2 relative object-contain" // Ensures the height is filled completely
+              className="relative z-2 object-contain" // Ensures the height is filled completely
             />
           </motion.div>
 
@@ -361,7 +362,7 @@ const handleSubmit = async (e) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="relative flex h-[350px] w-full justify-center gap-10 md:h-[600px]"
+            className="relative z-2 flex h-[350px] w-full justify-center gap-10 md:h-[600px]"
           >
             <div>
               <div className="z-1 mb-6 inline-block rounded-full border border-red-500/20 bg-black px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-red-300/100 uppercase backdrop-blur-2xl">
@@ -377,9 +378,9 @@ const handleSubmit = async (e) => {
           </motion.div>
         </div>
 
-        <div className="z-1 mb-24 grid min-h-[500px] grid-cols-1 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0a0a0a] backdrop-blur-xl lg:grid-cols-4">
+        <div className="z-2 relative mb-24 grid min-h-[500px] grid-cols-1 overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0a0a0a] backdrop-blur-xl lg:grid-cols-4">
           {/* Left AREA (Video) - Span 1 column on LG */}
-          <div className="relative flex w-full items-center justify-center bg-black/20 p-6 lg:col-span-1 lg:p-10">
+          <div className="relative flex w-full items-center justify-center bg-black/20 p-6 lg:col-span-2 lg:p-10">
             <div className="relative aspect-video w-full max-w-[400px] overflow-hidden rounded-2xl shadow-2xl lg:aspect-[9/16]">
               <iframe
                 className="absolute top-0 left-0 h-full w-full"
@@ -395,7 +396,7 @@ const handleSubmit = async (e) => {
           </div>
 
           {/* Right CONTENT AREA - Span 3 columns on LG */}
-          <div className="flex flex-col justify-center p-8 md:p-16 lg:col-span-3">
+          <div className="flex flex-col justify-center p-8 md:p-16 lg:col-span-2">
             <span className="text-xs font-bold tracking-widest text-red-500 uppercase">
               Innovation
             </span>

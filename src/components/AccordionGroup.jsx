@@ -20,7 +20,7 @@ const VATInformationAccordion = () => {
   // --- CONTENT RENDERERS (Your Exact Text) ---
 
   const Section1Content = () => (
-    <div className="space-y-4">
+    <div className="space-y-4 z-2 relative backdrop-blur-2xl">
       <p className="leading-relaxed text-white-300">
         <span className="font-bold text-red-500">E-Invoicing</span> is the
         digital creation and exchange of structured tax invoices between
@@ -260,14 +260,16 @@ const VATInformationAccordion = () => {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-4  p-6">
+    <div className="mx-auto w-full max-w-5xl space-y-4 z-2 relative backdrop-blur-2xl  p-6">
       {sections.map((sec) => {
         const isOpen = openSections[sec.id];
         return (
           <div
             key={sec.id}
-            className={`overflow-hidden rounded-2xl border transition-all duration-500 ${
-              isOpen ? "border-red-500/50 bg-white/5" : "border-white/10"
+            className={`overflow-hidden rounded-2xl border shadow-[0_0_0_1px_rgba(255,255,255,0.03)] backdrop-blur-md transition-all duration-500 ${
+              isOpen
+                ? "border-red-500/40 bg-gradient-to-br from-white/10 to-white/5 shadow-[0_10px_40px_rgba(0,0,0,0.6)]"
+                : "border-white/10 bg-white/[0.03] hover:bg-white/[0.06]"
             }`}
           >
             <button
@@ -279,14 +281,14 @@ const VATInformationAccordion = () => {
                   className={`rounded-xl p-2.5 transition-all ${
                     isOpen
                       ? "bg-red-600 text-white shadow-[0_0_15px_rgba(220,38,38,0.4)]"
-                      : "bg-white/10 text-red-500"
+                      : "bg-white/5 text-red-400"
                   }`}
                 >
                   {sec.icon}
                 </div>
                 <h3
                   className={`text-sm font-bold tracking-wide transition-colors ${
-                    isOpen ? "text-white" : "font-medium text-white-400"
+                    isOpen ? "text-white" : "font-medium text-gray-300"
                   }`}
                 >
                   {sec.q}
@@ -300,7 +302,7 @@ const VATInformationAccordion = () => {
               className={`grid transition-all duration-500 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
             >
               <div className="overflow-hidden">
-                <div className="mt-4 border-t border-white/5 p-8 pt-0">
+                <div className="mt-4 border-t border-white/5 p-8 pt-4 backdrop-blur-2xl">
                   {sec.component}
                 </div>
               </div>

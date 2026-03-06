@@ -168,7 +168,7 @@ export default function ITCompanySharjah() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[400px] md:h-[600px]"
+            className="relative z-2 h-[400px] md:h-[600px]"
           >
             <div className="" />
             <Image
@@ -187,7 +187,7 @@ export default function ITCompanySharjah() {
         <div className="mx-auto max-w-7xl">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div {...fadeIn} className="order-2 lg:order-1">
-              <div className="relative overflow-hidden rounded-3xl border border-white/10">
+              <div className="z-2 relative overflow-hidden rounded-3xl border border-white/10">
                 <Image
                   src="/images/company.jpg"
                   width={600}
@@ -255,7 +255,7 @@ export default function ITCompanySharjah() {
               <motion.div
                 key={i}
                 whileHover={{ y: -10 }}
-                className="group rounded-2xl border border-white/5 bg-[#111111] p-8 transition-all hover:border-red-600/40"
+                className="z-2 group rounded-2xl border border-white/5 bg-[#111111] p-8 transition-all hover:border-red-600/40"
               >
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-red-600 transition-colors">
                   <Image src={item.image} width={32} height={32} alt="icon" />
@@ -276,7 +276,7 @@ export default function ITCompanySharjah() {
           {stackContents.map((item, index) => (
             <div
               key={item.id}
-              className="relative mb-12 w-full md:sticky lg:sticky"
+              className="z-2 relative mb-12 w-full md:sticky lg:sticky"
               style={{ top: `${80 + index * 10}px` }}
             >
               <motion.div
@@ -360,7 +360,7 @@ export default function ITCompanySharjah() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[400px] md:h-[600px]"
+            className="relative z-2 h-[400px] md:h-[600px]"
           >
             <div className="" />
             <Image
@@ -375,7 +375,7 @@ export default function ITCompanySharjah() {
       </section>
 
       <section className="bg-black px-6 py-20">
-        <div className="mx-auto max-w-4xl rounded-[2rem] border border-white/5 bg-[#111111] p-8 shadow-2xl md:p-12">
+        <div className="z-2 relative mx-auto max-w-4xl rounded-[2rem] border border-white/5 bg-[#111111] p-8 shadow-2xl md:p-12">
           <h2 className="mb-10 border-l-4 border-red-600 pl-6 text-3xl font-bold text-white">
             What Our IT Solutions Entail:
           </h2>

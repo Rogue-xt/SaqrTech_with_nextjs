@@ -167,7 +167,7 @@ export default function TallySoftware() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group relative flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
+              className="group relative z-2 flex flex-col items-center rounded-3xl border border-white/5 bg-[#111111] p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:border-red-600/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.7)]"
             >
               {/* Image Container with Glow */}
               <div className="relative mb-8 aspect-square w-full transition-transform duration-500 group-hover:scale-105">
@@ -231,7 +231,7 @@ export default function TallySoftware() {
 
                 {/* Content Card */}
                 <div
-                  className={`mt-[-30px] flex-grow rounded-2xl border border-white/5 bg-[#111111] p-8 text-white shadow-[0_-20px_50px_rgba(0,0,0,0.9)] transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-white/10 group-hover:bg-[#161616] md:mt-0 ${item.reverse ? "md:rounded-[40px_10px_10px_40px]" : "md:rounded-[10px_40px_40px_10px]"} md:p-12 ${item.reverse ? "md:mr-[-80px] md:pr-32" : "md:ml-[-80px] md:pl-32"} `}
+                  className={`z-2 mt-[-30px] flex-grow rounded-2xl border border-white/5 bg-[#111111] p-8 text-white shadow-[0_-20px_50px_rgba(0,0,0,0.9)] transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-white/10 group-hover:bg-[#161616] md:mt-0 ${item.reverse ? "md:rounded-[40px_10px_10px_40px]" : "md:rounded-[10px_40px_40px_10px]"} md:p-12 ${item.reverse ? "md:mr-[-80px] md:pr-32" : "md:ml-[-80px] md:pl-32"} `}
                 >
                   <div className="flex items-start gap-4">
                     <div className="mt-2 hidden h-12 w-1.5 rounded-full bg-red-900 transition-all duration-500 group-hover:h-24 group-hover:bg-red-600 md:block"></div>
@@ -257,7 +257,7 @@ export default function TallySoftware() {
             {stackContents.map((item, index) => (
               <div
                 key={item.id}
-                className="relative mb-12 w-full md:sticky lg:sticky"
+                className="relative z-2 mb-12 w-full md:sticky lg:sticky"
                 style={{ top: `${80 + index * 10}px` }}
               >
                 <motion.div

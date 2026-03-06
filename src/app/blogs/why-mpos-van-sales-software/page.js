@@ -7,17 +7,20 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const coreValues = [
   {
+    id: 1,
     title: "Inventory & Outstanding management",
     desc: "Tell what's the value for the customer for this feature.",
     icon: "💡",
   },
   {
+    id: 2,
     title: "Real Time Integration",
     desc: "Write what the customer would like to know,not what you want to show.",
     icon: "🏅",
   },
 
   {
+    id: 3,
     title: "Online and Offline Functionality  ",
     desc: " A small explanation of this great feature, in clear words.",
     icon: "🎯",
@@ -195,7 +198,7 @@ function WhyMpos() {
               scale,
               perspective: 1000,
             }}
-            className="relative flex w-full justify-center"
+            className="relative z-2 flex w-full justify-center"
           >
             <Image
               alt="mpos van driving left"

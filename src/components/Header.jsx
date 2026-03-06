@@ -71,7 +71,7 @@ export default function Header() {
               src="/images/logo.png"
               alt="Logo"
               width={140}
-              height={35}
+              height={0}
               className="brightness-0 invert"
             />
           </Link>

@@ -111,7 +111,7 @@ export default function ServicesCursorGlow() {
         transition={{ duration: 1 }}
         className="relative z-20 px-5 pt-32 pb-12 text-center"
       >
-        <div className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md">
+        <div className="mb-6 inline-block border border-red-600/50 px-4 py-1 text-[10px] font-bold tracking-[0.3em] text-red-500 uppercase">
           Excellence in IT Solutions
         </div>
         <h2 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl">

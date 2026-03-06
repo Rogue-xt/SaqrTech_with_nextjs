@@ -76,7 +76,7 @@ export default function page() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="relative h-[400px] md:h-[600px]"
+            className="relative z-2 h-[400px] md:h-[600px]"
           >
             <div className="" />
             <Image
@@ -90,7 +90,7 @@ export default function page() {
         </div>
       </section>
 
-      <div className="group mx-auto flex max-w-7xl gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-10 py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]">
+      <div className="group z-2 relative mx-auto flex max-w-7xl gap-4 rounded-2xl border border-l-4 border-red-600 border-white/5 bg-[#111111] p-10 py-20 shadow-[0_-20px_50px_rgba(0,0,0,0.9)]">
         <div className="mt-2 hidden h-12 w-5 rounded-full bg-red-900 transition-all duration-500 group-hover:h-24 group-hover:bg-red-600 md:block"></div>
         <p className="leading-relaxed text-gray-400">
           E-Invoicing and E-VAT Filing are digital processes that help
@@ -116,7 +116,7 @@ export default function page() {
           {crisscross.map((item, index) => (
             <div
               key={index}
-              className={`group flex flex-col items-center md:flex-row ${item.reverse ? "md:flex-row-reverse" : ""}`}
+              className={`group z-2 relative flex flex-col items-center md:flex-row ${item.reverse ? "md:flex-row-reverse" : ""}`}
             >
               {/* Image Container */}
               <div className="relative z-10 h-64 w-64 flex-shrink-0">

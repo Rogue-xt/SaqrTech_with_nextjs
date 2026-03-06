@@ -52,7 +52,7 @@ export const UserVansalesReplyMail = ({ name }) => (
               📄 View Brochure Online
             </Link>
             <div style={{ margin: "15px 0" }} />
-            <Link href="https://wa.me/971589516916" style={whatsappButton}>
+            <Link href="https://wa.me/971545252469" style={whatsappButton}>
               💬 Chat on WhatsApp
             </Link>
           </Section>

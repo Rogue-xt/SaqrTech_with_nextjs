@@ -66,7 +66,7 @@ export default function AboutSection() {
             visible: { opacity: 1, y: 0 },
           }}
           transition={{ duration: 0.6 }}
-          className="mb-6 inline-block rounded-full border border-purple-500/20 px-4 py-1.5 text-[10px] font-medium tracking-[0.3em] text-purple-300/60 uppercase backdrop-blur-md"
+          className="mb-6 inline-block border border-red-600/50 px-4 py-1 text-[10px] font-bold tracking-[0.3em] text-red-500 uppercase"
         >
           Excellence in IT Solutions
         </motion.div>
@@ -167,7 +167,9 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <h2 className="mb-4 text-5xl font-bold">Core Values</h2>
+          <h2 className="mb-4 text-5xl font-bold">
+            Core <span className="text-red-600"> Values</span>
+          </h2>
           <p className="text-gray-500">
             Our values define our culture and guide our actions
           </p>
