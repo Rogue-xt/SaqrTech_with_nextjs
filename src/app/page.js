@@ -89,10 +89,10 @@ export default function HomePage() {
         "Best IT company in UAE with uncompromising service quality. Van sales software and ERP software providers",
     },
     {
-      author: "Haii Al Khaleel Trading LLC",
+      author: "Sunil P",
       rating: 5,
       review:
-        "Really happy with their van sales software – super easy to use and works great for our business. Best in the GCC for sure!",
+        "Efficient route sales managing app with smooth tally prime Integration. Easy to use, real time syncing, and great support. perfect for streamlining field sales and accounting tasks. 💯",
     },
   ];
 

@@ -210,7 +210,10 @@ const handleSubmit = async (e) => {
                 </div>
 
                 <h2 className="mb-10 text-3xl font-black tracking-tight">
-                  Al Saqr <br /> Technologies L.L.C
+                  Al Saqr <br /> Technologies L.L.C{" "} <br />
+                  <span className="text-[10px] font-black tracking-widest text-red-100 uppercase">
+                    Ajman
+                  </span>
                 </h2>
 
                 <div className="space-y-5">
