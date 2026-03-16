@@ -167,6 +167,19 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+      {/* ================= STATS ================= */}
+
+      <section className="border-t border-gray-800 bg-black px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative z-2 grid grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
+            <Counter value={10} label="Years Experience" />{" "}
+            <Counter value={2500} label="Enterprise Clients" />
+            <Counter value={100} label="Projects Completed" />
+            <Counter value={5} label="Countries Covered" />
+          </div>
+        </div>
+      </section>
+
       {/* ================= INDUSTRIES (Glow Cards) ================= */}
       <section className="relative overflow-hidden bg-black py-24">
         <div className="mx-auto mb-16 max-w-7xl px-6 text-center">
@@ -196,18 +209,6 @@ export default function HomePage() {
                 />
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-      {/* ================= STATS ================= */}
-
-      <section className="border-t border-gray-800 bg-black px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="relative z-2 grid grid-cols-2 gap-10 rounded-3xl border border-gray-800 bg-[#0a0a0a] px-10 py-16 lg:grid-cols-4">
-            <Counter value={10} label="Years Experience" />{" "}
-            <Counter value={2500} label="Enterprise Clients" />
-            <Counter value={100} label="Projects Completed" />
-            <Counter value={5} label="Countries Covered" />
           </div>
         </div>
       </section>

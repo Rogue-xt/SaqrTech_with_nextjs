@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
-import { Lightbulb, Merge, ShieldCheck, Star, User } from "lucide-react";
+import { Eye, Lightbulb, Merge, ShieldCheck, Star, Target, User } from "lucide-react";
 
 const coreValues = [
   {
@@ -42,9 +42,21 @@ const sliderImages = [
   // "/images/gallery/IMG_04.jpg",
   "/images/gallery/IMG_05.jpg",
   // "/images/gallery/IMG_06.jpg",
+  "/images/gallery/IMG_08.jpeg"
 ];
 
 export default function AboutSection() {
+    const ref = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+      target: ref,
+      offset: ["start end", "end start"],
+    });
+
+    const scaleY = useSpring(scrollYProgress, {
+      stiffness: 100,
+      damping: 20,
+    });
   return (
     <section className="bg-black px-6 pb-20 text-white">
       <motion.div
@@ -159,6 +171,163 @@ export default function AboutSection() {
             </Swiper>
           </div>
         </div>
+
+        {/* Vision & Mision  */}
+        {/* Vision & Mission */}
+        <section
+          ref={ref}
+          className="relative overflow-hidden bg-black px-6 py-32 text-white"
+        >
+          {/* grid background */}
+          <div className="absolute inset-0 bg-[radial-gradient(#444_1px,transparent_1px)] [background-size:28px_28px] opacity-20" />
+
+          <div className="relative z-10 mx-auto max-w-6xl">
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="mb-24 text-center"
+            >
+              <h2 className="text-4xl font-black tracking-tight md:text-5xl">
+                Vision <span className="text-red-600">&</span> Mission
+              </h2>
+              <p className="mt-4 text-gray-400">
+                Driving innovation and delivering transformative technology
+                solutions
+              </p>
+            </motion.div>
+
+            {/* timeline container */}
+            <div className="relative">
+              {/* animated scroll progress line */}
+              <motion.div
+                style={{ scaleY }}
+                className="absolute top-0 left-1/2 hidden h-full w-[3px] origin-top -translate-x-1/2 bg-gradient-to-b from-red-500 via-red-600 to-red-700 shadow-[0_0_15px_rgba(239,68,68,0.7)] md:block"
+              />
+
+              <div className="space-y-28">
+                {/* ---------------- VISION ---------------- */}
+                <div className="grid items-center md:grid-cols-[1fr_90px_1fr]">
+                  {/* Card */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -70 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="group relative rounded-2xl bg-gradient-to-r from-red-600 via-red-500 to-red-700 p-[2px]"
+                  >
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-600 via-red-500 to-red-700 opacity-40 blur-md transition group-hover:opacity-80" />
+
+                    <div className="relative rounded-2xl bg-gray-900 p-8">
+                      <h3 className="mb-4 text-2xl font-bold text-red-500">
+                        Vision
+                      </h3>
+
+                      <p className="leading-relaxed text-white-100">
+                        To be a leading force in the technology industry,
+                        recognized for delivering innovative IT and ITES
+                        solutions that drive digital transformation.
+                        <br />
+                        <br />
+                        We empower businesses through seamless ERP integrations,
+                        advanced Tally customization, Odoo ERP implementation,
+                        and fully customized ERP development tailored to
+                        evolving needs.
+                        <br />
+                        <br />
+                        By leveraging cloud technologies and scalable MVP
+                        solutions, we enable organizations to operate smarter,
+                        faster, and more efficiently in the digital economy.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Timeline Node */}
+                  <div className="relative flex justify-center">
+                    {/* pulse ring */}
+                    <motion.span
+                      className="absolute h-20 w-20 rounded-full bg-red-600/30"
+                      animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
+                      transition={{ duration: 2.5, repeat: Infinity }}
+                    />
+
+                    {/* icon */}
+                    <motion.div
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{ repeat: Infinity, duration: 3 }}
+                      className="relative flex h-16 w-16 items-center justify-center rounded-full bg-red-600 shadow-[0_0_25px_rgba(239,68,68,0.8)]"
+                    >
+                      <Eye size={28} />
+                    </motion.div>
+                  </div>
+
+                  <div></div>
+                </div>
+
+                {/* ---------------- MISSION ---------------- */}
+                <div className="grid items-center md:grid-cols-[1fr_90px_1fr]">
+                  <div></div>
+
+                  {/* Timeline Node */}
+                  <div className="relative flex justify-center">
+                    <motion.span
+                      className="absolute h-20 w-20 rounded-full bg-red-600/30"
+                      animate={{ scale: [1, 1.6, 1], opacity: [0.6, 0, 0.6] }}
+                      transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
+                    />
+
+                    <motion.div
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{ repeat: Infinity, duration: 3, delay: 1 }}
+                      className="relative flex h-16 w-16 items-center justify-center rounded-full bg-red-600 shadow-[0_0_25px_rgba(239,68,68,0.8)]"
+                    >
+                      <Target size={28} />
+                    </motion.div>
+                  </div>
+
+                  {/* Card */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 70 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="group relative rounded-2xl bg-gradient-to-r from-red-600 via-red-500 to-red-700 p-[2px]"
+                  >
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-600 via-red-500 to-red-700 opacity-40 blur-md transition group-hover:opacity-80" />
+
+                    <div className="relative rounded-2xl bg-gray-900 p-8">
+                      <h3 className="mb-4 text-2xl font-bold text-red-500">
+                        Mission
+                      </h3>
+
+                      <p className="leading-relaxed text-white-100">
+                        At{" "}
+                        <span className="font-semibold text-white">
+                          Al Saqr Technologies
+                        </span>
+                        , our mission is to deliver cutting-edge IT and ITES
+                        solutions tailored to the unique needs of modern
+                        businesses.
+                        <br />
+                        <br />
+                        We focus on reliable ERP implementations, custom
+                        enterprise applications, and scalable cloud solutions
+                        that streamline operations and enhance productivity.
+                        <br />
+                        <br />
+                        Through innovation, collaboration, and commitment to
+                        excellence, we empower organizations to modernize their
+                        digital infrastructure and achieve sustainable growth.
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* --- CORE VALUES SECTION --- */}
         <motion.div
